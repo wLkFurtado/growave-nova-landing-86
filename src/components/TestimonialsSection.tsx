@@ -1,7 +1,13 @@
 
-import { useState, useEffect, useRef } from 'react';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Star } from 'lucide-react';
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Card, CardContent } from "@/components/ui/card";
 
 const testimonials = [
   {
@@ -31,62 +37,10 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [sliding, setSliding] = useState(false);
-  const [direction, setDirection] = useState('');
-  const testimonialsRef = useRef<HTMLDivElement>(null);
-  
-  const nextSlide = () => {
-    if (sliding) return;
-    
-    setSliding(true);
-    setDirection('right');
-    setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-    
-    setTimeout(() => {
-      setSliding(false);
-    }, 500);
-  };
-  
-  const prevSlide = () => {
-    if (sliding) return;
-    
-    setSliding(true);
-    setDirection('left');
-    setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
-    
-    setTimeout(() => {
-      setSliding(false);
-    }, 500);
-  };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          const interval = setInterval(nextSlide, 5000);
-          return () => clearInterval(interval);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (testimonialsRef.current) {
-      observer.observe(testimonialsRef.current);
-    }
-
-    return () => {
-      if (testimonialsRef.current) {
-        observer.unobserve(testimonialsRef.current);
-      }
-    };
-  }, [activeIndex, sliding]);
-
   return (
     <section 
       id="testimonials" 
       className="py-20 relative bg-gradient-to-b from-black via-growave-blue/20 to-black"
-      ref={testimonialsRef}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -97,80 +51,48 @@ const TestimonialsSection = () => {
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          {/* Navigation arrows */}
-          <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-5 sm:-translate-x-10 z-10">
-            <Button 
-              onClick={prevSlide} 
-              variant="ghost" 
-              size="icon" 
-              className="rounded-full bg-black/50 hover:bg-growave-green hover:text-black border border-growave-green/30"
-              disabled={sliding}
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </Button>
-          </div>
-          
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-5 sm:translate-x-10 z-10">
-            <Button 
-              onClick={nextSlide} 
-              variant="ghost" 
-              size="icon" 
-              className="rounded-full bg-black/50 hover:bg-growave-green hover:text-black border border-growave-green/30"
-              disabled={sliding}
-            >
-              <ChevronRight className="h-6 w-6" />
-            </Button>
-          </div>
-
-          {/* Testimonials slides */}
-          <div className="overflow-hidden relative rounded-xl">
-            <div 
-              className="flex transition-transform duration-500 ease-in-out h-full"
-              style={{ 
-                transform: `translateX(-${activeIndex * 100}%)`,
-              }}
-            >
+          <Carousel className="w-full">
+            <CarouselContent>
               {testimonials.map((testimonial) => (
-                <div 
-                  key={testimonial.id} 
-                  className="min-w-full px-6 py-12 bg-black/40 backdrop-blur border border-growave-green/10 rounded-xl"
-                >
-                  <div className="flex justify-center mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        className={`w-5 h-5 ${i < testimonial.stars ? 'text-growave-green fill-growave-green' : 'text-gray-400'}`} 
-                      />
-                    ))}
-                  </div>
-                  
-                  <blockquote className="text-xl md:text-2xl italic text-center mb-8">
-                    "{testimonial.testimonial}"
-                  </blockquote>
-                  
-                  <div className="text-center">
-                    <p className="font-bold text-lg">{testimonial.name}</p>
-                    <p className="text-growave-green">{testimonial.role} - {testimonial.company}</p>
-                  </div>
-                </div>
+                <CarouselItem key={testimonial.id}>
+                  <Card className="bg-black/40 backdrop-blur border border-growave-green/10 rounded-xl">
+                    <CardContent className="px-6 py-12">
+                      <div className="flex justify-center mb-4">
+                        {[...Array(5)].map((_, i) => (
+                          <Star 
+                            key={i} 
+                            className={`w-5 h-5 ${i < testimonial.stars ? 'text-growave-green fill-growave-green' : 'text-gray-400'}`} 
+                          />
+                        ))}
+                      </div>
+                      
+                      <blockquote className="text-xl md:text-2xl italic text-center mb-8">
+                        "{testimonial.testimonial}"
+                      </blockquote>
+                      
+                      <div className="text-center">
+                        <p className="font-bold text-lg">{testimonial.name}</p>
+                        <p className="text-growave-green">{testimonial.role} - {testimonial.company}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
               ))}
-            </div>
-          </div>
-
+            </CarouselContent>
+            <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-growave-green hover:text-black border border-growave-green/30" />
+            <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-growave-green hover:text-black border border-growave-green/30" />
+          </Carousel>
+          
           {/* Dots indicator */}
           <div className="flex justify-center space-x-2 mt-8">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 className={`w-3 h-3 rounded-full transition-all ${
-                  activeIndex === index 
+                  index === 0 
                     ? 'bg-growave-green w-8' 
                     : 'bg-gray-500 hover:bg-gray-400'
                 }`}
-                onClick={() => {
-                  setDirection(index > activeIndex ? 'right' : 'left');
-                  setActiveIndex(index);
-                }}
               />
             ))}
           </div>

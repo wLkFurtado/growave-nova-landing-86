@@ -1,0 +1,103 @@
+
+import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      setIsScrolled(offset > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 ${
+        isScrolled ? 'backdrop-blur border-b border-growave-green/10' : ''
+      }`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <img 
+              src="/lovable-uploads/24c3a692-18cf-4895-8371-69b360b77fa1.png" 
+              alt="Growave Logo" 
+              className="h-8 sm:h-10"
+            />
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <a href="#services" className="text-white hover:text-growave-green transition-colors">
+              Serviços
+            </a>
+            <a href="#results" className="text-white hover:text-growave-green transition-colors">
+              Resultados
+            </a>
+            <a href="#testimonials" className="text-white hover:text-growave-green transition-colors">
+              Depoimentos
+            </a>
+            <Button className="glow-button bg-transparent border border-growave-green text-growave-green hover:border-growave-green">
+              Fale com um especialista
+            </Button>
+          </nav>
+
+          {/* Mobile Menu Trigger */}
+          <div className="md:hidden">
+            <Button 
+              variant="ghost" 
+              className="text-white"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <div className="md:hidden mt-4 backdrop-blur animate-fade-in border border-growave-green/10 rounded-lg p-4">
+            <nav className="flex flex-col space-y-4">
+              <a 
+                href="#services" 
+                className="text-white hover:text-growave-green transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Serviços
+              </a>
+              <a 
+                href="#results" 
+                className="text-white hover:text-growave-green transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Resultados
+              </a>
+              <a 
+                href="#testimonials" 
+                className="text-white hover:text-growave-green transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Depoimentos
+              </a>
+              <Button 
+                className="glow-button bg-transparent border border-growave-green text-growave-green w-full hover:border-growave-green"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Fale com um especialista
+              </Button>
+            </nav>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+};
+
+export default Header;

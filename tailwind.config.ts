@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,16 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				growave: {
+					green: '#4AFF5A',
+					'green-light': '#7FFF8A',
+					'green-dark': '#2EDD3E',
+					blue: '#101D42',
+					'blue-light': '#1A2F6D',
+					black: '#000000',
+					'black-light': '#121212',
+					white: '#FFFFFF',
 				}
 			},
 			borderRadius: {
@@ -84,11 +95,49 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'fade-in-left': {
+					'0%': { opacity: '0', transform: 'translateX(-20px)' },
+					'100%': { opacity: '1', transform: 'translateX(0)' }
+				},
+				'fade-in-right': {
+					'0%': { opacity: '0', transform: 'translateX(20px)' },
+					'100%': { opacity: '1', transform: 'translateX(0)' }
+				},
+				'glow': {
+					'0%, 100%': { 
+						boxShadow: '0 0 5px rgba(74, 255, 90, 0.5), 0 0 10px rgba(74, 255, 90, 0.3)'
+					},
+					'50%': { 
+						boxShadow: '0 0 15px rgba(74, 255, 90, 0.8), 0 0 20px rgba(74, 255, 90, 0.5)'
+					}
+				},
+				'pulse-soft': {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.05)' }
+				},
+				'count-up': {
+					'0%': { transform: 'translateY(0)' },
+					'100%': { transform: 'translateY(-100%)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.7s ease-out',
+				'fade-in-left': 'fade-in-left 0.7s ease-out',
+				'fade-in-right': 'fade-in-right 0.7s ease-out',
+				'glow': 'glow 2s ease-in-out infinite',
+				'pulse-soft': 'pulse-soft 3s infinite',
+				'count-up': 'count-up 1s ease-out forwards',
+			},
+			backgroundImage: {
+				'circuit-pattern': "url('/public/lovable-uploads/24c3a692-18cf-4895-8371-69b360b77fa1.png')",
+				'gradient-glow': 'radial-gradient(circle, rgba(74,255,90,0.2) 0%, rgba(0,0,0,0) 70%)',
 			}
 		}
 	},

@@ -29,7 +29,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/24c3a692-18cf-4895-8371-69b360b77fa1.png" 
               alt="Growave Logo" 
-              className="h-8 sm:h-10"
+              className="h-12 sm:h-14"
             />
           </div>
 

@@ -15,8 +15,30 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center circuit-pattern pt-20">
+    <div className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+      {/* Circuit board background with animation */}
+      <div className="absolute inset-0 z-0 circuit-pattern">
+        {/* Digital code lines animation overlay */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="code-line h-1 w-20 bg-growave-green absolute top-1/4 left-1/5 animate-pulse-soft"></div>
+          <div className="code-line h-1 w-40 bg-growave-green absolute top-1/3 right-1/4 animate-pulse-soft" style={{animationDelay: '0.5s'}}></div>
+          <div className="code-line h-1 w-32 bg-growave-green absolute bottom-1/3 left-1/3 animate-pulse-soft" style={{animationDelay: '1s'}}></div>
+          <div className="code-line h-1 w-24 bg-growave-green absolute bottom-1/4 right-1/5 animate-pulse-soft" style={{animationDelay: '1.5s'}}></div>
+          
+          <div className="code-square h-8 w-8 border border-growave-green absolute top-1/2 left-1/6 animate-pulse-soft" style={{animationDelay: '0.7s'}}></div>
+          <div className="code-square h-12 w-12 border border-growave-green absolute bottom-1/2 right-1/6 animate-pulse-soft" style={{animationDelay: '1.2s'}}></div>
+        </div>
+      </div>
+      
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/95 pointer-events-none"></div>
+      
+      {/* Automation graphics - floating nodes and connections */}
+      <div className="absolute inset-0 z-10 overflow-hidden">
+        <div className="node w-3 h-3 rounded-full bg-growave-green absolute top-1/4 left-1/4 animate-glow"></div>
+        <div className="node w-2 h-2 rounded-full bg-growave-green absolute top-1/3 right-1/3 animate-glow" style={{animationDelay: '0.3s'}}></div>
+        <div className="node w-4 h-4 rounded-full bg-growave-green absolute bottom-1/3 left-1/2 animate-glow" style={{animationDelay: '0.6s'}}></div>
+        <div className="node w-2 h-2 rounded-full bg-growave-green absolute bottom-1/4 right-1/4 animate-glow" style={{animationDelay: '0.9s'}}></div>
+      </div>
       
       {/* Glowing orb effect */}
       <div className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-glow opacity-30 blur-3xl rounded-full pointer-events-none"></div>

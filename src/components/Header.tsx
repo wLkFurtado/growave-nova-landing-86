@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6 ${
         isScrolled ? 'backdrop-blur border-b border-growave-green/10' : ''
       }`}
     >
@@ -29,7 +29,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/24c3a692-18cf-4895-8371-69b360b77fa1.png" 
               alt="Growave Logo" 
-              className="h-12 sm:h-14"
+              className="h-[120px] sm:h-[200px]"
             />
           </div>
 

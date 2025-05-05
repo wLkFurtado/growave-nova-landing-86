@@ -56,7 +56,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-7 mx-0 my--20 py-- py-0 my-[-304px] lg:text-7xl">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-7 mx-0 my--20 py-- my-[-310px] py-[30px] lg:text-7xl">
               Transforme sua presença digital com 
               <span className="gradient-text block mt-2">Marketing Inteligente</span>
             </h1>

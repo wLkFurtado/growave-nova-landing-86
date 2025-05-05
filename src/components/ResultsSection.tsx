@@ -1,6 +1,6 @@
 
 import { useEffect, useState, useRef } from 'react';
-import { ChartLineUp, Users, TrendUp, Target } from 'lucide-react';
+import { LineChart, Users, TrendingUp, Target } from 'lucide-react';
 
 type StatCardProps = {
   icon: React.ReactNode;
@@ -73,7 +73,7 @@ const ResultsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard
-            icon={<ChartLineUp className="w-6 h-6 text-growave-green" />}
+            icon={<LineChart className="w-6 h-6 text-growave-green" />}
             title="Investimento Gerenciado"
             value="R$ 500.000+"
             subtitle="Em campanhas de anúncios"
@@ -87,7 +87,7 @@ const ResultsSection = () => {
             delay={200}
           />
           <StatCard
-            icon={<TrendUp className="w-6 h-6 text-growave-green" />}
+            icon={<TrendingUp className="w-6 h-6 text-growave-green" />}
             title="Aumento em Vendas"
             value="350%"
             subtitle="Média de crescimento"

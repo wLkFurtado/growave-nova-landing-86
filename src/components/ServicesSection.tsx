@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Facebook, Google, Database, Bot, BarChart } from 'lucide-react';
+import { Facebook, Chrome, Database, Bot, BarChart } from 'lucide-react';
 
 type ServiceCardProps = {
   title: string;
@@ -81,7 +81,7 @@ const ServicesSection = () => {
           <ServiceCard
             title="Tráfego Pago Google Ads"
             description="Maximize sua presença nos resultados de busca e alcance clientes no momento exato em que procuram pelos seus serviços."
-            icon={<Google className="w-8 h-8 text-growave-green" />}
+            icon={<Chrome className="w-8 h-8 text-growave-green" />}
             delay={200}
           />
           <ServiceCard

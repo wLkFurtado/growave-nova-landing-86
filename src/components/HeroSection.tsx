@@ -1,32 +1,36 @@
-
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
-
     return () => clearTimeout(timer);
   }, []);
-
-  return (
-    <div className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+  return <div className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
         {/* Digital code lines animation overlay */}
         <div className="absolute inset-0 opacity-20">
           <div className="code-line h-1 w-20 bg-growave-green absolute top-1/4 left-1/5 animate-pulse-soft"></div>
-          <div className="code-line h-1 w-40 bg-growave-green absolute top-1/3 right-1/4 animate-pulse-soft" style={{animationDelay: '0.5s'}}></div>
-          <div className="code-line h-1 w-32 bg-growave-green absolute bottom-1/3 left-1/3 animate-pulse-soft" style={{animationDelay: '1s'}}></div>
-          <div className="code-line h-1 w-24 bg-growave-green absolute bottom-1/4 right-1/5 animate-pulse-soft" style={{animationDelay: '1.5s'}}></div>
+          <div className="code-line h-1 w-40 bg-growave-green absolute top-1/3 right-1/4 animate-pulse-soft" style={{
+          animationDelay: '0.5s'
+        }}></div>
+          <div className="code-line h-1 w-32 bg-growave-green absolute bottom-1/3 left-1/3 animate-pulse-soft" style={{
+          animationDelay: '1s'
+        }}></div>
+          <div className="code-line h-1 w-24 bg-growave-green absolute bottom-1/4 right-1/5 animate-pulse-soft" style={{
+          animationDelay: '1.5s'
+        }}></div>
           
-          <div className="code-square h-8 w-8 border border-growave-green absolute top-1/2 left-1/6 animate-pulse-soft" style={{animationDelay: '0.7s'}}></div>
-          <div className="code-square h-12 w-12 border border-growave-green absolute bottom-1/2 right-1/6 animate-pulse-soft" style={{animationDelay: '1.2s'}}></div>
+          <div className="code-square h-8 w-8 border border-growave-green absolute top-1/2 left-1/6 animate-pulse-soft" style={{
+          animationDelay: '0.7s'
+        }}></div>
+          <div className="code-square h-12 w-12 border border-growave-green absolute bottom-1/2 right-1/6 animate-pulse-soft" style={{
+          animationDelay: '1.2s'
+        }}></div>
         </div>
       </div>
       
@@ -35,9 +39,15 @@ const HeroSection = () => {
       {/* Automation graphics - floating nodes and connections */}
       <div className="absolute inset-0 z-10 overflow-hidden">
         <div className="node w-3 h-3 rounded-full bg-growave-green absolute top-1/4 left-1/4 animate-glow"></div>
-        <div className="node w-2 h-2 rounded-full bg-growave-green absolute top-1/3 right-1/3 animate-glow" style={{animationDelay: '0.3s'}}></div>
-        <div className="node w-4 h-4 rounded-full bg-growave-green absolute bottom-1/3 left-1/2 animate-glow" style={{animationDelay: '0.6s'}}></div>
-        <div className="node w-2 h-2 rounded-full bg-growave-green absolute bottom-1/4 right-1/4 animate-glow" style={{animationDelay: '0.9s'}}></div>
+        <div className="node w-2 h-2 rounded-full bg-growave-green absolute top-1/3 right-1/3 animate-glow" style={{
+        animationDelay: '0.3s'
+      }}></div>
+        <div className="node w-4 h-4 rounded-full bg-growave-green absolute bottom-1/3 left-1/2 animate-glow" style={{
+        animationDelay: '0.6s'
+      }}></div>
+        <div className="node w-2 h-2 rounded-full bg-growave-green absolute bottom-1/4 right-1/4 animate-glow" style={{
+        animationDelay: '0.9s'
+      }}></div>
       </div>
       
       {/* Glowing orb effect */}
@@ -46,7 +56,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-7 mx-0 my--20 lg:text-7xl">
               Transforme sua presença digital com 
               <span className="gradient-text block mt-2">Marketing Inteligente</span>
             </h1>
@@ -88,8 +98,6 @@ const HeroSection = () => {
       
       {/* Decorative angled div at bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-r from-black via-growave-blue to-black transform -skew-y-1"></div>
-    </div>
-  );
+    </div>;
 };
-
 export default HeroSection;

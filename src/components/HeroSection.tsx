@@ -37,7 +37,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/95 pointer-events-none"></div>
       
       {/* Automation graphics - floating nodes and connections */}
-      <div className="absolute inset-0 z-10 overflow-hidden py-[-22px] my--[27px] mx-0">
+      <div className="absolute inset-0 z-10 overflow-hidden ">
         <div className="node w-3 h-3 rounded-full bg-growave-green absolute top-1/4 left-1/4 animate-glow"></div>
         <div className="node w-2 h-2 rounded-full bg-growave-green absolute top-1/3 right-1/3 animate-glow" style={{
         animationDelay: '0.3s'

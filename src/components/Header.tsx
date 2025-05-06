@@ -16,7 +16,7 @@ const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between my-[42px] py-">
           <div className="flex items-center">
-            <img src="/lovable-uploads/24c3a692-18cf-4895-8371-69b360b77fa1.png" alt="Growave Logo" className="h-[100px] sm:h-[100px]" />
+            <img src="/lovable-uploads/24c3a692-18cf-4895-8371-69b360b77fa1.png" alt="Growave Logo" className="h-[60px] sm:h-[50px]" />
           </div>
 
           {/* Desktop Navigation */}

@@ -1,18 +1,14 @@
-
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
   }, []);
-
   return <div className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
@@ -41,7 +37,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/95 pointer-events-none"></div>
       
       {/* Automation graphics - floating nodes and connections */}
-      <div className="absolute inset-0 z-10 overflow-hidden ">
+      <div className="absolute inset-0 z-10 overflow-hidden py-0 ">
         <div className="node w-3 h-3 rounded-full bg-growave-green absolute top-1/4 left-1/4 animate-glow"></div>
         <div className="node w-2 h-2 rounded-full bg-growave-green absolute top-1/3 right-1/3 animate-glow" style={{
         animationDelay: '0.3s'
@@ -57,10 +53,10 @@ const HeroSection = () => {
       {/* Glowing orb effect */}
       <div className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-glow opacity-30 blur-3xl rounded-full pointer-events-none"></div>
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-[-1px]">
         <div className="text-center max-w-4xl mx-auto mt-16 md:mt-0">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-7 lg:text-7xl">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-7 lg:text-7xl my-[-100px]">
               Transforme sua presença digital com 
               <span className="gradient-text block mt-2">Marketing Inteligente</span>
             </h1>
@@ -104,5 +100,4 @@ const HeroSection = () => {
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-r from-black via-growave-blue to-black transform -skew-y-1"></div>
     </div>;
 };
-
 export default HeroSection;

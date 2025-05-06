@@ -79,8 +79,14 @@ const TestimonialsSection = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-growave-green hover:text-black border border-growave-green/30" />
-            <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-growave-green hover:text-black border border-growave-green/30" />
+            <div className="hidden md:block">
+              <CarouselPrevious className="absolute -left-14 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-growave-green hover:text-black border border-growave-green/30" />
+              <CarouselNext className="absolute -right-14 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-growave-green hover:text-black border border-growave-green/30" />
+            </div>
+            <div className="md:hidden flex justify-center mt-6 gap-4">
+              <CarouselPrevious className="static bg-black/50 hover:bg-growave-green hover:text-black border border-growave-green/30 translate-x-0 translate-y-0" />
+              <CarouselNext className="static bg-black/50 hover:bg-growave-green hover:text-black border border-growave-green/30 translate-x-0 translate-y-0" />
+            </div>
           </Carousel>
           
           {/* Dots indicator */}

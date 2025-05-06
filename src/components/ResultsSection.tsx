@@ -40,7 +40,7 @@ const StatCard = ({ icon, title, value, subtitle, delay }: StatCardProps) => {
   return (
     <div
       ref={ref}
-      className="flex flex-col bg-gradient-to-br from-growave-black-light to-growave-blue/30 p-6 rounded-lg border border-growave-green/10 card-glow transform transition-all duration-500"
+      className="flex flex-col bg-gradient-to-br from-growave-black-light to-growave-blue/30 p-6 md:p-8 rounded-lg border border-growave-green/10 card-glow transform transition-all duration-500"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
@@ -62,7 +62,7 @@ const StatCard = ({ icon, title, value, subtitle, delay }: StatCardProps) => {
 
 const ResultsSection = () => {
   return (
-    <section id="results" className="py-20 relative gradient-bg">
+    <section id="results" className="py-24 relative gradient-bg">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Resultados Comprovados</h2>
@@ -71,7 +71,7 @@ const ResultsSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           <StatCard
             icon={<LineChart className="w-6 h-6 text-growave-green" />}
             title="Investimento Gerenciado"

@@ -1,9 +1,12 @@
+
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -12,9 +15,10 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  return <header className="">
+
+  return <header className="py-4 lg:py-6">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between my-[42px] py-">
+        <div className="flex items-center justify-between">
           <div className="flex items-center">
             <img src="/lovable-uploads/24c3a692-18cf-4895-8371-69b360b77fa1.png" alt="Growave Logo" className="h-[60px] sm:h-[50px]" />
           </div>
@@ -63,4 +67,5 @@ const Header = () => {
       </div>
     </header>;
 };
+
 export default Header;

@@ -2,6 +2,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, User, ChartBar } from "lucide-react";
+import { useEffect } from "react";
 
 interface ProfileOverviewProps {
   username: string;
@@ -28,6 +29,12 @@ const ProfileOverview = ({
   engagementRate,
   averageLikes
 }: ProfileOverviewProps) => {
+  
+  // Log profile image URL to debug
+  useEffect(() => {
+    console.log('Profile image URL in ProfileOverview:', profileImage);
+  }, [profileImage]);
+
   return (
     <Card className="bg-black/40 border-white/10">
       <CardHeader>

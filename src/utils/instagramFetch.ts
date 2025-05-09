@@ -32,8 +32,15 @@ export const fetchInstagramData = async (data: FormValues) => {
   const responseData = await response.json();
   
   console.log('Instagram API response:', responseData);
-  console.log('Profile image URL (profilePicUrl):', responseData[0]?.profilePicUrl);
-  console.log('Profile image URL HD (profilePicUrlHD):', responseData[0]?.profilePicUrlHD);
+  
+  // Log profile image URLs for debugging
+  if (responseData && Array.isArray(responseData) && responseData.length > 0) {
+    console.log('Profile image URL (profilePicUrl):', responseData[0]?.profilePicUrl);
+    console.log('Profile image URL HD (profilePicUrlHD):', responseData[0]?.profilePicUrlHD);
+  } else if (responseData) {
+    console.log('Profile image URL (profilePicUrl):', responseData.profilePicUrl);
+    console.log('Profile image URL HD (profilePicUrlHD):', responseData.profilePicUrlHD);
+  }
   
   if (!responseData || (Array.isArray(responseData) && responseData.length === 0)) {
     throw new Error('Nenhum dado do Instagram encontrado');

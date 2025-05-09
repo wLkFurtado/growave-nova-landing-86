@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { calculateEngagementMetrics, getAccountTypeLabel, getImprovementAreas, getPracticalSuggestions, getProfileStrengths } from "./EngagementUtils";
 import ProfileOverview from "./ProfileOverview";
@@ -15,7 +15,11 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
   // Process data from webhook response (supports any Instagram profile)
   const profile = Array.isArray(data) ? data[0] : data; // Handle array or direct object
   
-  console.log('Profile data received:', profile);
+  useEffect(() => {
+    console.log('Profile data received in InstagramInsights:', profile);
+    console.log('Profile image URL (profilePicUrl):', profile?.profilePicUrl);
+    console.log('Profile image URL HD (profilePicUrlHD):', profile?.profilePicUrlHD);
+  }, [profile]);
 
   // Extract basic profile information
   const {
@@ -36,7 +40,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
   // Use HD profile pic if available, otherwise use standard resolution
   const profileImage = profilePicUrlHD || profilePicUrl;
   
-  console.log('Profile image URL:', profileImage);
+  console.log('Using profile image URL:', profileImage);
 
   // Calculate engagement metrics based on recent posts
   const { 

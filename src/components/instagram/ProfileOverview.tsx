@@ -41,7 +41,7 @@ const ProfileOverview = ({
         <div className="flex items-center gap-4">
           <Avatar className="h-16 w-16 border-2 border-growave-green/30">
             {profileImage ? (
-              <AvatarImage src={profileImage} alt={`@${username}`} />
+              <AvatarImage src={profileImage} alt={`@${username}`} className="object-cover" />
             ) : (
               <AvatarFallback className="bg-growave-green/20 text-growave-green">
                 {username.substring(0, 2).toUpperCase()}

@@ -17,8 +17,10 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
   
   useEffect(() => {
     console.log('Profile data received in InstagramInsights:', profile);
-    console.log('Profile image URL (profilePicUrl):', profile?.profilePicUrl);
-    console.log('Profile image URL HD (profilePicUrlHD):', profile?.profilePicUrlHD);
+    if (profile) {
+      console.log('Profile image URL (profilePicUrl):', profile.profilePicUrl);
+      console.log('Profile image URL HD (profilePicUrlHD):', profile.profilePicUrlHD);
+    }
   }, [profile]);
 
   // Extract basic profile information
@@ -38,7 +40,8 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
   } = profile || {};
 
   // Use HD profile pic if available, otherwise use standard resolution
-  const profileImage = profilePicUrlHD || profilePicUrl;
+  // Use the value from n8n response format which might be using different key name
+  const profileImage = profile?.profilePicUrlHD || profile?.["{{ $node[\"Respond to Webhook\"].json[\"profilePicUrlHD\"] }}"] || profilePicUrlHD || profilePicUrl || "";
   
   console.log('Using profile image URL:', profileImage);
 

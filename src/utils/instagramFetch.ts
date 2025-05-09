@@ -33,13 +33,15 @@ export const fetchInstagramData = async (data: FormValues) => {
   
   console.log('Instagram API response:', responseData);
   
-  // Log profile image URLs for debugging
+  // Log profile image URLs for debugging - checking all possible formats
   if (responseData && Array.isArray(responseData) && responseData.length > 0) {
     console.log('Profile image URL (profilePicUrl):', responseData[0]?.profilePicUrl);
     console.log('Profile image URL HD (profilePicUrlHD):', responseData[0]?.profilePicUrlHD);
+    console.log('Profile image special format:', responseData[0]?.['{{ $node["Respond to Webhook"].json["profilePicUrlHD"] }}']);
   } else if (responseData) {
     console.log('Profile image URL (profilePicUrl):', responseData.profilePicUrl);
     console.log('Profile image URL HD (profilePicUrlHD):', responseData.profilePicUrlHD);
+    console.log('Profile image special format:', responseData['{{ $node["Respond to Webhook"].json["profilePicUrlHD"] }}']);
   }
   
   if (!responseData || (Array.isArray(responseData) && responseData.length === 0)) {

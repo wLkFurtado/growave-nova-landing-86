@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 import { calculateEngagementMetrics, getAccountTypeLabel, getImprovementAreas, getPracticalSuggestions, getProfileStrengths } from "./utils";
 import { fetchAndStoreImage, clearStoredImages } from "./utils/imageStorage";
 import ProfileOverview from "./ProfileOverview";
@@ -134,7 +135,8 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
           <TabsTrigger value="recommendations">Recomendações</TabsTrigger>
         </TabsList>
         
-        <div className={isMobile ? 'overflow-visible pb-20' : ''}>
+        {/* Adiciona um padding-bottom para garantir que nenhum conteúdo fique atrás do botão fixo em mobile */}
+        <div className={`${isMobile ? 'overflow-visible pb-32' : ''}`}>
           <TabsContent value="overview" className="space-y-6">
             <ProfileOverview
               username={username}
@@ -176,6 +178,23 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
           </TabsContent>
         </div>
       </Tabs>
+
+      {/* Botão fixo na parte inferior da tela, visível em todas as abas no mobile */}
+      {isMobile && (
+        <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/90 border-t border-white/10 z-30">
+          <div className="w-full">
+            <Button 
+              onClick={handleReset}
+              className="w-full bg-growave-green text-black hover:bg-growave-green-light"
+            >
+              Finalizar
+            </Button>
+            <p className="text-xs text-gray-400 mt-3 text-center">
+              Este diagnóstico é baseado em dados públicos do seu perfil. Para uma análise mais profunda e personalizada, nossos especialistas entrarão em contato.
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -68,20 +68,6 @@ const RecommendationsPanel = ({
               <ChevronDown className="h-4 w-4 inline animate-bounce" />
               <span className="ml-1">Role para ver mais</span>
             </div>
-
-            {/* Mobile button within scroll area with added padding */}
-            <div className="py-12 mt-6">
-              <Button 
-                onClick={onReset} 
-                className="w-full bg-growave-green text-black hover:bg-growave-green-light"
-              >
-                Finalizar
-              </Button>
-              
-              <p className="text-xs text-gray-400 mt-3 text-center">
-                Este diagnóstico é baseado em dados públicos do seu perfil. Para uma análise mais profunda e personalizada, nossos especialistas entrarão em contato.
-              </p>
-            </div>
           </CardContent>
         </ScrollArea>
       ) : (

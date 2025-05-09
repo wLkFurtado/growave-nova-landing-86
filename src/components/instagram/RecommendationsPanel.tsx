@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Star, ArrowUp, TrendingUp } from "lucide-react";
+import { Star, ArrowUp, TrendingUp, ChevronDown } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface RecommendationsPanelProps {
@@ -25,8 +25,8 @@ const RecommendationsPanel = ({
         <CardTitle className="text-white text-lg">Diagnóstico e Recomendações</CardTitle>
       </CardHeader>
       {isMobile ? (
-        <ScrollArea className="h-[60vh] px-1">
-          <CardContent className="space-y-5 pb-16">
+        <ScrollArea className="h-[70vh] px-1">
+          <CardContent className="space-y-5">
             <div>
               <h4 className="text-sm font-medium flex items-center gap-2 mb-2">
                 <Star className="h-4 w-4 text-growave-green" />
@@ -61,6 +61,26 @@ const RecommendationsPanel = ({
                   <li key={i} className="text-gray-300">{suggestion}</li>
                 ))}
               </ul>
+            </div>
+
+            {/* Add scroll indicator */}
+            <div className="text-center text-gray-400 text-sm pt-2">
+              <ChevronDown className="h-4 w-4 inline animate-bounce" />
+              <span className="ml-1">Role para ver mais</span>
+            </div>
+
+            {/* Mobile button within scroll area with added padding */}
+            <div className="py-12 mt-6">
+              <Button 
+                onClick={onReset} 
+                className="w-full bg-growave-green text-black hover:bg-growave-green-light"
+              >
+                Finalizar
+              </Button>
+              
+              <p className="text-xs text-gray-400 mt-3 text-center">
+                Este diagnóstico é baseado em dados públicos do seu perfil. Para uma análise mais profunda e personalizada, nossos especialistas entrarão em contato.
+              </p>
             </div>
           </CardContent>
         </ScrollArea>
@@ -103,21 +123,21 @@ const RecommendationsPanel = ({
           </div>
         </CardContent>
       )}
-      <CardFooter className={isMobile ? 'fixed bottom-0 left-0 right-0 bg-black p-4 border-t border-white/10 z-10' : ''}>
-        <div className="w-full">
-          {!isMobile && (
+      {!isMobile && (
+        <CardFooter>
+          <div className="w-full">
             <p className="text-sm text-gray-400 mb-3">
               Este diagnóstico é baseado em dados públicos do seu perfil. Para uma análise mais profunda e personalizada, nossos especialistas entrarão em contato.
             </p>
-          )}
-          <Button 
-            onClick={onReset} 
-            className="w-full bg-growave-green text-black hover:bg-growave-green-light"
-          >
-            Finalizar
-          </Button>
-        </div>
-      </CardFooter>
+            <Button 
+              onClick={onReset} 
+              className="w-full bg-growave-green text-black hover:bg-growave-green-light"
+            >
+              Finalizar
+            </Button>
+          </div>
+        </CardFooter>
+      )}
     </Card>
   );
 };

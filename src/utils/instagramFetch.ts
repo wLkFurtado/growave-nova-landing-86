@@ -33,20 +33,60 @@ export const fetchInstagramData = async (data: FormValues) => {
   
   console.log('Instagram API response:', responseData);
   
-  // Log profile image URLs for debugging - checking all possible formats
-  if (responseData && Array.isArray(responseData) && responseData.length > 0) {
-    console.log('Profile image URL (profilePicUrl):', responseData[0]?.profilePicUrl);
-    console.log('Profile image URL HD (profilePicUrlHD):', responseData[0]?.profilePicUrlHD);
-    console.log('Profile image special format:', responseData[0]?.['{{ $node["Respond to Webhook"].json["profilePicUrlHD"] }}']);
-  } else if (responseData) {
-    console.log('Profile image URL (profilePicUrl):', responseData.profilePicUrl);
-    console.log('Profile image URL HD (profilePicUrlHD):', responseData.profilePicUrlHD);
-    console.log('Profile image special format:', responseData['{{ $node["Respond to Webhook"].json["profilePicUrlHD"] }}']);
-  }
+  // Extract profile data with normalized structure
+  const profileData = normalizeProfileData(responseData);
   
-  if (!responseData || (Array.isArray(responseData) && responseData.length === 0)) {
+  if (!profileData) {
     throw new Error('Nenhum dado do Instagram encontrado');
   }
   
-  return responseData;
+  return profileData;
+};
+
+/**
+ * Normalize profile data to handle different response formats
+ */
+const normalizeProfileData = (data: any) => {
+  if (!data) return null;
+  
+  // Handle array format
+  const profile = Array.isArray(data) ? data[0] : data;
+  if (!profile) return null;
+  
+  // Extract profile image URL from various possible formats
+  const profileImageUrl = extractProfileImageUrl(profile);
+  console.log('Extracted profile image URL:', profileImageUrl);
+  
+  // Return normalized data with consistent profile image URL
+  return {
+    ...profile,
+    // Ensure profilePicUrl and profilePicUrlHD are always set
+    profilePicUrl: profileImageUrl,
+    profilePicUrlHD: profileImageUrl,
+  };
+};
+
+/**
+ * Extract profile image URL from various possible formats
+ */
+const extractProfileImageUrl = (profile: any): string => {
+  // Try all possible formats for the profile image URL
+  const possibleKeys = [
+    'profilePicUrlHD',
+    'profilePicUrl',
+    '{{ $node["Respond to Webhook"].json["profilePicUrlHD"] }}',
+    'profile_pic_url_hd',
+    'profile_pic_url'
+  ];
+  
+  // Find first non-empty URL
+  for (const key of possibleKeys) {
+    if (profile[key] && typeof profile[key] === 'string') {
+      console.log(`Found profile image URL in key: ${key}`, profile[key]);
+      return profile[key];
+    }
+  }
+  
+  console.log('No profile image URL found in any expected format');
+  return '';
 };

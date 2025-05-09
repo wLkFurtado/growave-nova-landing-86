@@ -1,8 +1,7 @@
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, User, ChartBar } from "lucide-react";
 import { useEffect } from "react";
+import InstagramProfileImage from "./InstagramProfileImage";
 
 interface ProfileOverviewProps {
   username: string;
@@ -39,15 +38,11 @@ const ProfileOverview = ({
     <Card className="bg-black/40 border-white/10">
       <CardHeader>
         <div className="flex items-center gap-4">
-          <Avatar className="h-16 w-16 border-2 border-growave-green/30">
-            {profileImage ? (
-              <AvatarImage src={profileImage} alt={`@${username}`} className="object-cover" />
-            ) : (
-              <AvatarFallback className="bg-growave-green/20 text-growave-green">
-                {username.substring(0, 2).toUpperCase()}
-              </AvatarFallback>
-            )}
-          </Avatar>
+          <InstagramProfileImage 
+            profileUrl={profileImage} 
+            username={username} 
+            size="md"
+          />
           <div>
             <CardTitle className="text-white">{fullName}</CardTitle>
             <CardDescription className="text-gray-400">

@@ -14,6 +14,15 @@ const HeroSection = () => {
   }, []);
 
   return <div className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+      {/* Background image with opacity */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/lovable-uploads/8b692dc0-db89-4331-bb56-bd9339585ff1.jpeg" 
+          alt="Medical background" 
+          className="w-full h-full object-cover opacity-50"
+        />
+      </div>
+      
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
         {/* Digital code lines animation overlay */}
@@ -38,7 +47,7 @@ const HeroSection = () => {
         </div>
       </div>
       
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/95 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/95 pointer-events-none z-[1]"></div>
       
       {/* Automation graphics - floating nodes and connections */}
       <div className="absolute inset-0 z-10 overflow-hidden py-0 ">

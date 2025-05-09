@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { calculateEngagementMetrics, getAccountTypeLabel, getImprovementAreas, getPracticalSuggestions, getProfileStrengths } from "./EngagementUtils";
+import { calculateEngagementMetrics, getAccountTypeLabel, getImprovementAreas, getPracticalSuggestions, getProfileStrengths } from "./utils";
 import ProfileOverview from "./ProfileOverview";
 import EngagementMetrics from "./EngagementMetrics";
 import RecommendationsPanel from "./RecommendationsPanel";

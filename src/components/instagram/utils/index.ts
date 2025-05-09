@@ -4,3 +4,4 @@
 export * from './metricsCalculation';
 export * from './profileAnalysis';
 export * from './accountUtils';
+export * from './imageStorage';

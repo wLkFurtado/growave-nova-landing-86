@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { calculateEngagementMetrics, getAccountTypeLabel, getImprovementAreas, getPracticalSuggestions, getProfileStrengths } from "./utils";
+import { fetchAndStoreImage, clearStoredImages } from "./utils/imageStorage";
 import ProfileOverview from "./ProfileOverview";
 import EngagementMetrics from "./EngagementMetrics";
 import RecommendationsPanel from "./RecommendationsPanel";
@@ -20,6 +21,25 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
     if (profile) {
       console.log('Profile image URL (profilePicUrl):', profile.profilePicUrl);
       console.log('Profile image URL HD (profilePicUrlHD):', profile.profilePicUrlHD);
+      
+      // Pré-carregar a imagem de perfil para armazenamento local
+      const profileImage = profile?.profilePicUrlHD || 
+                           profile?.profilePicUrl || 
+                           profile?.["{{ $node[\"Respond to Webhook\"].json[\"profilePicUrlHD\"] }}"] || 
+                           "";
+                           
+      if (profileImage) {
+        console.log('Pré-carregando imagem de perfil:', profileImage);
+        fetchAndStoreImage(profileImage)
+          .then(base64 => {
+            if (base64) {
+              console.log('Imagem de perfil pré-carregada com sucesso');
+            }
+          })
+          .catch(error => {
+            console.error('Erro ao pré-carregar imagem de perfil:', error);
+          });
+      }
     }
   }, [profile]);
 
@@ -72,6 +92,14 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
   // Get account type label for display
   const accountTypeLabel = getAccountTypeLabel(isBusinessAccount, businessCategoryName, isPrivate);
 
+  // Handler for reset with cleanup
+  const handleReset = () => {
+    // Limpar o armazenamento de imagens antes de fazer reset
+    clearStoredImages();
+    // Chamar o reset original
+    onReset();
+  };
+
   return (
     <div className="space-y-6 text-white">
       <div className="text-center mb-6">
@@ -121,7 +149,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
             strengths={strengths}
             improvementAreas={improvementAreas}
             suggestions={suggestions}
-            onReset={onReset}
+            onReset={handleReset}
           />
         </TabsContent>
       </Tabs>

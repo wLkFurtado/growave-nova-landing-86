@@ -17,6 +17,10 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
   
   useEffect(() => {
     console.log('Profile data received in InstagramInsights:', profile);
+    if (profile) {
+      console.log('Profile image URL (profilePicUrl):', profile.profilePicUrl);
+      console.log('Profile image URL HD (profilePicUrlHD):', profile.profilePicUrlHD);
+    }
   }, [profile]);
 
   // Extract basic profile information

@@ -10,23 +10,62 @@ interface InstagramInsightsProps {
 }
 
 const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
-  // Extract and format the important info
+  // Process data from webhook response (supports any Instagram profile)
+  const profile = Array.isArray(data) ? data[0] : data; // Handle array or direct object
+
+  // Extract basic profile information
   const {
     username = "usuário",
-    full_name = "Nome não disponível",
-    followers_count = 0,
-    following_count = 0,
+    fullName = "Nome não disponível",
+    followersCount = 0,
+    followsCount = 0,
     biography = "Biografia não disponível",
-    media_count = 0,
-    engagement_rate = 0,
-    average_likes = 0,
-    average_comments = 0,
-  } = data || {};
+    postsCount = 0,
+    latestPosts = [],
+  } = profile || {};
+
+  // Calculate engagement metrics based on recent posts
+  const calculateEngagementMetrics = () => {
+    if (!latestPosts || latestPosts.length === 0) {
+      return { average_likes: 0, average_comments: 0, engagement_rate: 0 };
+    }
+
+    const posts = latestPosts.slice(0, Math.min(12, latestPosts.length));
+    let totalLikes = 0;
+    let totalComments = 0;
+    let postsWithLikes = 0;
+
+    posts.forEach(post => {
+      if (post.likesCount) {
+        totalLikes += post.likesCount;
+        postsWithLikes++;
+      }
+      if (post.commentsCount) {
+        totalComments += post.commentsCount;
+      }
+    });
+
+    const avgLikes = postsWithLikes > 0 ? totalLikes / postsWithLikes : 0;
+    const avgComments = posts.length > 0 ? totalComments / posts.length : 0;
+    
+    // Engagement rate: (likes + comments) / followers * 100
+    const engagementRate = followersCount > 0 
+      ? (avgLikes + avgComments) / followersCount 
+      : 0;
+
+    return {
+      average_likes: avgLikes,
+      average_comments: avgComments,
+      engagement_rate: engagementRate
+    };
+  };
+
+  const { average_likes, average_comments, engagement_rate } = calculateEngagementMetrics();
 
   // Calculate engagement metrics for visualization
   const engagementPercentage = Math.min(engagement_rate * 100, 100);
-  const likesScore = Math.min((average_likes / (followers_count || 1)) * 100, 100);
-  const commentsScore = Math.min((average_comments / (followers_count || 1)) * 100 * 10, 100); // Amplified for visibility
+  const likesScore = Math.min((average_likes / (followersCount || 1)) * 100, 100);
+  const commentsScore = Math.min((average_comments / (followersCount || 1)) * 100 * 10, 100); // Amplified for visibility
 
   return (
     <div className="space-y-6 text-white">
@@ -44,7 +83,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
               <Instagram className="h-6 w-6 text-growave-green" />
             </div>
             <div>
-              <CardTitle className="text-white">{full_name}</CardTitle>
+              <CardTitle className="text-white">{fullName}</CardTitle>
               <CardDescription className="text-gray-400">@{username}</CardDescription>
             </div>
           </div>
@@ -53,17 +92,17 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
           <div className="grid grid-cols-3 gap-2 text-center">
             <div className="bg-white/5 p-3 rounded-lg">
               <Users className="h-5 w-5 mx-auto mb-1 text-growave-green" />
-              <div className="text-lg font-bold">{followers_count.toLocaleString()}</div>
+              <div className="text-lg font-bold">{followersCount.toLocaleString()}</div>
               <div className="text-xs text-gray-400">Seguidores</div>
             </div>
             <div className="bg-white/5 p-3 rounded-lg">
               <User className="h-5 w-5 mx-auto mb-1 text-growave-green" />
-              <div className="text-lg font-bold">{following_count.toLocaleString()}</div>
+              <div className="text-lg font-bold">{followsCount.toLocaleString()}</div>
               <div className="text-xs text-gray-400">Seguindo</div>
             </div>
             <div className="bg-white/5 p-3 rounded-lg">
               <BarChart className="h-5 w-5 mx-auto mb-1 text-growave-green" />
-              <div className="text-lg font-bold">{media_count.toLocaleString()}</div>
+              <div className="text-lg font-bold">{postsCount.toLocaleString()}</div>
               <div className="text-xs text-gray-400">Publicações</div>
             </div>
           </div>
@@ -97,7 +136,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
                   <Heart className="h-4 w-4 text-growave-green" />
                   Média de Likes
                 </span>
-                <span>{average_likes.toLocaleString()}</span>
+                <span>{average_likes.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
               </div>
               <Progress value={likesScore} className="h-2" />
             </div>
@@ -108,7 +147,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
                   <BarChart className="h-4 w-4 text-growave-green" />
                   Média de Comentários
                 </span>
-                <span>{average_comments.toLocaleString()}</span>
+                <span>{average_comments.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
               </div>
               <Progress value={commentsScore} className="h-2" />
             </div>

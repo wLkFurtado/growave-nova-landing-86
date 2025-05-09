@@ -74,6 +74,12 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
 
       // Parse response data
       const responseData = await response.json();
+      console.log('Instagram data received:', responseData);
+      
+      if (!responseData || (Array.isArray(responseData) && responseData.length === 0)) {
+        throw new Error('Nenhum dado do Instagram encontrado');
+      }
+      
       setInstagramData(responseData);
       setShowInsights(true);
       

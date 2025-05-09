@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Instagram, Users, User, Heart, BarChart, TrendingUp } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface InstagramInsightsProps {
   data: any;
@@ -22,7 +23,12 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
     biography = "Biografia não disponível",
     postsCount = 0,
     latestPosts = [],
+    profilePicUrl = "", // Adicionando URL da foto de perfil
+    profilePicUrlHD = "", // Adicionando URL da foto de perfil em alta resolução
   } = profile || {};
+
+  // Use HD profile pic if available, otherwise use standard resolution
+  const profileImage = profilePicUrlHD || profilePicUrl;
 
   // Calculate engagement metrics based on recent posts
   const calculateEngagementMetrics = () => {
@@ -78,10 +84,13 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
 
       <Card className="bg-black/40 border-white/10">
         <CardHeader>
-          <div className="flex items-center gap-3">
-            <div className="bg-growave-green/20 p-3 rounded-full">
-              <Instagram className="h-6 w-6 text-growave-green" />
-            </div>
+          <div className="flex items-center gap-4">
+            <Avatar className="h-16 w-16 border-2 border-growave-green/30">
+              <AvatarImage src={profileImage} alt={`@${username}`} />
+              <AvatarFallback className="bg-growave-green/20 text-growave-green">
+                {username.substring(0, 2).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
             <div>
               <CardTitle className="text-white">{fullName}</CardTitle>
               <CardDescription className="text-gray-400">@{username}</CardDescription>

@@ -113,12 +113,6 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
     }
   };
 
-  const tabContentStyle = isMobile ? {
-    maxHeight: "calc(100vh - 200px)",
-    overflowY: "auto" as const,
-    paddingBottom: "60px"
-  } : {};
-
   return (
     <div className="space-y-6 text-white">
       <div className="text-center mb-6">
@@ -134,14 +128,14 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
         value={activeTab}
         onValueChange={handleTabChange}
       >
-        <TabsList className={`w-full grid grid-cols-3 mb-4 ${isMobile ? 'sticky top-0 z-10 bg-black' : ''}`}>
+        <TabsList className={`w-full grid grid-cols-3 mb-4 ${isMobile ? 'sticky top-0 z-20 bg-black' : ''}`}>
           <TabsTrigger value="overview">Resumo</TabsTrigger>
           <TabsTrigger value="engagement">Engajamento</TabsTrigger>
           <TabsTrigger value="recommendations">Recomendações</TabsTrigger>
         </TabsList>
         
-        <div className={isMobile ? 'overflow-visible pb-4' : ''}>
-          <TabsContent value="overview" className="space-y-6" style={tabContentStyle}>
+        <div className={isMobile ? 'overflow-visible pb-20' : ''}>
+          <TabsContent value="overview" className="space-y-6">
             <ProfileOverview
               username={username}
               fullName={fullName}
@@ -157,7 +151,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
             />
           </TabsContent>
           
-          <TabsContent value="engagement" className="space-y-6" style={tabContentStyle}>
+          <TabsContent value="engagement" className="space-y-6">
             <EngagementMetrics
               engagementPercentage={engagementPercentage}
               engagementRate={engagement_rate}
@@ -171,7 +165,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
             />
           </TabsContent>
           
-          <TabsContent value="recommendations" className="space-y-6" style={tabContentStyle}>
+          <TabsContent value="recommendations" className="space-y-6">
             <RecommendationsPanel
               strengths={strengths}
               improvementAreas={improvementAreas}

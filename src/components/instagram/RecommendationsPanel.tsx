@@ -19,51 +19,91 @@ const RecommendationsPanel = ({
   onReset,
   isMobile = false
 }: RecommendationsPanelProps) => {
-  const contentComponent = isMobile ? ScrollArea : 'div';
-  
   return (
     <Card className="bg-black/40 border-white/10">
       <CardHeader>
         <CardTitle className="text-white text-lg">Diagnóstico e Recomendações</CardTitle>
       </CardHeader>
-      <CardContent className={`space-y-5 ${isMobile ? 'pb-16' : ''}`}>
-        <div>
-          <h4 className="text-sm font-medium flex items-center gap-2 mb-2">
-            <Star className="h-4 w-4 text-growave-green" />
-            Pontos Fortes do Perfil
-          </h4>
-          <ul className="list-disc list-inside space-y-1 text-sm pl-1">
-            {strengths.map((strength, i) => (
-              <li key={i} className="text-gray-300">{strength}</li>
-            ))}
-          </ul>
-        </div>
-        
-        <div>
-          <h4 className="text-sm font-medium flex items-center gap-2 mb-2">
-            <ArrowUp className="h-4 w-4 text-growave-green" />
-            Oportunidades de Melhoria
-          </h4>
-          <ul className="list-disc list-inside space-y-1 text-sm pl-1">
-            {improvementAreas.map((area, i) => (
-              <li key={i} className="text-gray-300">{area}</li>
-            ))}
-          </ul>
-        </div>
-        
-        <div>
-          <h4 className="text-sm font-medium flex items-center gap-2 mb-2">
-            <TrendingUp className="h-4 w-4 text-growave-green" />
-            Sugestões Práticas para Crescimento
-          </h4>
-          <ul className="list-disc list-inside space-y-1 text-sm pl-1">
-            {suggestions.map((suggestion, i) => (
-              <li key={i} className="text-gray-300">{suggestion}</li>
-            ))}
-          </ul>
-        </div>
-      </CardContent>
-      <CardFooter className={isMobile ? 'fixed bottom-0 left-0 right-0 bg-black p-4 border-t border-white/10' : ''}>
+      {isMobile ? (
+        <ScrollArea className="h-[60vh] px-1">
+          <CardContent className="space-y-5 pb-16">
+            <div>
+              <h4 className="text-sm font-medium flex items-center gap-2 mb-2">
+                <Star className="h-4 w-4 text-growave-green" />
+                Pontos Fortes do Perfil
+              </h4>
+              <ul className="list-disc list-inside space-y-1 text-sm pl-1">
+                {strengths.map((strength, i) => (
+                  <li key={i} className="text-gray-300">{strength}</li>
+                ))}
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-sm font-medium flex items-center gap-2 mb-2">
+                <ArrowUp className="h-4 w-4 text-growave-green" />
+                Oportunidades de Melhoria
+              </h4>
+              <ul className="list-disc list-inside space-y-1 text-sm pl-1">
+                {improvementAreas.map((area, i) => (
+                  <li key={i} className="text-gray-300">{area}</li>
+                ))}
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-sm font-medium flex items-center gap-2 mb-2">
+                <TrendingUp className="h-4 w-4 text-growave-green" />
+                Sugestões Práticas para Crescimento
+              </h4>
+              <ul className="list-disc list-inside space-y-1 text-sm pl-1">
+                {suggestions.map((suggestion, i) => (
+                  <li key={i} className="text-gray-300">{suggestion}</li>
+                ))}
+              </ul>
+            </div>
+          </CardContent>
+        </ScrollArea>
+      ) : (
+        <CardContent className="space-y-5">
+          <div>
+            <h4 className="text-sm font-medium flex items-center gap-2 mb-2">
+              <Star className="h-4 w-4 text-growave-green" />
+              Pontos Fortes do Perfil
+            </h4>
+            <ul className="list-disc list-inside space-y-1 text-sm pl-1">
+              {strengths.map((strength, i) => (
+                <li key={i} className="text-gray-300">{strength}</li>
+              ))}
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="text-sm font-medium flex items-center gap-2 mb-2">
+              <ArrowUp className="h-4 w-4 text-growave-green" />
+              Oportunidades de Melhoria
+            </h4>
+            <ul className="list-disc list-inside space-y-1 text-sm pl-1">
+              {improvementAreas.map((area, i) => (
+                <li key={i} className="text-gray-300">{area}</li>
+              ))}
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="text-sm font-medium flex items-center gap-2 mb-2">
+              <TrendingUp className="h-4 w-4 text-growave-green" />
+              Sugestões Práticas para Crescimento
+            </h4>
+            <ul className="list-disc list-inside space-y-1 text-sm pl-1">
+              {suggestions.map((suggestion, i) => (
+                <li key={i} className="text-gray-300">{suggestion}</li>
+              ))}
+            </ul>
+          </div>
+        </CardContent>
+      )}
+      <CardFooter className={isMobile ? 'fixed bottom-0 left-0 right-0 bg-black p-4 border-t border-white/10 z-10' : ''}>
         <div className="w-full">
           {!isMobile && (
             <p className="text-sm text-gray-400 mb-3">

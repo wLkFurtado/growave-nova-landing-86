@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
-import InstagramInsights from './InstagramInsights';
+import InstagramInsights from './instagram/InstagramInsights';
 import { formSchema, FormValues } from '@/validators/contactFormSchema';
 import NameField from './form/NameField';
 import PhoneField from './form/PhoneField';

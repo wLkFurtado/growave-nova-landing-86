@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import ContactForm from './ContactForm';
 
 const benefits = [
   'Estratégias específicas para sua especialidade médica',
@@ -14,6 +16,7 @@ const benefits = [
 
 const CTASection = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
     <section className="py-20 relative overflow-hidden">
@@ -52,14 +55,26 @@ const CTASection = () => {
                 </ul>
               </div>
               
-              <Button 
-                className="text-md py-6 px-8 bg-growave-green text-black hover:bg-growave-green-light animate-pulse-soft"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                Agendar Diagnóstico Gratuito
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button 
+                    className="text-md py-6 px-8 bg-growave-green text-black hover:bg-growave-green-light animate-pulse-soft"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                  >
+                    Agendar Diagnóstico Gratuito
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px] bg-growave-black border-growave-green/20">
+                  <DialogHeader>
+                    <DialogTitle className="text-xl text-white text-center">Agende seu Diagnóstico Gratuito</DialogTitle>
+                  </DialogHeader>
+                  <div className="py-4">
+                    <ContactForm onSuccess={() => setIsDialogOpen(false)} />
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
             
             <div className="flex items-center justify-center">

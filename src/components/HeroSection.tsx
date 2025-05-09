@@ -1,14 +1,21 @@
+
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import ContactForm from './ContactForm';
+
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
   }, []);
+
   return <div className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
@@ -70,11 +77,22 @@ const HeroSection = () => {
           
           <div className={`transition-all duration-700 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button className="text-md py-6 px-8 bg-growave-green text-black hover:bg-growave-green-light animate-pulse-soft">
-                Agendar Diagnóstico Gratuito
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              
+              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button className="text-md py-6 px-8 bg-growave-green text-black hover:bg-growave-green-light animate-pulse-soft">
+                    Agendar Diagnóstico Gratuito
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px] bg-growave-black border-growave-green/20">
+                  <DialogHeader>
+                    <DialogTitle className="text-xl text-white text-center">Agende seu Diagnóstico Gratuito</DialogTitle>
+                  </DialogHeader>
+                  <div className="py-4">
+                    <ContactForm onSuccess={() => setIsDialogOpen(false)} />
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
           
@@ -98,4 +116,5 @@ const HeroSection = () => {
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-r from-black via-growave-blue to-black transform -skew-y-1"></div>
     </div>;
 };
+
 export default HeroSection;

@@ -39,6 +39,7 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
     setIsLoading(true);
     
     try {
+      console.log('Form data submitted:', data);
       const responseData = await fetchInstagramData(data);
       console.log('Instagram data received:', responseData);
       

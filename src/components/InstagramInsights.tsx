@@ -13,6 +13,8 @@ interface InstagramInsightsProps {
 const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
   // Process data from webhook response (supports any Instagram profile)
   const profile = Array.isArray(data) ? data[0] : data; // Handle array or direct object
+  
+  console.log('Profile data received:', profile);
 
   // Extract basic profile information
   const {
@@ -29,6 +31,8 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
 
   // Use HD profile pic if available, otherwise use standard resolution
   const profileImage = profilePicUrlHD || profilePicUrl;
+  
+  console.log('Profile image URL:', profileImage);
 
   // Calculate engagement metrics based on recent posts
   const calculateEngagementMetrics = () => {

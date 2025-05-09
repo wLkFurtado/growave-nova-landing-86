@@ -16,7 +16,8 @@ const HeroSection = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  return <div className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+  return (
+    <div className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
         {/* Digital code lines animation overlay */}
@@ -84,7 +85,7 @@ const HeroSection = () => {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] bg-growave-black border-growave-green/20">
+                <DialogContent className="sm:max-w-[500px] bg-growave-black border-growave-green/20">
                   <DialogHeader>
                     <DialogTitle className="text-xl text-white text-center">Agende seu Diagnóstico Gratuito</DialogTitle>
                   </DialogHeader>
@@ -114,7 +115,8 @@ const HeroSection = () => {
       
       {/* Decorative angled div at bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-r from-black via-growave-blue to-black transform -skew-y-1"></div>
-    </div>;
+    </div>
+  );
 };
 
 export default HeroSection;

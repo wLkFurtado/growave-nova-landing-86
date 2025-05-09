@@ -16,6 +16,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
+import InstagramInsights from './InstagramInsights';
+import { Progress } from '@/components/ui/progress';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Nome precisa ter pelo menos 2 caracteres' }),
@@ -31,6 +33,9 @@ interface ContactFormProps {
 
 const ContactForm = ({ onSuccess }: ContactFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [instagramData, setInstagramData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showInsights, setShowInsights] = useState(false);
   const { toast } = useToast();
 
   const form = useForm<FormValues>({
@@ -44,25 +49,41 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
+    setIsLoading(true);
     
     try {
-      // In a real application, this would send data to a backend
-      console.log('Form data:', data);
+      // Clean up Instagram handle
+      const instagramHandle = data.instagram.replace('@', '');
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast({
-        title: "Formulário enviado com sucesso!",
-        description: "Entraremos em contato em breve.",
+      // Send data to webhook
+      const response = await fetch('https://webhooks.growave.com.br/webhook/scraping-insta', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          phone: data.phone,
+          instagram: instagramHandle
+        }),
       });
 
-      form.reset();
-      
-      if (onSuccess) {
-        onSuccess();
+      if (!response.ok) {
+        throw new Error('Falha ao enviar dados');
       }
+
+      // Parse response data
+      const responseData = await response.json();
+      setInstagramData(responseData);
+      setShowInsights(true);
+      
+      toast({
+        title: "Dados enviados com sucesso!",
+        description: "Analisando perfil do Instagram...",
+      });
+
     } catch (error) {
+      console.error("Erro ao enviar formulário:", error);
       toast({
         title: "Erro ao enviar formulário",
         description: "Por favor, tente novamente mais tarde.",
@@ -70,8 +91,22 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
       });
     } finally {
       setIsSubmitting(false);
+      setIsLoading(false);
     }
   };
+
+  const resetForm = () => {
+    setShowInsights(false);
+    setInstagramData(null);
+    form.reset();
+    if (onSuccess) {
+      onSuccess();
+    }
+  };
+
+  if (showInsights && instagramData) {
+    return <InstagramInsights data={instagramData} onReset={resetForm} />;
+  }
 
   return (
     <Form {...form}>
@@ -91,6 +126,7 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
                     placeholder="Seu nome completo" 
                     className="pl-10 bg-white/10 border-white/20 text-white" 
                     {...field} 
+                    disabled={isSubmitting}
                   />
                 </div>
               </FormControl>
@@ -113,7 +149,8 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
                   <Input 
                     placeholder="(00) 00000-0000" 
                     className="pl-10 bg-white/10 border-white/20 text-white" 
-                    {...field} 
+                    {...field}
+                    disabled={isSubmitting}
                   />
                 </div>
               </FormControl>
@@ -142,6 +179,7 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
                       const value = e.target.value;
                       field.onChange(value.startsWith('@') ? value : `@${value.replace('@', '')}`);
                     }}
+                    disabled={isSubmitting}
                   />
                 </div>
               </FormControl>
@@ -150,12 +188,22 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
           )}
         />
 
+        {isLoading && (
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-gray-300">Analisando perfil...</span>
+              <span className="text-sm text-gray-300">Por favor aguarde</span>
+            </div>
+            <Progress value={65} className="h-2" />
+          </div>
+        )}
+
         <Button
           type="submit"
           className="w-full bg-growave-green text-black hover:bg-growave-green-light"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Enviando..." : "Agendar Diagnóstico"}
+          {isSubmitting ? "Analisando..." : "Agendar Diagnóstico"}
         </Button>
       </form>
     </Form>

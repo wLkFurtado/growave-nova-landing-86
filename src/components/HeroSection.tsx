@@ -24,7 +24,7 @@ const HeroSection = () => {
       </div>
       
       {/* Circuit board background with animation */}
-      <div className="absolute inset-0 z-0 circuit-pattern">
+      <div className="absolute inset-0 z-[1] circuit-pattern">
         {/* Digital code lines animation overlay */}
         <div className="absolute inset-0 opacity-20">
           <div className="code-line h-1 w-20 bg-growave-green absolute top-1/4 left-1/5 animate-pulse-soft"></div>
@@ -47,7 +47,7 @@ const HeroSection = () => {
         </div>
       </div>
       
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/95 pointer-events-none z-[1]"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/95 pointer-events-none z-[2]"></div>
       
       {/* Automation graphics - floating nodes and connections */}
       <div className="absolute inset-0 z-10 overflow-hidden py-0 ">

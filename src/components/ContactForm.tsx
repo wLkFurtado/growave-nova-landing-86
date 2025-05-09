@@ -41,7 +41,13 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
     try {
       console.log('Form data submitted:', data);
       const responseData = await fetchInstagramData(data);
-      console.log('Instagram data received:', responseData);
+      console.log('Instagram data received in ContactForm:', responseData);
+      
+      // Check if we have profile image URL
+      if (Array.isArray(responseData) && responseData.length > 0) {
+        console.log('Profile pic URL in ContactForm:', responseData[0].profilePicUrl);
+        console.log('Profile pic URL HD in ContactForm:', responseData[0].profilePicUrlHD);
+      }
       
       setInstagramData(responseData);
       setShowInsights(true);

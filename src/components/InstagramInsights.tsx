@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -255,10 +254,13 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
             <CardHeader>
               <div className="flex items-center gap-4">
                 <Avatar className="h-16 w-16 border-2 border-growave-green/30">
-                  <AvatarImage src={profileImage} alt={`@${username}`} />
-                  <AvatarFallback className="bg-growave-green/20 text-growave-green">
-                    {username.substring(0, 2).toUpperCase()}
-                  </AvatarFallback>
+                  {profileImage ? (
+                    <AvatarImage src={profileImage} alt={`@${username}`} />
+                  ) : (
+                    <AvatarFallback className="bg-growave-green/20 text-growave-green">
+                      {username.substring(0, 2).toUpperCase()}
+                    </AvatarFallback>
+                  )}
                 </Avatar>
                 <div>
                   <CardTitle className="text-white">{fullName}</CardTitle>
@@ -482,4 +484,3 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
 };
 
 export default InstagramInsights;
-

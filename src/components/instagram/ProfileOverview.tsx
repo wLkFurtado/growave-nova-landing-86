@@ -1,7 +1,9 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, User, ChartBar } from "lucide-react";
 import { useEffect } from "react";
 import InstagramProfileImage from "./InstagramProfileImage";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ProfileOverviewProps {
   username: string;
@@ -14,6 +16,7 @@ interface ProfileOverviewProps {
   accountType: string;
   engagementRate: number;
   averageLikes: number;
+  isMobile?: boolean;
 }
 
 const ProfileOverview = ({
@@ -26,13 +29,16 @@ const ProfileOverview = ({
   profileImage,
   accountType,
   engagementRate,
-  averageLikes
+  averageLikes,
+  isMobile = false
 }: ProfileOverviewProps) => {
   
   // Log profile image URL to debug
   useEffect(() => {
     console.log('Profile image URL in ProfileOverview:', profileImage);
   }, [profileImage]);
+
+  const ContentWrapper = isMobile ? ScrollArea : 'div';
 
   return (
     <Card className="bg-black/40 border-white/10">

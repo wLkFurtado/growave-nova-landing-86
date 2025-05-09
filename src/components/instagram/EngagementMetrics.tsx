@@ -4,6 +4,7 @@ import { Progress } from "@/components/ui/progress";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { BarChart, Heart, TrendingUp } from "lucide-react";
 import { BarChart as RechartsBarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface EngagementMetricsProps {
   engagementPercentage: number;
@@ -14,6 +15,7 @@ interface EngagementMetricsProps {
   commentsScore: number;
   postsByType: Record<string, number>;
   performanceByType: Record<string, number>;
+  isMobile?: boolean;
 }
 
 const EngagementMetrics = ({
@@ -24,7 +26,8 @@ const EngagementMetrics = ({
   likesScore,
   commentsScore,
   postsByType,
-  performanceByType
+  performanceByType,
+  isMobile = false
 }: EngagementMetricsProps) => {
   
   // Prepare data for the content type chart
@@ -34,6 +37,8 @@ const EngagementMetrics = ({
       name: type,
       engajamento: Math.round(avgLikes),
     }));
+
+  const ContentWrapper = isMobile ? ScrollArea : 'div';
 
   return (
     <Card className="bg-black/40 border-white/10">
@@ -111,12 +116,12 @@ const EngagementMetrics = ({
             </Table>
 
             {contentTypeData.length > 0 && (
-              <div className="h-64 mt-4">
+              <div className={`${isMobile ? 'h-48' : 'h-64'} mt-4`}>
                 <ResponsiveContainer width="100%" height="100%">
                   <RechartsBarChart
                     data={contentTypeData}
                     margin={{ top: 10, right: 10, left: 10, bottom: 20 }}
-                    barSize={40}
+                    barSize={isMobile ? 20 : 40}
                   >
                     <XAxis dataKey="name" stroke="#9CA3AF" />
                     <YAxis stroke="#9CA3AF" />

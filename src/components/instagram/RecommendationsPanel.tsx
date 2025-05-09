@@ -2,26 +2,31 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star, ArrowUp, TrendingUp } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface RecommendationsPanelProps {
   strengths: string[];
   improvementAreas: string[];
   suggestions: string[];
   onReset: () => void;
+  isMobile?: boolean;
 }
 
 const RecommendationsPanel = ({
   strengths,
   improvementAreas,
   suggestions,
-  onReset
+  onReset,
+  isMobile = false
 }: RecommendationsPanelProps) => {
+  const contentComponent = isMobile ? ScrollArea : 'div';
+  
   return (
     <Card className="bg-black/40 border-white/10">
       <CardHeader>
         <CardTitle className="text-white text-lg">Diagnóstico e Recomendações</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-5">
+      <CardContent className={`space-y-5 ${isMobile ? 'pb-16' : ''}`}>
         <div>
           <h4 className="text-sm font-medium flex items-center gap-2 mb-2">
             <Star className="h-4 w-4 text-growave-green" />
@@ -58,11 +63,13 @@ const RecommendationsPanel = ({
           </ul>
         </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className={isMobile ? 'fixed bottom-0 left-0 right-0 bg-black p-4 border-t border-white/10' : ''}>
         <div className="w-full">
-          <p className="text-sm text-gray-400 mb-3">
-            Este diagnóstico é baseado em dados públicos do seu perfil. Para uma análise mais profunda e personalizada, nossos especialistas entrarão em contato.
-          </p>
+          {!isMobile && (
+            <p className="text-sm text-gray-400 mb-3">
+              Este diagnóstico é baseado em dados públicos do seu perfil. Para uma análise mais profunda e personalizada, nossos especialistas entrarão em contato.
+            </p>
+          )}
           <Button 
             onClick={onReset} 
             className="w-full bg-growave-green text-black hover:bg-growave-green-light"

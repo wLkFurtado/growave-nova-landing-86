@@ -6,6 +6,7 @@ import { fetchAndStoreImage, clearStoredImages } from "./utils/imageStorage";
 import ProfileOverview from "./ProfileOverview";
 import EngagementMetrics from "./EngagementMetrics";
 import RecommendationsPanel from "./RecommendationsPanel";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface InstagramInsightsProps {
   data: any;
@@ -13,6 +14,9 @@ interface InstagramInsightsProps {
 }
 
 const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
+  const isMobile = useIsMobile();
+  const [activeTab, setActiveTab] = useState("overview");
+  
   // Process data from webhook response (supports any Instagram profile)
   const profile = Array.isArray(data) ? data[0] : data; // Handle array or direct object
   
@@ -100,6 +104,21 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
     onReset();
   };
 
+  // Handler for tab change to ensure scroll to top when switching tabs on mobile
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    if (isMobile) {
+      // Scroll to top of tab content when switching tabs on mobile
+      window.scrollTo(0, 0);
+    }
+  };
+
+  const tabContentStyle = isMobile ? {
+    maxHeight: "calc(100vh - 200px)",
+    overflowY: "auto" as const,
+    paddingBottom: "60px"
+  } : {};
+
   return (
     <div className="space-y-6 text-white">
       <div className="text-center mb-6">
@@ -109,49 +128,59 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
         </p>
       </div>
 
-      <Tabs defaultValue="overview" className="w-full">
-        <TabsList className="w-full grid grid-cols-3 mb-4">
+      <Tabs 
+        defaultValue="overview" 
+        className="w-full" 
+        value={activeTab}
+        onValueChange={handleTabChange}
+      >
+        <TabsList className={`w-full grid grid-cols-3 mb-4 ${isMobile ? 'sticky top-0 z-10 bg-black' : ''}`}>
           <TabsTrigger value="overview">Resumo</TabsTrigger>
           <TabsTrigger value="engagement">Engajamento</TabsTrigger>
           <TabsTrigger value="recommendations">Recomendações</TabsTrigger>
         </TabsList>
         
-        <TabsContent value="overview" className="space-y-6">
-          <ProfileOverview
-            username={username}
-            fullName={fullName}
-            followersCount={followersCount}
-            followsCount={followsCount}
-            postsCount={postsCount}
-            biography={biography}
-            profileImage={profileImage}
-            accountType={accountTypeLabel}
-            engagementRate={engagement_rate}
-            averageLikes={average_likes}
-          />
-        </TabsContent>
-        
-        <TabsContent value="engagement" className="space-y-6">
-          <EngagementMetrics
-            engagementPercentage={engagementPercentage}
-            engagementRate={engagement_rate}
-            averageLikes={average_likes}
-            averageComments={average_comments}
-            likesScore={likesScore}
-            commentsScore={commentsScore}
-            postsByType={postsByType}
-            performanceByType={performanceByType}
-          />
-        </TabsContent>
-        
-        <TabsContent value="recommendations" className="space-y-6">
-          <RecommendationsPanel
-            strengths={strengths}
-            improvementAreas={improvementAreas}
-            suggestions={suggestions}
-            onReset={handleReset}
-          />
-        </TabsContent>
+        <div className={isMobile ? 'overflow-visible pb-4' : ''}>
+          <TabsContent value="overview" className="space-y-6" style={tabContentStyle}>
+            <ProfileOverview
+              username={username}
+              fullName={fullName}
+              followersCount={followersCount}
+              followsCount={followsCount}
+              postsCount={postsCount}
+              biography={biography}
+              profileImage={profileImage}
+              accountType={accountTypeLabel}
+              engagementRate={engagement_rate}
+              averageLikes={average_likes}
+              isMobile={isMobile}
+            />
+          </TabsContent>
+          
+          <TabsContent value="engagement" className="space-y-6" style={tabContentStyle}>
+            <EngagementMetrics
+              engagementPercentage={engagementPercentage}
+              engagementRate={engagement_rate}
+              averageLikes={average_likes}
+              averageComments={average_comments}
+              likesScore={likesScore}
+              commentsScore={commentsScore}
+              postsByType={postsByType}
+              performanceByType={performanceByType}
+              isMobile={isMobile}
+            />
+          </TabsContent>
+          
+          <TabsContent value="recommendations" className="space-y-6" style={tabContentStyle}>
+            <RecommendationsPanel
+              strengths={strengths}
+              improvementAreas={improvementAreas}
+              suggestions={suggestions}
+              onReset={handleReset}
+              isMobile={isMobile}
+            />
+          </TabsContent>
+        </div>
       </Tabs>
     </div>
   );

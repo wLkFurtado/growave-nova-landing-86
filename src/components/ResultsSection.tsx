@@ -1,6 +1,6 @@
 
 import { useEffect, useState, useRef } from 'react';
-import { LineChart, Users, TrendingUp, Target } from 'lucide-react';
+import { Users, Calendar, TrendingUp, Target } from 'lucide-react';
 
 type StatCardProps = {
   icon: React.ReactNode;
@@ -67,37 +67,37 @@ const ResultsSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Resultados Comprovados</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Impulsionamos negócios através da combinação de estratégias de marketing digital testadas e comprovadas
+            Impulsionamos clínicas e consultórios através de estratégias digitais especializadas para a área da saúde
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           <StatCard
-            icon={<LineChart className="w-6 h-6 text-growave-green" />}
-            title="Investimento Gerenciado"
-            value="R$ 500.000+"
-            subtitle="Em campanhas de anúncios"
+            icon={<Calendar className="w-6 h-6 text-growave-green" />}
+            title="Consultas Geradas"
+            value="5.000+"
+            subtitle="Agendamentos realizados"
             delay={0}
           />
           <StatCard
             icon={<Users className="w-6 h-6 text-growave-green" />}
-            title="Clientes Satisfeitos"
-            value="200+"
-            subtitle="Empresas atendidas"
+            title="Clínicas Atendidas"
+            value="50+"
+            subtitle="Em diversas especialidades"
             delay={200}
           />
           <StatCard
             icon={<TrendingUp className="w-6 h-6 text-growave-green" />}
-            title="Aumento em Vendas"
-            value="350%"
+            title="Aumento em Agendamentos"
+            value="320%"
             subtitle="Média de crescimento"
             delay={400}
           />
           <StatCard
             icon={<Target className="w-6 h-6 text-growave-green" />}
             title="Taxa de Conversão"
-            value="42%"
-            subtitle="Acima da média de mercado"
+            value="45%"
+            subtitle="Em consultas realizadas"
             delay={600}
           />
         </div>

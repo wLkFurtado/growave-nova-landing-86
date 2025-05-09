@@ -13,7 +13,7 @@ const Footer = () => {
               className="h-10 mb-4"
             />
             <p className="text-gray-400 mb-6">
-              Transformando negócios através de estratégias digitais inovadoras e tecnologia de ponta.
+              Transformando clínicas e consultórios através de estratégias digitais especializadas e tecnologia de ponta.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-growave-green">
@@ -37,13 +37,18 @@ const Footer = () => {
                 </a>
               </li>
               <li>
+                <a href="#about" className="text-gray-400 hover:text-growave-green">
+                  Sobre Nós
+                </a>
+              </li>
+              <li>
                 <a href="#services" className="text-gray-400 hover:text-growave-green">
                   Serviços
                 </a>
               </li>
               <li>
-                <a href="#results" className="text-gray-400 hover:text-growave-green">
-                  Resultados
+                <a href="#cases" className="text-gray-400 hover:text-growave-green">
+                  Casos de Sucesso
                 </a>
               </li>
               <li>
@@ -59,27 +64,27 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a href="#" className="text-gray-400 hover:text-growave-green">
-                  Meta Ads
+                  Marketing para Clínicas
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-400 hover:text-growave-green">
-                  Google Ads
+                  Automação de Agendamentos
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-400 hover:text-growave-green">
-                  Automação com n8n
+                  Landing Pages Médicas
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-400 hover:text-growave-green">
-                  CRM Personalizado
+                  CRM para Consultórios
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-400 hover:text-growave-green">
-                  Atendimento com IA
+                  Chatbots para Saúde
                 </a>
               </li>
             </ul>
@@ -106,7 +111,7 @@ const Footer = () => {
         
         <div className="border-t border-growave-green/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} Growave. Todos os direitos reservados.
+            &copy; {new Date().getFullYear()} Growave. Todos os direitos reservados. CNPJ: 00.000.000/0001-00
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-gray-500 hover:text-growave-green text-sm">

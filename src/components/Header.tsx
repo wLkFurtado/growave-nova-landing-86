@@ -31,11 +31,14 @@ const Header = () => {
             <a href="#results" className="text-white hover:text-growave-green transition-colors">
               Resultados
             </a>
+            <a href="#cases" className="text-white hover:text-growave-green transition-colors">
+              Casos de Sucesso
+            </a>
             <a href="#testimonials" className="text-white hover:text-growave-green transition-colors">
               Depoimentos
             </a>
             <Button className="glow-button bg-transparent border border-growave-green text-growave-green hover:border-growave-green">
-              Fale com um especialista
+              Agendar Diagnóstico
             </Button>
           </nav>
 
@@ -56,11 +59,14 @@ const Header = () => {
               <a href="#results" className="text-white hover:text-growave-green transition-colors" onClick={() => setMobileMenuOpen(false)}>
                 Resultados
               </a>
+              <a href="#cases" className="text-white hover:text-growave-green transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                Casos de Sucesso
+              </a>
               <a href="#testimonials" className="text-white hover:text-growave-green transition-colors" onClick={() => setMobileMenuOpen(false)}>
                 Depoimentos
               </a>
               <Button className="glow-button bg-transparent border border-growave-green text-growave-green w-full hover:border-growave-green" onClick={() => setMobileMenuOpen(false)}>
-                Fale com um especialista
+                Agendar Diagnóstico
               </Button>
             </nav>
           </div>}

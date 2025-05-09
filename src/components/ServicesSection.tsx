@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Facebook, Chrome, Database, Bot, BarChart } from 'lucide-react';
+import { Facebook, Chrome, Calendar, MessageCircle, FileText, BarChart } from 'lucide-react';
 
 type ServiceCardProps = {
   title: string;
@@ -67,26 +67,32 @@ const ServicesSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Nossas Soluções</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Utilizamos tecnologias avançadas e estratégias comprovadas para impulsionar seu negócio
+            Utilizamos tecnologias avançadas e estratégias especializadas para impulsionar clínicas e consultórios
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <ServiceCard
-            title="Tráfego Pago Meta Ads"
-            description="Campanhas estratégicas no Facebook e Instagram para alcançar seu público-alvo ideal e gerar leads qualificados."
+            title="Campanhas para Captação de Pacientes"
+            description="Estratégias personalizadas no Facebook e Instagram para atrair pacientes em potencial para sua clínica ou consultório."
             icon={<Facebook className="w-8 h-8 text-growave-green" />}
             delay={0}
           />
           <ServiceCard
-            title="Tráfego Pago Google Ads"
-            description="Maximize sua presença nos resultados de busca e alcance clientes no momento exato em que procuram pelos seus serviços."
+            title="SEO e Google Ads para Clínicas"
+            description="Posicione sua clínica nos primeiros resultados de busca e capture pacientes no momento exato em que procuram por seus serviços."
             icon={<Chrome className="w-8 h-8 text-growave-green" />}
             delay={200}
           />
           <ServiceCard
-            title="Automação com n8n"
-            description="Automatize processos e integre ferramentas para otimizar fluxos de trabalho e economizar tempo valioso para sua equipe."
+            title="Automação de Agendamentos"
+            description="Sistemas automatizados para marcação, confirmação e lembretes de consultas, reduzindo faltas e otimizando a agenda da clínica."
+            icon={<Calendar className="w-8 h-8 text-growave-green" />}
+            delay={400}
+          />
+          <ServiceCard
+            title="CRM para Clínicas"
+            description="Sistema de gestão de relacionamento com pacientes adaptado às necessidades específicas da sua especialidade médica."
             icon={
               <div className="relative">
                 <img
@@ -96,24 +102,18 @@ const ServicesSection = () => {
                 />
               </div>
             }
-            delay={400}
-          />
-          <ServiceCard
-            title="CRM Personalizado"
-            description="Sistemas de gestão de relacionamento com clientes adaptados às necessidades específicas do seu negócio."
-            icon={<Database className="w-8 h-8 text-growave-green" />}
             delay={600}
           />
           <ServiceCard
-            title="Atendimento com IA"
-            description="Bots inteligentes para automação de atendimento, qualificação de leads e aumento de conversões."
-            icon={<Bot className="w-8 h-8 text-growave-green" />}
+            title="Chatbots para Pré-atendimento"
+            description="Bots inteligentes para triagem inicial, esclarecimento de dúvidas e qualificação de pacientes antes da consulta."
+            icon={<MessageCircle className="w-8 h-8 text-growave-green" />}
             delay={800}
           />
           <ServiceCard
-            title="Análise e Otimização"
-            description="Monitoramento contínuo de KPIs e otimização de campanhas para maximizar o retorno sobre investimento."
-            icon={<BarChart className="w-8 h-8 text-growave-green" />}
+            title="Landing Pages para Especialidades"
+            description="Páginas de alta conversão focadas em tratamentos específicos, procedimentos e especialidades médicas da sua clínica."
+            icon={<FileText className="w-8 h-8 text-growave-green" />}
             delay={1000}
           />
         </div>

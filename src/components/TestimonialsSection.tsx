@@ -12,26 +12,26 @@ import { Card, CardContent } from "@/components/ui/card";
 const testimonials = [
   {
     id: 1,
-    name: 'Carlos Oliveira',
-    company: 'TechSoft Solutions',
-    role: 'CEO',
-    testimonial: 'A parceria com a Growave transformou completamente nossa aquisição de clientes. Em apenas 3 meses, triplicamos nossas conversões e reduzimos o custo por lead em 40%.',
+    name: 'Dr. André Silveira',
+    company: 'Clínica Odontológica Prevident',
+    role: 'Cirurgião-Dentista',
+    testimonial: 'Com a Growave, conseguimos triplicar o número de novos pacientes em apenas 2 meses. As estratégias de marketing são totalmente alinhadas com as normas do Conselho Federal de Odontologia e os resultados superam todas as expectativas.',
     stars: 5,
   },
   {
     id: 2,
-    name: 'Marina Costa',
-    company: 'Beauty Store',
-    role: 'Diretora de Marketing',
-    testimonial: 'A implementação do sistema de automação desenvolvido pela Growave nos permitiu escalar o atendimento sem aumentar nossa equipe. O bot de IA qualifica perfeitamente os leads antes de direcioná-los para a equipe de vendas.',
+    name: 'Dra. Camila Mendes',
+    company: 'Clínica Derma Beauty',
+    role: 'Dermatologista',
+    testimonial: 'A automação implementada pela Growave revolucionou nosso agendamento. Reduzimos as faltas em 75% e conseguimos otimizar completamente nossa agenda. O chatbot qualifica perfeitamente os pacientes antes da consulta.',
     stars: 5,
   },
   {
     id: 3,
-    name: 'Rafael Mendes',
-    company: 'Construtora Horizonte',
-    role: 'Gerente Comercial',
-    testimonial: 'Depois de trabalhar com várias agências de marketing digital, encontramos na Growave uma parceira que realmente entregou resultados. O ROI das campanhas superou todas as nossas expectativas.',
+    name: 'Dr. Roberto Almeida',
+    company: 'Centro Médico Vitalidade',
+    role: 'Diretor Clínico',
+    testimonial: 'Como gestor de uma clínica multiprofissional, posso dizer que o ROI das campanhas da Growave superou todas as nossas expectativas. Cada especialidade médica recebeu uma estratégia personalizada e os resultados são impressionantes.',
     stars: 5,
   },
 ];
@@ -46,7 +46,7 @@ const TestimonialsSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">O Que Nossos Clientes Dizem</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Histórias reais de empresas que transformaram seus resultados com nossas soluções
+            Depoimentos de profissionais da saúde que transformaram seus resultados com nossas soluções
           </p>
         </div>
 

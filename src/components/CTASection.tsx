@@ -4,12 +4,12 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 
 const benefits = [
-  'Estratégias personalizadas para seu negócio',
-  'Especialistas em Meta Ads e Google Ads',
-  'Automação de processos com n8n',
-  'Atendimento e qualificação com IA',
-  'Monitoramento contínuo de resultados',
-  'Otimização baseada em dados',
+  'Estratégias específicas para sua especialidade médica',
+  'Marketing em conformidade com normas da saúde',
+  'Captação e retenção de pacientes',
+  'Automação de agendamentos e confirmações',
+  'Lembretes automáticos para retornos',
+  'Campanhas específicas para cada tratamento',
 ];
 
 const CTASection = () => {
@@ -32,13 +32,13 @@ const CTASection = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-                Pronto para <span className="gradient-text">transformar</span> seus resultados?
+                Pronto para <span className="gradient-text">transformar</span> sua clínica?
               </h2>
               
               <p className="text-gray-300 mb-8">
-                Agende uma consulta gratuita e descubra como nossas soluções 
-                podem impulsionar seu negócio através de estratégias personalizadas 
-                de marketing digital e automação.
+                Agende um diagnóstico gratuito e descubra como nossas soluções 
+                podem impulsionar sua clínica ou consultório através de estratégias 
+                personalizadas de marketing digital e automação.
               </p>
               
               <div className="mb-8">
@@ -57,7 +57,7 @@ const CTASection = () => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                Solicitar proposta gratuita
+                Agendar Diagnóstico Gratuito
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>

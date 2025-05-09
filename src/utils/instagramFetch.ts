@@ -3,11 +3,9 @@
  * Utility for fetching Instagram data 
  */
 
-export const fetchInstagramData = async (data: { 
-  name: string; 
-  phone: string; 
-  instagram: string 
-}) => {
+import { FormValues } from "@/validators/contactFormSchema";
+
+export const fetchInstagramData = async (data: FormValues) => {
   // Clean up Instagram handle
   const instagramHandle = data.instagram.replace('@', '');
   

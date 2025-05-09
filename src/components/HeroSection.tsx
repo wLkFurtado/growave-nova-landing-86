@@ -1,18 +1,14 @@
-
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
   }, []);
-
   return <div className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
@@ -78,9 +74,7 @@ const HeroSection = () => {
                 Agendar Diagnóstico Gratuito
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" className="text-md py-6 px-8 border-growave-green text-growave-green hover:bg-growave-green hover:text-black">
-                Conhecer Casos de Sucesso
-              </Button>
+              
             </div>
           </div>
           
@@ -104,5 +98,4 @@ const HeroSection = () => {
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-r from-black via-growave-blue to-black transform -skew-y-1"></div>
     </div>;
 };
-
 export default HeroSection;

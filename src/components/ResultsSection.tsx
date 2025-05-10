@@ -1,6 +1,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { Users, Calendar, TrendingUp, Target } from 'lucide-react';
+import { Card } from '@/components/ui/card';
 
 type StatCardProps = {
   icon: React.ReactNode;
@@ -75,29 +76,29 @@ const ResultsSection = () => {
           <StatCard
             icon={<Calendar className="w-6 h-6 text-growave-green" />}
             title="Consultas Geradas"
-            value="5.000+"
-            subtitle="Agendamentos realizados"
+            value="Milhares"
+            subtitle="Campanhas que impulsionam o volume de pacientes para clínicas em todo o Brasil"
             delay={0}
           />
           <StatCard
             icon={<Users className="w-6 h-6 text-growave-green" />}
-            title="Clínicas Atendidas"
+            title="Clínicas atendidas em todo o país"
             value="50+"
-            subtitle="Em diversas especialidades"
+            subtitle="Com foco em diversas especialidades médicas e estéticas"
             delay={200}
           />
           <StatCard
             icon={<TrendingUp className="w-6 h-6 text-growave-green" />}
-            title="Aumento em Agendamentos"
-            value="320%"
-            subtitle="Média de crescimento"
+            title="Resultados crescentes"
+            value="Expressivo"
+            subtitle="Crescimento expressivo em campanhas mensais para nossos parceiros"
             delay={400}
           />
           <StatCard
             icon={<Target className="w-6 h-6 text-growave-green" />}
-            title="Taxa de Conversão"
-            value="45%"
-            subtitle="Em consultas realizadas"
+            title="Conversão com qualidade"
+            value="Consistente"
+            subtitle="Alta performance em campanhas com foco em pacientes qualificados"
             delay={600}
           />
         </div>

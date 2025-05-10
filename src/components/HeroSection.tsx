@@ -67,7 +67,7 @@ const HeroSection = () => {
       {/* Glowing orb effect - moved higher */}
       <div className="absolute left-1/2 top-1/5 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-glow opacity-30 blur-3xl rounded-full pointer-events-none"></div>
       
-      <div className="container mx-auto px-0 sm:px-2 relative z-10">
+      <div className="container mx-auto px-0 sm:px-2 relative z-10 my-[87px]">
         <div className="text-center max-w-4xl mx-auto">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
             <h1 className={`sm:text-4xl font-bold lg:text-6xl md:text-5xl text-3xl ${isMobile ? 'mt-0' : 'mt-0'}`}>

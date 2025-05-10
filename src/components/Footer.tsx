@@ -1,4 +1,3 @@
-
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 
 const Footer = () => {
@@ -8,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           <div>
             <img 
-              src="/lovable-uploads/24c3a692-18cf-4895-8371-69b360b77fa1.png" 
+              src="/lovable-uploads/dc7d5c5c-2c27-4986-9008-acd55a89fc67.png" 
               alt="Growave Logo" 
               className="h-10 mb-4"
             />

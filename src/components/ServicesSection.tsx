@@ -1,7 +1,6 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Facebook, Chrome, Calendar, MessageCircle, FileText, BarChart } from 'lucide-react';
+import { Facebook, Chrome, Calendar, MessageCircle, FileText, BarChart, Infinity } from 'lucide-react';
 
 type ServiceCardProps = {
   title: string;
@@ -93,15 +92,7 @@ const ServicesSection = () => {
           <ServiceCard
             title="CRM para Clínicas"
             description="Sistema de gestão de relacionamento com pacientes adaptado às necessidades específicas da sua especialidade médica."
-            icon={
-              <div className="relative">
-                <img
-                  src="https://avatars.githubusercontent.com/u/60006201"
-                  alt="n8n"
-                  className="w-8 h-8"
-                />
-              </div>
-            }
+            icon={<Infinity className="w-8 h-8 text-growave-green" />}
             delay={600}
           />
           <ServiceCard

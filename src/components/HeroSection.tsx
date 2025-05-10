@@ -97,18 +97,39 @@ const HeroSection = () => {
             </div>
           </div>
           
-          <div className={`mt-16 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-              {/* Floating technology logos with animation */}
-              <div className="bg-white/10 rounded-lg p-4 backdrop-blur hover:bg-white/15 transition-colors animate-float" style={{ animationDelay: '0s' }}>
-                <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-12" />
-              </div>
-              <div className="bg-white/10 rounded-lg p-4 backdrop-blur hover:bg-white/15 transition-colors animate-float" style={{ animationDelay: '0.5s' }}>
-                <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-12" />
-              </div>
-              <div className="bg-white/10 rounded-lg p-4 backdrop-blur hover:bg-white/15 transition-colors animate-float" style={{ animationDelay: '1s' }}>
-                <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-12" />
-              </div>
+          {/* Randomly positioned floating technology logos */}
+          <div className={`transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+            {/* Meta Ads logo */}
+            <div className="bg-white/10 rounded-lg p-4 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
+                style={{ 
+                  animationDelay: '0s',
+                  top: '15%',
+                  right: '15%',
+                  animationDuration: '4s'
+                }}>
+              <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-14" />
+            </div>
+            
+            {/* Google Ads logo */}
+            <div className="bg-white/10 rounded-lg p-4 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
+                style={{ 
+                  animationDelay: '0.5s',
+                  bottom: '25%',
+                  left: '12%',
+                  animationDuration: '3.5s'
+                }}>
+              <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-14" />
+            </div>
+            
+            {/* n8n logo */}
+            <div className="bg-white/10 rounded-lg p-4 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
+                style={{ 
+                  animationDelay: '1s',
+                  top: '30%',
+                  left: '20%',
+                  animationDuration: '5s'
+                }}>
+              <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-14" />
             </div>
           </div>
         </div>

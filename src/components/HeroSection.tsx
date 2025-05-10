@@ -1,27 +1,22 @@
-
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import ContactForm from './ContactForm';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const isMobile = useIsMobile();
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
   }, []);
-
-  return (
-    <div className="relative flex items-center justify-center overflow-hidden" style={{ 
-      height: isMobile ? 'calc(100vh - 0px)' : 'calc(100vh - 10px)' 
-    }}>
+  return <div className="relative flex items-center justify-center overflow-hidden" style={{
+    height: isMobile ? 'calc(100vh - 0px)' : 'calc(100vh - 10px)'
+  }}>
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
         {/* Digital code lines animation overlay */}
@@ -49,7 +44,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/95 pointer-events-none"></div>
       
       {/* Automation graphics - floating nodes without red lines */}
-      <div className="absolute inset-0 z-10 overflow-hidden p-0">
+      <div className="absolute inset-0 z-10 overflow-hidden p-0 px-[7px] my-0">
         <div className="node w-3 h-3 rounded-full bg-growave-green absolute top-1/4 left-1/4 animate-glow"></div>
         <div className="node w-2 h-2 rounded-full bg-growave-green absolute top-1/3 right-1/3 animate-glow" style={{
         animationDelay: '0.3s'
@@ -70,7 +65,7 @@ const HeroSection = () => {
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
             <h1 className={`sm:text-4xl font-bold mb-0 lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-24' : '-mt-32'}`}>
               Transforme sua Clínica com 
-              <span className="gradient-text block mt-0">Marketing Digital Especializado</span>
+              <span className="gradient-text block mt-0 py-0 my-[10px]">Marketing Digital Especializado</span>
             </h1>
           </div>
           
@@ -102,72 +97,71 @@ const HeroSection = () => {
           </div>
           
           {/* Technology logos - responsive layout */}
-          {isMobile ? (
-            // Mobile layout - logos in a flex container below content
-            <div className={`mt-0 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          {isMobile ?
+        // Mobile layout - logos in a flex container below content
+        <div className={`mt-0 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
               <div className="flex flex-wrap justify-center items-center gap-1 mt-0">
                 {/* Meta Ads logo */}
-                <div className="bg-white/10 rounded-lg p-1 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
-                    style={{ animationDelay: '0s', animationDuration: '4s' }}>
+                <div className="bg-white/10 rounded-lg p-1 backdrop-blur hover:bg-white/15 transition-colors animate-float" style={{
+              animationDelay: '0s',
+              animationDuration: '4s'
+            }}>
                   <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-5" />
                 </div>
                 
                 {/* Google Ads logo */}
-                <div className="bg-white/10 rounded-lg p-1 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
-                    style={{ animationDelay: '0.5s', animationDuration: '3.5s' }}>
+                <div className="bg-white/10 rounded-lg p-1 backdrop-blur hover:bg-white/15 transition-colors animate-float" style={{
+              animationDelay: '0.5s',
+              animationDuration: '3.5s'
+            }}>
                   <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-5" />
                 </div>
                 
                 {/* n8n logo */}
-                <div className="bg-white/10 rounded-lg p-1 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
-                    style={{ animationDelay: '1s', animationDuration: '5s' }}>
+                <div className="bg-white/10 rounded-lg p-1 backdrop-blur hover:bg-white/15 transition-colors animate-float" style={{
+              animationDelay: '1s',
+              animationDuration: '5s'
+            }}>
                   <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-5" />
                 </div>
               </div>
-            </div>
-          ) : (
-            // Desktop layout - repositioned floating logos for better spacing
-            <div className={`transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+            </div> :
+        // Desktop layout - repositioned floating logos for better spacing
+        <div className={`transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
               {/* Meta Ads logo - adjusted position */}
-              <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
-                  style={{ 
-                    animationDelay: '0s',
-                    top: '18%',
-                    right: '18%',
-                    animationDuration: '4s'
-                  }}>
+              <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" style={{
+            animationDelay: '0s',
+            top: '18%',
+            right: '18%',
+            animationDuration: '4s'
+          }}>
                 <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-8" />
               </div>
               
               {/* Google Ads logo - adjusted position */}
-              <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
-                  style={{ 
-                    animationDelay: '0.5s',
-                    bottom: '30%',
-                    left: '15%',
-                    animationDuration: '3.5s'
-                  }}>
+              <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" style={{
+            animationDelay: '0.5s',
+            bottom: '30%',
+            left: '15%',
+            animationDuration: '3.5s'
+          }}>
                 <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-8" />
               </div>
               
               {/* n8n logo - adjusted position */}
-              <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
-                  style={{ 
-                    animationDelay: '1s',
-                    top: '35%',
-                    left: '22%',
-                    animationDuration: '5s'
-                  }}>
+              <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" style={{
+            animationDelay: '1s',
+            top: '35%',
+            left: '22%',
+            animationDuration: '5s'
+          }}>
                 <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-8" />
               </div>
-            </div>
-          )}
+            </div>}
         </div>
       </div>
       
       {/* Removed the decorative angled div that was causing the spacing */}
-    </div>
-  );
+    </div>;
 };
-
 export default HeroSection;

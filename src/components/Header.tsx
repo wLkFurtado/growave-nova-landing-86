@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -15,7 +14,7 @@ const Header = () => {
   }, []);
   return <header className="py-1 lg:py-2">
       <div className="container mx-auto px-1 sm:px-2 lg:px-4">
-        <div className="flex items-center justify-between px-1 sm:px-2 lg:px-[30px]">
+        <div className="flex items-center justify-between sm:px-2 lg:px-[30px] py-[15px] px-[36px] mx-[2px] my-">
           <div className="flex items-center">
             <img src="/lovable-uploads/dc7d5c5c-2c27-4986-9008-acd55a89fc67.png" alt="Growave Logo" className="h-[30px] sm:h-[40px] object-scale-down" />
           </div>

@@ -1,19 +1,23 @@
+
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import ContactForm from './ContactForm';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const isMobile = useIsMobile();
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
   }, []);
+
   return <div style={{
     height: isMobile ? '100vh' : 'calc(100vh - 80px)'
   }} className="relative flex items-center justify-center overflow-hidden my-[58px] py-[51px]">
@@ -64,13 +68,12 @@ const HeroSection = () => {
       }}></div>
       </div>
       
-      {/* Glowing orb effect - moved higher */}
-      <div className="absolute left-1/2 top-1/5 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-glow opacity-30 blur-3xl rounded-full pointer-events-none"></div>
+      {/* Removido: Glowing orb effect */}
       
       <div className="container mx-auto px-0 sm:px-2 relative z-10 my-[87px]">
         <div className="text-center max-w-4xl mx-auto">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <h1 className={`sm:text-4xl font-bold lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-32' : 'mt-0'}`}>
+            <h1 className={`sm:text-4xl font-bold lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-48' : 'mt-0'}`}>
               Transforme sua Clínica com 
               <span className="gradient-text block mt-0 py-0 my-[10px]">Marketing Digital Especializado</span>
             </h1>
@@ -169,4 +172,5 @@ const HeroSection = () => {
       </div>
     </div>;
 };
+
 export default HeroSection;

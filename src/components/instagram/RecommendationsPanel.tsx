@@ -25,8 +25,8 @@ const RecommendationsPanel = ({
         <CardTitle className="text-white text-lg">Diagnóstico e Recomendações</CardTitle>
       </CardHeader>
       
-      {/* Usar ScrollArea tanto para mobile quanto para desktop */}
-      <ScrollArea className={`${isMobile ? 'h-[70vh]' : 'h-[60vh]'} px-1`}>
+      {/* ScrollArea com altura mais limitada para permitir rolagem da página */}
+      <ScrollArea className={`${isMobile ? 'h-[50vh]' : 'h-[40vh]'} px-1`}>
         <CardContent className="space-y-5">
           <div>
             <h4 className="text-sm font-medium flex items-center gap-2 mb-2">

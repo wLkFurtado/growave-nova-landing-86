@@ -165,8 +165,7 @@ const HeroSection = () => {
         </div>
       </div>
       
-      {/* Decorative angled div at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-r from-black via-growave-blue to-black transform -skew-y-1"></div>
+      {/* Removed the decorative angled div that was causing the spacing */}
     </div>
   );
 };

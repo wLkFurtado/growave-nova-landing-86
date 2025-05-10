@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Chrome, Calendar, MessageCircle, FileText, BarChart, Infinity } from 'lucide-react';
+import { Calendar, MessageCircle, FileText, BarChart, Infinity } from 'lucide-react';
 
 type ServiceCardProps = {
   title: string;
@@ -81,7 +81,7 @@ const ServicesSection = () => {
           <ServiceCard
             title="SEO e Google Ads para Clínicas"
             description="Posicione sua clínica nos primeiros resultados de busca e capture pacientes no momento exato em que procuram por seus serviços."
-            icon={<Chrome className="w-8 h-8 text-growave-green" />}
+            icon={<img src="/lovable-uploads/49275b1f-dc1e-44d2-945c-4f61c47b451c.png" alt="Google Ads" className="w-8 h-8" />}
             delay={200}
           />
           <ServiceCard

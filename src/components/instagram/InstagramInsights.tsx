@@ -1,13 +1,16 @@
 
 import { useState, useEffect } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
+import { Tabs } from "@/components/ui/tabs";
 import { calculateEngagementMetrics, getAccountTypeLabel, getImprovementAreas, getPracticalSuggestions, getProfileStrengths } from "./utils";
 import { fetchAndStoreImage, clearStoredImages } from "./utils/imageStorage";
 import ProfileOverview from "./ProfileOverview";
-import EngagementMetrics from "./EngagementMetrics";
+import EngagementMetrics from "./metrics/ContentTypeAnalysis";
 import RecommendationsPanel from "./RecommendationsPanel";
 import { useIsMobile } from "@/hooks/use-mobile";
+import ProfileHeader from "./insights/ProfileHeader";
+import TabNavigation from "./insights/TabNavigation";
+import TabContent from "./insights/TabContent";
+import ActionButton from "./insights/ActionButton";
 
 interface InstagramInsightsProps {
   data: any;
@@ -116,12 +119,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
 
   return (
     <div className="space-y-6 text-white">
-      <div className="text-center mb-6">
-        <h3 className="text-xl font-bold text-growave-green mb-2">Diagnóstico de Perfil Instagram</h3>
-        <p className="text-gray-300">
-          Relatório completo do perfil @{username}
-        </p>
-      </div>
+      <ProfileHeader username={username} />
 
       <Tabs 
         defaultValue="overview" 
@@ -129,89 +127,51 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
         value={activeTab}
         onValueChange={handleTabChange}
       >
-        <TabsList className={`w-full grid grid-cols-3 mb-4 ${isMobile ? 'sticky top-0 z-20 bg-black' : ''}`}>
-          <TabsTrigger value="overview">Resumo</TabsTrigger>
-          <TabsTrigger value="engagement">Engajamento</TabsTrigger>
-          <TabsTrigger value="recommendations">Recomendações</TabsTrigger>
-        </TabsList>
+        <TabNavigation isMobile={isMobile} />
         
-        {/* Adiciona um padding-bottom para garantir que nenhum conteúdo fique atrás do botão fixo em mobile */}
-        <div className={`${isMobile ? 'overflow-visible pb-32' : ''}`}>
-          <TabsContent value="overview" className="space-y-6">
-            <ProfileOverview
-              username={username}
-              fullName={fullName}
-              followersCount={followersCount}
-              followsCount={followsCount}
-              postsCount={postsCount}
-              biography={biography}
-              profileImage={profileImage}
-              accountType={accountTypeLabel}
-              engagementRate={engagement_rate}
-              averageLikes={average_likes}
-              isMobile={isMobile}
-            />
-          </TabsContent>
-          
-          <TabsContent value="engagement" className="space-y-6">
-            <EngagementMetrics
-              engagementPercentage={engagementPercentage}
-              engagementRate={engagement_rate}
-              averageLikes={average_likes}
-              averageComments={average_comments}
-              likesScore={likesScore}
-              commentsScore={commentsScore}
-              postsByType={postsByType}
-              performanceByType={performanceByType}
-              isMobile={isMobile}
-            />
-          </TabsContent>
-          
-          <TabsContent value="recommendations" className="space-y-6">
-            <RecommendationsPanel
-              strengths={strengths}
-              improvementAreas={improvementAreas}
-              suggestions={suggestions}
-              onReset={handleReset}
-              isMobile={isMobile}
-            />
-          </TabsContent>
-        </div>
+        <TabContent value="overview" isMobile={isMobile}>
+          <ProfileOverview
+            username={username}
+            fullName={fullName}
+            followersCount={followersCount}
+            followsCount={followsCount}
+            postsCount={postsCount}
+            biography={biography}
+            profileImage={profileImage}
+            accountType={accountTypeLabel}
+            engagementRate={engagement_rate}
+            averageLikes={average_likes}
+            isMobile={isMobile}
+          />
+        </TabContent>
+        
+        <TabContent value="engagement" isMobile={isMobile}>
+          <EngagementMetrics
+            engagementPercentage={engagementPercentage}
+            engagementRate={engagement_rate}
+            averageLikes={average_likes}
+            averageComments={average_comments}
+            likesScore={likesScore}
+            commentsScore={commentsScore}
+            postsByType={postsByType}
+            performanceByType={performanceByType}
+            isMobile={isMobile}
+          />
+        </TabContent>
+        
+        <TabContent value="recommendations" isMobile={isMobile}>
+          <RecommendationsPanel
+            strengths={strengths}
+            improvementAreas={improvementAreas}
+            suggestions={suggestions}
+            onReset={handleReset}
+            isMobile={isMobile}
+          />
+        </TabContent>
       </Tabs>
 
-      {/* Botão fixo na parte inferior da tela, visível em todas as abas no mobile */}
-      {isMobile && (
-        <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/90 border-t border-white/10 z-30">
-          <div className="w-full">
-            <Button 
-              onClick={handleReset}
-              className="w-full bg-growave-green text-black hover:bg-growave-green-light"
-            >
-              Finalizar
-            </Button>
-            <p className="text-xs text-gray-400 mt-3 text-center">
-              Este diagnóstico é baseado em dados públicos do seu perfil. Para uma análise mais profunda e personalizada, nossos especialistas entrarão em contato.
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* Botão para visualização desktop, visível em todas as abas */}
-      {!isMobile && (
-        <div className="mt-6 border-t border-white/10 pt-4">
-          <div className="w-full max-w-md mx-auto">
-            <p className="text-sm text-gray-400 mb-3 text-center">
-              Este diagnóstico é baseado em dados públicos do seu perfil. Para uma análise mais profunda e personalizada, nossos especialistas entrarão em contato.
-            </p>
-            <Button 
-              onClick={handleReset} 
-              className="w-full bg-growave-green text-black hover:bg-growave-green-light"
-            >
-              Finalizar
-            </Button>
-          </div>
-        </div>
-      )}
+      {/* Action button for all tabs */}
+      <ActionButton onReset={handleReset} isMobile={isMobile} />
     </div>
   );
 };

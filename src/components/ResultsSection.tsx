@@ -76,7 +76,7 @@ const ResultsSection = () => {
           <StatCard
             icon={<Calendar className="w-6 h-6 text-growave-green" />}
             title="Consultas Geradas"
-            value="Milhares"
+            value="5.000+"
             subtitle="Campanhas que impulsionam o volume de pacientes para clínicas em todo o Brasil"
             delay={0}
           />

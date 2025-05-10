@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
@@ -15,7 +16,7 @@ const Index = () => {
   }, []);
   return <div className="min-h-screen bg-black text-white overflow-hidden">
       <Header />
-      <main className="py-px my-[16px]">
+      <main className="py-0">
         <HeroSection />
         <AboutSection />
         <ResultsSection />

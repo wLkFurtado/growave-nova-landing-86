@@ -1,3 +1,4 @@
+
 import { useRef, useEffect, useState } from 'react';
 import { CheckCircle, HeartPulse, Award, TrendingUp } from 'lucide-react';
 type FeatureCardProps = {
@@ -45,13 +46,13 @@ const FeatureCard = ({
     </div>;
 };
 const AboutSection = () => {
-  return <section id="about" className="py-8 relative">
+  return <section id="about" className="py-2 relative -mt-16">
       {/* Background with enhanced gradient effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-growave-blue/20 to-black/90 z-0 my-0 py-[14px]"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-growave-blue/20 to-black/90 z-0"></div>
       
-      <div className="container mx-auto sm:px-6 lg:px-8 relative z-10 px-[30px] py-0">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 my-0">Por que a Growave?</h2>
+      <div className="container mx-auto sm:px-6 lg:px-8 relative z-10 px-4">
+        <div className="text-center mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2">Por que a Growave?</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Somos especialistas em marketing digital para o setor de saúde, 
             com profundo conhecimento técnico e estratégias comprovadas para clínicas e consultórios.

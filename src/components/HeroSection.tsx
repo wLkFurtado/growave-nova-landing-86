@@ -19,7 +19,9 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center pt-4 pb-4 overflow-hidden">
+    <div className="relative flex items-center justify-center overflow-hidden" style={{ 
+      height: isMobile ? 'calc(100vh - 30px)' : 'calc(100vh - 80px)' 
+    }}>
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
         {/* Digital code lines animation overlay */}
@@ -63,17 +65,17 @@ const HeroSection = () => {
       {/* Glowing orb effect */}
       <div className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-glow opacity-30 blur-3xl rounded-full pointer-events-none"></div>
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-[-1px]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto mt-0">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <h1 className={`sm:text-5xl font-bold mb-1 lg:text-7xl md:text-7xl text-4xl ${isMobile ? 'mt-0' : 'mt-[30px]'}`}>
+            <h1 className={`sm:text-5xl font-bold mb-0 lg:text-7xl md:text-7xl text-4xl ${isMobile ? '-mt-6' : '-mt-12'}`}>
               Transforme sua Clínica com 
               <span className="gradient-text block mt-0">Marketing Digital Especializado</span>
             </h1>
           </div>
           
           <div className={`transition-all duration-700 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <p className="text-lg sm:text-xl text-gray-300 mb-3 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-300 mb-2 max-w-2xl mx-auto">
               Estratégias personalizadas para clínicas e consultórios de saúde que aumentam agendamentos e fidelizam pacientes.
             </p>
           </div>
@@ -102,24 +104,24 @@ const HeroSection = () => {
           {/* Technology logos - responsive layout */}
           {isMobile ? (
             // Mobile layout - logos in a flex container below content
-            <div className={`mt-4 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-              <div className="flex flex-wrap justify-center items-center gap-3">
+            <div className={`mt-2 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+              <div className="flex flex-wrap justify-center items-center gap-2">
                 {/* Meta Ads logo */}
                 <div className="bg-white/10 rounded-lg p-1 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
                     style={{ animationDelay: '0s', animationDuration: '4s' }}>
-                  <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-8" />
+                  <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-7" />
                 </div>
                 
                 {/* Google Ads logo */}
                 <div className="bg-white/10 rounded-lg p-1 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
                     style={{ animationDelay: '0.5s', animationDuration: '3.5s' }}>
-                  <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-8" />
+                  <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-7" />
                 </div>
                 
                 {/* n8n logo */}
                 <div className="bg-white/10 rounded-lg p-1 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
                     style={{ animationDelay: '1s', animationDuration: '5s' }}>
-                  <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-8" />
+                  <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-7" />
                 </div>
               </div>
             </div>

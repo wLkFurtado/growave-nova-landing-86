@@ -161,7 +161,7 @@ const HeroSection = () => {
             left: '28%',
             animationDuration: '5s'
           }}>
-                <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-" />
+                <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-8" />
               </div>
             </div>}
         </div>

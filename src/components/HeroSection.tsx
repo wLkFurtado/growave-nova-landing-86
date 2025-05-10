@@ -64,7 +64,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-0 sm:px-2 relative z-10">
         <div className="text-center max-w-4xl mx-auto mt-0">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <h1 className={`sm:text-4xl font-bold mb-0 lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-[150px]' : '-mt-[200px]'}`}>
+            <h1 className={`sm:text-4xl font-bold mb-0 lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-[250px]' : '-mt-[300px]'}`}>
               Transforme sua Clínica com 
               <span className="gradient-text block mt-0 py-0 my-[10px]">Marketing Digital Especializado</span>
             </h1>

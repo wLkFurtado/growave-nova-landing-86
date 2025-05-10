@@ -4,13 +4,14 @@ import { Tabs } from "@/components/ui/tabs";
 import { calculateEngagementMetrics, getAccountTypeLabel, getImprovementAreas, getPracticalSuggestions, getProfileStrengths } from "./utils";
 import { fetchAndStoreImage, clearStoredImages } from "./utils/imageStorage";
 import ProfileOverview from "./ProfileOverview";
-import EngagementMetrics from "./metrics/ContentTypeAnalysis";
+import ContentTypeAnalysis from "./metrics/ContentTypeAnalysis";
 import RecommendationsPanel from "./RecommendationsPanel";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ProfileHeader from "./insights/ProfileHeader";
 import TabNavigation from "./insights/TabNavigation";
 import TabContent from "./insights/TabContent";
 import ActionButton from "./insights/ActionButton";
+import MetricsDisplay from "./metrics/MetricsDisplay";
 
 interface InstagramInsightsProps {
   data: any;
@@ -146,17 +147,25 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
         </TabContent>
         
         <TabContent value="engagement" isMobile={isMobile}>
-          <EngagementMetrics
-            engagementPercentage={engagementPercentage}
-            engagementRate={engagement_rate}
-            averageLikes={average_likes}
-            averageComments={average_comments}
-            likesScore={likesScore}
-            commentsScore={commentsScore}
-            postsByType={postsByType}
-            performanceByType={performanceByType}
-            isMobile={isMobile}
-          />
+          <div className="bg-black/40 border-white/10 rounded-lg p-4">
+            <h3 className="text-lg font-medium mb-3">Análise de Engajamento</h3>
+            <p className="text-gray-400 text-sm mb-4">Baseada nos últimos posts</p>
+            
+            <MetricsDisplay
+              engagementPercentage={engagementPercentage}
+              engagementRate={engagement_rate}
+              averageLikes={average_likes}
+              averageComments={average_comments}
+              likesScore={likesScore}
+              commentsScore={commentsScore}
+            />
+            
+            <ContentTypeAnalysis
+              postsByType={postsByType}
+              performanceByType={performanceByType}
+              isMobile={isMobile}
+            />
+          </div>
         </TabContent>
         
         <TabContent value="recommendations" isMobile={isMobile}>

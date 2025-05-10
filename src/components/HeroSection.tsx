@@ -1,43 +1,51 @@
+
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import ContactForm from './ContactForm';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const isMobile = useIsMobile();
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
   }, []);
-  return <div style={{
-    height: isMobile ? '100vh' : 'calc(100vh - 80px)'
-  }} className="relative flex items-center justify-center overflow-hidden my-0 py-[6px]">
+
+  return (
+    <div 
+      style={{
+        height: isMobile ? '100vh' : 'calc(100vh - 80px)'
+      }} 
+      className="relative flex items-center justify-center overflow-hidden my-0 py-[6px]"
+    >
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
         {/* Digital code lines animation overlay */}
         <div className="absolute inset-0 opacity-20">
           <div className="code-line h-1 w-20 bg-growave-green absolute top-1/4 left-1/5 animate-pulse-soft"></div>
           <div className="code-line h-1 w-40 bg-growave-green absolute top-1/3 right-1/4 animate-pulse-soft" style={{
-          animationDelay: '0.5s'
-        }}></div>
+            animationDelay: '0.5s'
+          }}></div>
           <div className="code-line h-1 w-32 bg-growave-green absolute bottom-1/3 left-1/3 animate-pulse-soft" style={{
-          animationDelay: '1s'
-        }}></div>
+            animationDelay: '1s'
+          }}></div>
           <div className="code-line h-1 w-24 bg-growave-green absolute bottom-1/4 right-1/5 animate-pulse-soft" style={{
-          animationDelay: '1.5s'
-        }}></div>
+            animationDelay: '1.5s'
+          }}></div>
           
           <div className="code-square h-8 w-8 border border-growave-green absolute top-1/2 left-1/6 animate-pulse-soft" style={{
-          animationDelay: '0.7s'
-        }}></div>
+            animationDelay: '0.7s'
+          }}></div>
           <div className="code-square h-12 w-12 border border-growave-green absolute bottom-1/2 right-1/6 animate-pulse-soft" style={{
-          animationDelay: '1.2s'
-        }}></div>
+            animationDelay: '1.2s'
+          }}></div>
         </div>
       </div>
       
@@ -50,18 +58,18 @@ const HeroSection = () => {
         
         {/* Top right node */}
         <div className="node w-2 h-2 rounded-full bg-growave-green absolute top-[15%] right-[15%] animate-glow" style={{
-        animationDelay: '0.3s'
-      }}></div>
+          animationDelay: '0.3s'
+        }}></div>
         
         {/* Bottom left node */}
         <div className="node w-4 h-4 rounded-full bg-growave-green absolute bottom-[35%] left-[20%] animate-glow" style={{
-        animationDelay: '0.6s'
-      }}></div>
+          animationDelay: '0.6s'
+        }}></div>
         
         {/* Bottom right node */}
         <div className="node w-2 h-2 rounded-full bg-growave-green absolute bottom-[35%] right-[20%] animate-glow" style={{
-        animationDelay: '0.9s'
-      }}></div>
+          animationDelay: '0.9s'
+        }}></div>
       </div>
       
       {/* Glowing orb effect - moved higher */}
@@ -70,7 +78,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-0 sm:px-2 relative z-10 my-[87px]">
         <div className="text-center max-w-4xl mx-auto">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <h1 className={`sm:text-4xl font-bold lg:text-6xl md:text-5xl text-3xl ${isMobile ? 'mt-0' : 'mt-0'}`}>
+            <h1 className={`sm:text-4xl font-bold lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-16' : 'mt-0'}`}>
               Transforme sua Clínica com 
               <span className="gradient-text block mt-0 py-0 my-[10px]">Marketing Digital Especializado</span>
             </h1>
@@ -105,68 +113,70 @@ const HeroSection = () => {
           
           {/* Technology logos - responsive layout */}
           {isMobile ?
-        // Mobile layout - logos in a flex container below content
-        <div className={`mt-8 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+            // Mobile layout - logos in a flex container below content
+            <div className={`mt-8 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
               <div className="flex flex-wrap justify-center items-center gap-4 mt-4">
                 {/* Meta Ads logo */}
                 <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float" style={{
-              animationDelay: '0s',
-              animationDuration: '4s'
-            }}>
+                  animationDelay: '0s',
+                  animationDuration: '4s'
+                }}>
                   <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-6" />
                 </div>
                 
                 {/* Google Ads logo */}
                 <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float" style={{
-              animationDelay: '0.5s',
-              animationDuration: '3.5s'
-            }}>
+                  animationDelay: '0.5s',
+                  animationDuration: '3.5s'
+                }}>
                   <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-6" />
                 </div>
                 
                 {/* n8n logo */}
                 <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float" style={{
-              animationDelay: '1s',
-              animationDuration: '5s'
-            }}>
+                  animationDelay: '1s',
+                  animationDuration: '5s'
+                }}>
                   <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-6" />
                 </div>
               </div>
             </div> :
-        // Desktop layout - repositioned floating logos for better spacing
-        <div className={`transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+            // Desktop layout - repositioned floating logos for better spacing
+            <div className={`transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
               {/* Meta Ads logo - adjusted position */}
               <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" style={{
-            animationDelay: '0s',
-            top: '24%',
-            right: '20%',
-            animationDuration: '4s'
-          }}>
+                animationDelay: '0s',
+                top: '24%',
+                right: '20%',
+                animationDuration: '4s'
+              }}>
                 <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-8" />
               </div>
               
               {/* Google Ads logo - adjusted position */}
               <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" style={{
-            animationDelay: '0.5s',
-            bottom: '32%',
-            left: '20%',
-            animationDuration: '3.5s'
-          }}>
+                animationDelay: '0.5s',
+                bottom: '32%',
+                left: '20%',
+                animationDuration: '3.5s'
+              }}>
                 <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-8" />
               </div>
               
               {/* n8n logo - adjusted position */}
               <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" style={{
-            animationDelay: '1s',
-            top: '38%',
-            left: '28%',
-            animationDuration: '5s'
-          }}>
+                animationDelay: '1s',
+                top: '38%',
+                left: '28%',
+                animationDuration: '5s'
+              }}>
                 <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-8" />
               </div>
             </div>}
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default HeroSection;

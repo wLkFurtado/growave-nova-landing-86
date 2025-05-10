@@ -20,7 +20,7 @@ const HeroSection = () => {
 
   return (
     <div className="relative flex items-center justify-center overflow-hidden" style={{ 
-      height: isMobile ? 'calc(100vh - 0px)' : 'calc(100vh - 20px)' 
+      height: isMobile ? 'calc(100vh - 0px)' : 'calc(100vh - 10px)' 
     }}>
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
@@ -63,12 +63,12 @@ const HeroSection = () => {
       </div>
       
       {/* Glowing orb effect - moved higher */}
-      <div className="absolute left-1/2 top-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-glow opacity-30 blur-3xl rounded-full pointer-events-none"></div>
+      <div className="absolute left-1/2 top-1/5 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-glow opacity-30 blur-3xl rounded-full pointer-events-none"></div>
       
-      <div className="container mx-auto px-2 sm:px-3 lg:px-4 relative z-10">
+      <div className="container mx-auto px-0 sm:px-2 relative z-10">
         <div className="text-center max-w-4xl mx-auto mt-0">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <h1 className={`sm:text-4xl font-bold mb-0 lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-20' : '-mt-24'}`}>
+            <h1 className={`sm:text-4xl font-bold mb-0 lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-24' : '-mt-32'}`}>
               Transforme sua Clínica com 
               <span className="gradient-text block mt-0">Marketing Digital Especializado</span>
             </h1>
@@ -81,7 +81,7 @@ const HeroSection = () => {
           </div>
           
           <div className={`transition-all duration-700 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-1 mt-1">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-0 mt-0">
               <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
                   <Button className="text-sm py-4 px-5 bg-growave-green text-black hover:bg-growave-green-light animate-pulse-soft">

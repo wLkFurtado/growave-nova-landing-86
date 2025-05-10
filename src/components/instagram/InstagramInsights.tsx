@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Tabs } from "@/components/ui/tabs";
 import { calculateEngagementMetrics, getAccountTypeLabel, getImprovementAreas, getPracticalSuggestions, getProfileStrengths } from "./utils";
@@ -144,6 +143,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
             averageLikes={average_likes}
             isMobile={isMobile}
           />
+          <ActionButton onReset={handleReset} isMobile={isMobile} />
         </TabContent>
         
         <TabContent value="engagement" isMobile={isMobile}>
@@ -166,6 +166,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
               isMobile={isMobile}
             />
           </div>
+          <ActionButton onReset={handleReset} isMobile={isMobile} />
         </TabContent>
         
         <TabContent value="recommendations" isMobile={isMobile}>
@@ -176,11 +177,9 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
             onReset={handleReset}
             isMobile={isMobile}
           />
+          <ActionButton onReset={handleReset} isMobile={isMobile} />
         </TabContent>
       </Tabs>
-
-      {/* Action button is always shown and outside the tab content */}
-      <ActionButton onReset={handleReset} isMobile={isMobile} />
     </div>
   );
 };

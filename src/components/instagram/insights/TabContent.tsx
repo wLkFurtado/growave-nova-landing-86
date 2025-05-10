@@ -13,12 +13,14 @@ const TabContent = ({ value, children, isMobile }: TabContentProps) => {
   return (
     <TabsContent value={value} className="space-y-6">
       {isMobile ? (
-        <div className="overflow-visible pb-32">
+        <div className="overflow-visible">
           {children}
         </div>
       ) : (
         <ScrollArea className="h-[calc(100vh-200px)]">
-          {children}
+          <div className="pb-6">
+            {children}
+          </div>
         </ScrollArea>
       )}
     </TabsContent>

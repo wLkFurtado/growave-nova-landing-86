@@ -20,7 +20,7 @@ const HeroSection = () => {
 
   return (
     <div className="relative flex items-center justify-center overflow-hidden" style={{ 
-      height: isMobile ? 'calc(100vh - 10px)' : 'calc(100vh - 40px)' 
+      height: isMobile ? 'calc(100vh - 0px)' : 'calc(100vh - 20px)' 
     }}>
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
@@ -62,26 +62,26 @@ const HeroSection = () => {
       }}></div>
       </div>
       
-      {/* Glowing orb effect */}
-      <div className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-glow opacity-30 blur-3xl rounded-full pointer-events-none"></div>
+      {/* Glowing orb effect - moved higher */}
+      <div className="absolute left-1/2 top-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-glow opacity-30 blur-3xl rounded-full pointer-events-none"></div>
       
       <div className="container mx-auto px-2 sm:px-3 lg:px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto mt-0">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <h1 className={`sm:text-4xl font-bold mb-0 lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-10' : '-mt-12'}`}>
+            <h1 className={`sm:text-4xl font-bold mb-0 lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-20' : '-mt-24'}`}>
               Transforme sua Clínica com 
               <span className="gradient-text block mt-0">Marketing Digital Especializado</span>
             </h1>
           </div>
           
           <div className={`transition-all duration-700 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <p className="text-base sm:text-lg text-gray-300 mb-1 max-w-2xl mx-auto mt-1">
+            <p className="text-base sm:text-lg text-gray-300 mb-0 max-w-2xl mx-auto mt-0">
               Estratégias personalizadas para clínicas e consultórios de saúde que aumentam agendamentos e fidelizam pacientes.
             </p>
           </div>
           
           <div className={`transition-all duration-700 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mt-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-1 mt-1">
               <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
                   <Button className="text-sm py-4 px-5 bg-growave-green text-black hover:bg-growave-green-light animate-pulse-soft">
@@ -104,8 +104,8 @@ const HeroSection = () => {
           {/* Technology logos - responsive layout */}
           {isMobile ? (
             // Mobile layout - logos in a flex container below content
-            <div className={`mt-1 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-              <div className="flex flex-wrap justify-center items-center gap-1 mt-1">
+            <div className={`mt-0 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+              <div className="flex flex-wrap justify-center items-center gap-1 mt-0">
                 {/* Meta Ads logo */}
                 <div className="bg-white/10 rounded-lg p-1 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
                     style={{ animationDelay: '0s', animationDuration: '4s' }}>
@@ -126,36 +126,36 @@ const HeroSection = () => {
               </div>
             </div>
           ) : (
-            // Desktop layout - randomly positioned floating logos
+            // Desktop layout - repositioned floating logos for better spacing
             <div className={`transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-              {/* Meta Ads logo */}
+              {/* Meta Ads logo - adjusted position */}
               <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
                   style={{ 
                     animationDelay: '0s',
-                    top: '15%',
-                    right: '15%',
+                    top: '18%',
+                    right: '18%',
                     animationDuration: '4s'
                   }}>
                 <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-8" />
               </div>
               
-              {/* Google Ads logo */}
+              {/* Google Ads logo - adjusted position */}
               <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
                   style={{ 
                     animationDelay: '0.5s',
-                    bottom: '25%',
-                    left: '12%',
+                    bottom: '30%',
+                    left: '15%',
                     animationDuration: '3.5s'
                   }}>
                 <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-8" />
               </div>
               
-              {/* n8n logo */}
+              {/* n8n logo - adjusted position */}
               <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
                   style={{ 
                     animationDelay: '1s',
-                    top: '30%',
-                    left: '20%',
+                    top: '35%',
+                    left: '22%',
                     animationDuration: '5s'
                   }}>
                 <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-8" />

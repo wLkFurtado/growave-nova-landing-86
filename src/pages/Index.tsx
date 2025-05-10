@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
@@ -9,17 +8,14 @@ import SuccessesSection from '@/components/SuccessesSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
-
 const Index = () => {
   useEffect(() => {
     // Scroll to top on page load
     window.scrollTo(0, 0);
   }, []);
-
-  return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+  return <div className="min-h-screen bg-black text-white overflow-hidden">
       <Header />
-      <main>
+      <main className="py-px my-[16px]">
         <HeroSection />
         <AboutSection />
         <ResultsSection />
@@ -29,8 +25,6 @@ const Index = () => {
         <CTASection />
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;

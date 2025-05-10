@@ -19,7 +19,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center pt-12 pb-12 overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center pt-8 pb-8 overflow-hidden">
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
         {/* Digital code lines animation overlay */}
@@ -66,14 +66,14 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-[-1px]">
         <div className="text-center max-w-4xl mx-auto mt-0">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <h1 className="sm:text-5xl font-bold mb-4 lg:text-7xl md:text-7xl text-4xl">
+            <h1 className="sm:text-5xl font-bold mb-2 lg:text-7xl md:text-7xl text-4xl">
               Transforme sua Clínica com 
-              <span className="gradient-text block mt-1">Marketing Digital Especializado</span>
+              <span className="gradient-text block mt-0">Marketing Digital Especializado</span>
             </h1>
           </div>
           
           <div className={`transition-all duration-700 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <p className="text-lg sm:text-xl text-gray-300 mb-6 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-300 mb-4 max-w-2xl mx-auto">
               Estratégias personalizadas para clínicas e consultórios de saúde que aumentam agendamentos e fidelizam pacientes.
             </p>
           </div>
@@ -102,24 +102,24 @@ const HeroSection = () => {
           {/* Technology logos - responsive layout */}
           {isMobile ? (
             // Mobile layout - logos in a flex container below content
-            <div className={`mt-12 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-              <div className="flex flex-wrap justify-center items-center gap-6">
+            <div className={`mt-8 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+              <div className="flex flex-wrap justify-center items-center gap-5">
                 {/* Meta Ads logo */}
-                <div className="bg-white/10 rounded-lg p-3 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
+                <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
                     style={{ animationDelay: '0s', animationDuration: '4s' }}>
-                  <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-12" />
+                  <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-10" />
                 </div>
                 
                 {/* Google Ads logo */}
-                <div className="bg-white/10 rounded-lg p-3 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
+                <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
                     style={{ animationDelay: '0.5s', animationDuration: '3.5s' }}>
-                  <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-12" />
+                  <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-10" />
                 </div>
                 
                 {/* n8n logo */}
-                <div className="bg-white/10 rounded-lg p-3 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
+                <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
                     style={{ animationDelay: '1s', animationDuration: '5s' }}>
-                  <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-12" />
+                  <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-10" />
                 </div>
               </div>
             </div>

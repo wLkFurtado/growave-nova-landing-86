@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
@@ -77,7 +76,7 @@ const HeroSection = () => {
           </div>
           
           <div className={`transition-all duration-700 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-0 mt-0">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-0 mt-0 my-[24px]">
               <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
                   <Button className="text-sm py-4 px-5 bg-growave-green text-black hover:bg-growave-green-light animate-pulse-soft">
@@ -101,7 +100,7 @@ const HeroSection = () => {
           {isMobile ?
         // Mobile layout - logos in a flex container below content
         <div className={`mt-0 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-              <div className="flex flex-wrap justify-center items-center gap-1 mt-0">
+              <div className="flex flex-wrap justify-center items-center gap-1 mt-0 my-[17px]">
                 {/* Meta Ads logo */}
                 <div className="bg-white/10 rounded-lg p-1 backdrop-blur hover:bg-white/15 transition-colors animate-float" style={{
               animationDelay: '0s',

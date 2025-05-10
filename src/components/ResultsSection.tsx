@@ -75,8 +75,8 @@ const ResultsSection = () => {
           <StatCard
             icon={<Calendar className="w-6 h-6 text-growave-green" />}
             title="Consultas Geradas"
-            value="5.000+"
-            subtitle="Agendamentos realizados"
+            value="Milhares"
+            subtitle="de agendamentos gerados para clínicas em todo o Brasil"
             delay={0}
           />
           <StatCard
@@ -90,14 +90,14 @@ const ResultsSection = () => {
             icon={<TrendingUp className="w-6 h-6 text-growave-green" />}
             title="Aumento em Agendamentos"
             value="320%"
-            subtitle="Média de crescimento"
+            subtitle="Crescimento expressivo em agendamentos nas clínicas atendidas"
             delay={400}
           />
           <StatCard
             icon={<Target className="w-6 h-6 text-growave-green" />}
             title="Taxa de Conversão"
             value="45%"
-            subtitle="Em consultas realizadas"
+            subtitle="Conversões consistentes com foco em pacientes qualificados"
             delay={600}
           />
         </div>

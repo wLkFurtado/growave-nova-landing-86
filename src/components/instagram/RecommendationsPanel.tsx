@@ -1,6 +1,5 @@
 
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Star, ArrowUp, TrendingUp, ChevronDown } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -16,7 +15,6 @@ const RecommendationsPanel = ({
   strengths,
   improvementAreas,
   suggestions,
-  onReset,
   isMobile = false
 }: RecommendationsPanelProps) => {
   return (
@@ -71,22 +69,6 @@ const RecommendationsPanel = ({
           </div>
         </CardContent>
       </ScrollArea>
-      
-      {!isMobile && (
-        <CardFooter>
-          <div className="w-full">
-            <p className="text-sm text-gray-400 mb-3">
-              Este diagnóstico é baseado em dados públicos do seu perfil. Para uma análise mais profunda e personalizada, nossos especialistas entrarão em contato.
-            </p>
-            <Button 
-              onClick={onReset} 
-              className="w-full bg-growave-green text-black hover:bg-growave-green-light"
-            >
-              Finalizar
-            </Button>
-          </div>
-        </CardFooter>
-      )}
     </Card>
   );
 };

@@ -16,7 +16,7 @@ const HeroSection = () => {
   }, []);
   return <div style={{
     height: isMobile ? '100vh' : 'calc(100vh - 80px)'
-  }} className="relative flex items-center justify-center overflow-hidden my-[55px] py-[69px]">
+  }} className="relative flex items-center justify-center overflow-hidden my-[58px] py-[90px]">
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
         {/* Digital code lines animation overlay */}

@@ -62,16 +62,16 @@ const StatCard = ({ icon, title, value, subtitle, delay }: StatCardProps) => {
 
 const ResultsSection = () => {
   return (
-    <section id="results" className="py-24 relative gradient-bg">
+    <section id="results" className="py-16 relative gradient-bg">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Resultados Comprovados</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Impulsionamos clínicas e consultórios através de estratégias digitais especializadas para a área da saúde
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard
             icon={<Calendar className="w-6 h-6 text-growave-green" />}
             title="Consultas Geradas"

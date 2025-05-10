@@ -40,10 +40,10 @@ const TestimonialsSection = () => {
   return (
     <section 
       id="testimonials" 
-      className="py-20 relative bg-gradient-to-b from-black via-growave-blue/20 to-black"
+      className="py-16 relative bg-gradient-to-b from-black via-growave-blue/20 to-black"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">O Que Nossos Clientes Dizem</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Depoimentos de profissionais da saúde que transformaram seus resultados com nossas soluções
@@ -56,7 +56,7 @@ const TestimonialsSection = () => {
               {testimonials.map((testimonial) => (
                 <CarouselItem key={testimonial.id}>
                   <Card className="bg-black/40 backdrop-blur border border-growave-green/10 rounded-xl">
-                    <CardContent className="px-6 py-12">
+                    <CardContent className="px-6 py-10">
                       <div className="flex justify-center mb-4">
                         {[...Array(5)].map((_, i) => (
                           <Star 
@@ -66,7 +66,7 @@ const TestimonialsSection = () => {
                         ))}
                       </div>
                       
-                      <blockquote className="text-xl md:text-2xl italic text-center mb-8">
+                      <blockquote className="text-xl md:text-2xl italic text-center mb-6">
                         "{testimonial.testimonial}"
                       </blockquote>
                       
@@ -90,7 +90,7 @@ const TestimonialsSection = () => {
           </Carousel>
           
           {/* Dots indicator */}
-          <div className="flex justify-center space-x-2 mt-8">
+          <div className="flex justify-center space-x-2 mt-6">
             {testimonials.map((_, index) => (
               <button
                 key={index}

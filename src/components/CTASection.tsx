@@ -19,7 +19,7 @@ const CTASection = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-16 relative overflow-hidden">
       {/* Background with gradient effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-growave-black via-growave-blue/20 to-growave-black z-0"></div>
       
@@ -31,20 +31,20 @@ const CTASection = () => {
       ></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="bg-black/40 backdrop-blur border border-growave-green/10 rounded-xl p-8 lg:p-12 max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="bg-black/40 backdrop-blur border border-growave-green/10 rounded-xl p-8 lg:p-10 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold mb-6">
                 Pronto para <span className="gradient-text">transformar</span> sua clínica?
               </h2>
               
-              <p className="text-gray-300 mb-8">
+              <p className="text-gray-300 mb-6">
                 Agende um diagnóstico gratuito e descubra como nossas soluções 
                 podem impulsionar sua clínica ou consultório através de estratégias 
                 personalizadas de marketing digital e automação.
               </p>
               
-              <div className="mb-8">
+              <div className="mb-6">
                 <ul className="space-y-3">
                   {benefits.map((benefit, index) => (
                     <li key={index} className="flex items-start">

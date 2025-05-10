@@ -53,20 +53,20 @@ const FeatureCard = ({
 };
 
 const AboutSection = () => {
-  return <section id="about" className="py-10 relative">
+  return <section id="about" className="py-16 relative">
       {/* Background with enhanced gradient effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-growave-blue/20 to-black/90 z-0 my-0 py-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-growave-blue/20 to-black/90 z-0"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 my-0">Por que a Growave?</h2>
+        <div className="text-center mb-10">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Por que a Growave?</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Somos especialistas em marketing digital para o setor de saúde, 
             com profundo conhecimento técnico e estratégias comprovadas para clínicas e consultórios.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <FeatureCard icon={<HeartPulse className="w-6 h-6 text-growave-green" />} title="Especialistas em Saúde" description="Equipe com conhecimento específico do mercado médico, odontológico e estético." delay={0} />
           <FeatureCard icon={<CheckCircle className="w-6 h-6 text-growave-green" />} title="Conformidade Normativa" description="Estratégias em total conformidade com os códigos éticos de publicidade em saúde." delay={200} />
           <FeatureCard icon={<Award className="w-6 h-6 text-growave-green" />} title="Experiência Comprovada" description="Mais de 5 anos transformando a presença digital de clínicas e consultórios." delay={400} />

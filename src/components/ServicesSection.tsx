@@ -60,18 +60,18 @@ const ServiceCard = ({ title, description, icon, delay }: ServiceCardProps) => {
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-20 relative circuit-pattern">
+    <section id="services" className="py-16 relative circuit-pattern">
       <div className="absolute inset-0 bg-black/70 pointer-events-none"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Nossas Soluções</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Utilizamos tecnologias avançadas e estratégias especializadas para impulsionar clínicas e consultórios
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <ServiceCard
             title="Campanhas para Captação de Pacientes"
             description="Estratégias personalizadas no Facebook e Instagram para atrair pacientes em potencial para sua clínica ou consultório."

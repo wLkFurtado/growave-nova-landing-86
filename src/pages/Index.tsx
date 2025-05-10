@@ -17,9 +17,9 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white overflow-hidden">
       <Header />
-      <main className="space-y-0">
+      <main>
         <HeroSection />
         <AboutSection />
         <ResultsSection />

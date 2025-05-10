@@ -127,27 +127,27 @@ const SuccessesSection = () => {
   }, []);
 
   return (
-    <section id="cases" className="py-20 relative bg-black">
+    <section id="cases" className="py-16 relative bg-black">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-growave-blue/5 to-black"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Casos de Sucesso</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Conheça algumas clínicas e consultórios que transformaram seus resultados através das nossas soluções
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {caseStudies.map(study => (
             <CaseStudyCard key={study.id} study={study} />
           ))}
         </div>
         
-        <div ref={ref} className="mt-20">
-          <h3 className="text-2xl font-bold text-center mb-12">Clínicas que Confiam na Growave</h3>
+        <div ref={ref} className="mt-16">
+          <h3 className="text-2xl font-bold text-center mb-10">Clínicas que Confiam na Growave</h3>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 items-center">
             {partnerLogos.map((partner, index) => (
               <div 
                 key={partner.id} 

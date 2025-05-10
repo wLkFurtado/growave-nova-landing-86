@@ -12,9 +12,15 @@ interface TabContentProps {
 const TabContent = ({ value, children, isMobile }: TabContentProps) => {
   return (
     <TabsContent value={value} className="space-y-6">
-      <div className={isMobile ? 'overflow-visible pb-32' : ''}>
-        {children}
-      </div>
+      {isMobile ? (
+        <div className="overflow-visible pb-32">
+          {children}
+        </div>
+      ) : (
+        <ScrollArea className="h-[calc(100vh-200px)]">
+          {children}
+        </ScrollArea>
+      )}
     </TabsContent>
   );
 };

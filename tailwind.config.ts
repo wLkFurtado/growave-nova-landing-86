@@ -123,6 +123,10 @@ export default {
 				'count-up': {
 					'0%': { transform: 'translateY(0)' },
 					'100%': { transform: 'translateY(-100%)' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' }
 				}
 			},
 			animation: {
@@ -134,6 +138,7 @@ export default {
 				'glow': 'glow 2s ease-in-out infinite',
 				'pulse-soft': 'pulse-soft 3s infinite',
 				'count-up': 'count-up 1s ease-out forwards',
+				'float': 'float 3s ease-in-out infinite',
 			},
 			backgroundImage: {
 				'circuit-pattern': "url('/public/lovable-uploads/24c3a692-18cf-4895-8371-69b360b77fa1.png')",

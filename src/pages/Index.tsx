@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
@@ -14,9 +13,9 @@ const Index = () => {
     // Scroll to top on page load
     window.scrollTo(0, 0);
   }, []);
-  return <div className="min-h-screen bg-black text-white overflow-hidden">
+  return <div className="min-h-screen bg-black text-white overflow-hidden my-[21px] py-[25px]">
       <Header />
-      <main className="py-0">
+      <main className="my-[40px] py-[14px]">
         <HeroSection />
         <AboutSection />
         <ResultsSection />

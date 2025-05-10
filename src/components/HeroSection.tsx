@@ -1,26 +1,22 @@
-
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import ContactForm from './ContactForm';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const isMobile = useIsMobile();
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
   }, []);
-
   return <div style={{
     height: isMobile ? '100vh' : 'calc(100vh - 80px)'
-  }} className="relative flex items-center justify-center overflow-hidden my-[58px] py-[51px]">
+  }} className="relative flex items-center justify-center overflow-hidden my-[6px] py-0">
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
         {/* Digital code lines animation overlay */}
@@ -70,12 +66,12 @@ const HeroSection = () => {
       
       {/* Removido: Glowing orb effect */}
       
-      <div className="container mx-auto px-0 sm:px-2 relative z-10 my-[87px]">
-        <div className="text-center max-w-4xl mx-auto">
+      <div className="container mx-auto sm:px-2 relative z-10 my-[87px] px-0">
+        <div className="text-center max-w-4xl mx-auto py-[113px] px-[51px]">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
             <h1 className={`sm:text-4xl font-bold lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-48' : 'mt-0'}`}>
               Transforme sua Clínica com 
-              <span className="gradient-text block mt-0 py-0 my-[10px]">Marketing Digital Especializado</span>
+              <span className="gradient-text block mt-0 my-[10px] py-0">Marketing Digital Especializado</span>
             </h1>
           </div>
           
@@ -165,12 +161,11 @@ const HeroSection = () => {
             left: '28%',
             animationDuration: '5s'
           }}>
-                <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-8" />
+                <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-" />
               </div>
             </div>}
         </div>
       </div>
     </div>;
 };
-
 export default HeroSection;

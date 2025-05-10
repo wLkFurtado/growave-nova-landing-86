@@ -1,4 +1,3 @@
-
 import { useRef, useEffect, useState } from 'react';
 import { CheckCircle, HeartPulse, Award, TrendingUp } from 'lucide-react';
 type FeatureCardProps = {
@@ -48,7 +47,7 @@ const FeatureCard = ({
 const AboutSection = () => {
   return <section id="about" className="py-2 relative -mt-16">
       {/* Background with enhanced gradient effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-growave-blue/20 to-black/90 z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-growave-blue/20 to-black/90 z-0 py-0 my-px"></div>
       
       <div className="container mx-auto sm:px-6 lg:px-8 relative z-10 px-4">
         <div className="text-center mb-6">

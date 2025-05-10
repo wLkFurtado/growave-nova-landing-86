@@ -1,0 +1,49 @@
+
+import { ChevronDown } from "lucide-react";
+import ContentTypeTable from "./ContentTypeTable";
+import ContentTypeChart from "./ContentTypeChart";
+
+interface ContentTypeAnalysisProps {
+  postsByType: Record<string, number>;
+  performanceByType: Record<string, number>;
+  isMobile?: boolean;
+}
+
+const ContentTypeAnalysis = ({
+  postsByType,
+  performanceByType,
+  isMobile = false
+}: ContentTypeAnalysisProps) => {
+  // Prepare data for the content type chart
+  const contentTypeData = Object.entries(performanceByType)
+    .filter(([type, _]) => postsByType[type] > 0)
+    .map(([type, avgLikes]) => ({
+      name: type,
+      engajamento: Math.round(avgLikes),
+    }));
+
+  return (
+    <div className="mt-6">
+      <h4 className="text-sm font-medium mb-3">Tipos de Conteúdo e Desempenho</h4>
+      <div className="bg-white/5 rounded-lg p-4">
+        <ContentTypeTable 
+          postsByType={postsByType} 
+          performanceByType={performanceByType} 
+        />
+
+        <ContentTypeChart 
+          contentTypeData={contentTypeData} 
+          isMobile={isMobile} 
+        />
+      </div>
+      
+      {/* Indicador de rolagem */}
+      <div className="text-center text-gray-400 text-sm pt-2">
+        <ChevronDown className="h-4 w-4 inline animate-bounce" />
+        <span className="ml-1">Role para ver mais</span>
+      </div>
+    </div>
+  );
+};
+
+export default ContentTypeAnalysis;

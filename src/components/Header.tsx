@@ -1,12 +1,9 @@
-
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -15,12 +12,11 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   return <header className="py-4 lg:py-6">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between px-[57px]">
           <div className="flex items-center">
-            <img src="/lovable-uploads/dc7d5c5c-2c27-4986-9008-acd55a89fc67.png" alt="Growave Logo" className="h-[60px] sm:h-[50px]" />
+            <img src="/lovable-uploads/dc7d5c5c-2c27-4986-9008-acd55a89fc67.png" alt="Growave Logo" className="h-[40px] sm:h-[50px] object-scale-down" />
           </div>
 
           {/* Desktop Navigation */}
@@ -44,7 +40,7 @@ const Header = () => {
 
           {/* Mobile Menu Trigger */}
           <div className="md:hidden">
-            <Button variant="ghost" className="text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            <Button variant="ghost" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-white font-normal text-4xl bg-transparent">
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
@@ -73,5 +69,4 @@ const Header = () => {
       </div>
     </header>;
 };
-
 export default Header;

@@ -20,7 +20,7 @@ const HeroSection = () => {
 
   return (
     <div className="relative flex items-center justify-center overflow-hidden" style={{ 
-      height: isMobile ? 'calc(100vh - 30px)' : 'calc(100vh - 80px)' 
+      height: isMobile ? 'calc(100vh - 10px)' : 'calc(100vh - 40px)' 
     }}>
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
@@ -65,26 +65,26 @@ const HeroSection = () => {
       {/* Glowing orb effect */}
       <div className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-glow opacity-30 blur-3xl rounded-full pointer-events-none"></div>
       
-      <div className="container mx-auto px-3 sm:px-4 lg:px-6 relative z-10">
+      <div className="container mx-auto px-2 sm:px-3 lg:px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto mt-0">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <h1 className={`sm:text-4xl font-bold mb-0 lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-3' : '-mt-6'}`}>
+            <h1 className={`sm:text-4xl font-bold mb-0 lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-10' : '-mt-12'}`}>
               Transforme sua Clínica com 
               <span className="gradient-text block mt-0">Marketing Digital Especializado</span>
             </h1>
           </div>
           
           <div className={`transition-all duration-700 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <p className="text-base sm:text-lg text-gray-300 mb-2 max-w-2xl mx-auto mt-2">
+            <p className="text-base sm:text-lg text-gray-300 mb-1 max-w-2xl mx-auto mt-1">
               Estratégias personalizadas para clínicas e consultórios de saúde que aumentam agendamentos e fidelizam pacientes.
             </p>
           </div>
           
           <div className={`transition-all duration-700 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-3">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mt-2">
               <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
-                  <Button className="text-sm py-5 px-6 bg-growave-green text-black hover:bg-growave-green-light animate-pulse-soft">
+                  <Button className="text-sm py-4 px-5 bg-growave-green text-black hover:bg-growave-green-light animate-pulse-soft">
                     Agendar Diagnóstico Gratuito
                     <ArrowRight className="ml-1 h-4 w-4" />
                   </Button>
@@ -93,7 +93,7 @@ const HeroSection = () => {
                   <DialogHeader>
                     <DialogTitle className="text-xl text-white text-center">Agende seu Diagnóstico Gratuito</DialogTitle>
                   </DialogHeader>
-                  <div className="py-3">
+                  <div className="py-2">
                     <ContactForm onSuccess={() => setIsDialogOpen(false)} />
                   </div>
                 </DialogContent>
@@ -104,24 +104,24 @@ const HeroSection = () => {
           {/* Technology logos - responsive layout */}
           {isMobile ? (
             // Mobile layout - logos in a flex container below content
-            <div className={`mt-2 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-              <div className="flex flex-wrap justify-center items-center gap-2 mt-2">
+            <div className={`mt-1 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+              <div className="flex flex-wrap justify-center items-center gap-1 mt-1">
                 {/* Meta Ads logo */}
                 <div className="bg-white/10 rounded-lg p-1 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
                     style={{ animationDelay: '0s', animationDuration: '4s' }}>
-                  <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-6" />
+                  <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-5" />
                 </div>
                 
                 {/* Google Ads logo */}
                 <div className="bg-white/10 rounded-lg p-1 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
                     style={{ animationDelay: '0.5s', animationDuration: '3.5s' }}>
-                  <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-6" />
+                  <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-5" />
                 </div>
                 
                 {/* n8n logo */}
                 <div className="bg-white/10 rounded-lg p-1 backdrop-blur hover:bg-white/15 transition-colors animate-float" 
                     style={{ animationDelay: '1s', animationDuration: '5s' }}>
-                  <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-6" />
+                  <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-5" />
                 </div>
               </div>
             </div>
@@ -129,36 +129,36 @@ const HeroSection = () => {
             // Desktop layout - randomly positioned floating logos
             <div className={`transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
               {/* Meta Ads logo */}
-              <div className="bg-white/10 rounded-lg p-3 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
+              <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
                   style={{ 
                     animationDelay: '0s',
                     top: '15%',
                     right: '15%',
                     animationDuration: '4s'
                   }}>
-                <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-10" />
+                <img src="/lovable-uploads/7694aad0-ac97-4cfb-9f18-b604c273222a.png" alt="Meta Ads" className="h-8" />
               </div>
               
               {/* Google Ads logo */}
-              <div className="bg-white/10 rounded-lg p-3 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
+              <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
                   style={{ 
                     animationDelay: '0.5s',
                     bottom: '25%',
                     left: '12%',
                     animationDuration: '3.5s'
                   }}>
-                <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-10" />
+                <img src="/lovable-uploads/f8001bc9-9b0b-40c1-a25f-be19319b3105.png" alt="Google Ads" className="h-8" />
               </div>
               
               {/* n8n logo */}
-              <div className="bg-white/10 rounded-lg p-3 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
+              <div className="bg-white/10 rounded-lg p-2 backdrop-blur hover:bg-white/15 transition-colors animate-float absolute z-20" 
                   style={{ 
                     animationDelay: '1s',
                     top: '30%',
                     left: '20%',
                     animationDuration: '5s'
                   }}>
-                <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-10" />
+                <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-8" />
               </div>
             </div>
           )}
@@ -166,7 +166,7 @@ const HeroSection = () => {
       </div>
       
       {/* Decorative angled div at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-r from-black via-growave-blue to-black transform -skew-y-1"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-r from-black via-growave-blue to-black transform -skew-y-1"></div>
     </div>
   );
 };

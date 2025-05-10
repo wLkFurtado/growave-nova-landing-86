@@ -13,15 +13,15 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  return <header className="py-2 lg:py-4">
-      <div className="container mx-auto px-2 sm:px-4 lg:px-6">
-        <div className="flex items-center justify-between px-2 sm:px-4 lg:px-[57px]">
+  return <header className="py-1 lg:py-2">
+      <div className="container mx-auto px-1 sm:px-2 lg:px-4">
+        <div className="flex items-center justify-between px-1 sm:px-2 lg:px-[30px]">
           <div className="flex items-center">
             <img src="/lovable-uploads/dc7d5c5c-2c27-4986-9008-acd55a89fc67.png" alt="Growave Logo" className="h-[30px] sm:h-[40px] object-scale-down" />
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
             <a href="#services" className="text-white hover:text-growave-green transition-colors">
               Serviços
             </a>
@@ -41,15 +41,15 @@ const Header = () => {
 
           {/* Mobile Menu Trigger */}
           <div className="md:hidden">
-            <Button variant="ghost" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-white font-normal text-4xl bg-transparent p-1">
+            <Button variant="ghost" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-white font-normal text-4xl bg-transparent p-0">
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        {mobileMenuOpen && <div className="md:hidden mt-2 backdrop-blur animate-fade-in border border-growave-green/10 rounded-lg p-3">
-            <nav className="flex flex-col space-y-3">
+        {mobileMenuOpen && <div className="md:hidden mt-1 backdrop-blur animate-fade-in border border-growave-green/10 rounded-lg p-2">
+            <nav className="flex flex-col space-y-2">
               <a href="#services" className="text-white hover:text-growave-green transition-colors" onClick={() => setMobileMenuOpen(false)}>
                 Serviços
               </a>

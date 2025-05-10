@@ -42,8 +42,8 @@ const ProfileOverview = ({
 
   return (
     <Card className="bg-black/40 border-white/10">
-      <CardHeader className="py-2 px-3 sm:px-4 sm:py-3">
-        <div className="flex items-center gap-2 sm:gap-3">
+      <CardHeader className="py-1 px-2 sm:px-3 sm:py-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           <InstagramProfileImage 
             profileUrl={profileImage} 
             username={username} 
@@ -57,19 +57,19 @@ const ProfileOverview = ({
           </div>
         </div>
       </CardHeader>
-      <CardContent className="space-y-2 sm:space-y-3 px-3 py-2 sm:px-4">
-        <div className="grid grid-cols-3 gap-1 sm:gap-2 text-center">
-          <div className="bg-white/5 p-2 rounded-lg">
+      <CardContent className="space-y-1 sm:space-y-2 px-2 py-1 sm:px-3">
+        <div className="grid grid-cols-3 gap-1 text-center">
+          <div className="bg-white/5 p-1 rounded-lg">
             <Users className="h-4 w-4 mx-auto mb-0.5 text-growave-green" />
             <div className="text-base font-bold">{followersCount.toLocaleString()}</div>
             <div className="text-xs text-gray-400">Seguidores</div>
           </div>
-          <div className="bg-white/5 p-2 rounded-lg">
+          <div className="bg-white/5 p-1 rounded-lg">
             <User className="h-4 w-4 mx-auto mb-0.5 text-growave-green" />
             <div className="text-base font-bold">{followsCount.toLocaleString()}</div>
             <div className="text-xs text-gray-400">Seguindo</div>
           </div>
-          <div className="bg-white/5 p-2 rounded-lg">
+          <div className="bg-white/5 p-1 rounded-lg">
             <ChartBar className="h-4 w-4 mx-auto mb-0.5 text-growave-green" />
             <div className="text-base font-bold">{postsCount.toLocaleString()}</div>
             <div className="text-xs text-gray-400">Publicações</div>
@@ -77,18 +77,18 @@ const ProfileOverview = ({
         </div>
         
         {biography && (
-          <div className="mt-2 sm:mt-3">
-            <h4 className="text-xs sm:text-sm font-medium mb-1">Biografia</h4>
-            <p className="text-xs sm:text-sm text-gray-300 bg-white/5 p-2 rounded-lg whitespace-pre-wrap">
+          <div className="mt-1 sm:mt-2">
+            <h4 className="text-xs sm:text-sm font-medium mb-0.5">Biografia</h4>
+            <p className="text-xs sm:text-sm text-gray-300 bg-white/5 p-1 rounded-lg whitespace-pre-wrap">
               {biography}
             </p>
           </div>
         )}
         
-        <div className="mt-2 sm:mt-3">
-          <h4 className="text-xs sm:text-sm font-medium mb-2">Resumo Geral do Perfil</h4>
-          <div className="bg-white/5 p-2 rounded-lg">
-            <ul className="list-disc list-inside text-xs sm:text-sm space-y-1 text-gray-300">
+        <div className="mt-1 sm:mt-2">
+          <h4 className="text-xs sm:text-sm font-medium mb-1">Resumo Geral do Perfil</h4>
+          <div className="bg-white/5 p-1 rounded-lg">
+            <ul className="list-disc list-inside text-xs sm:text-sm space-y-0.5 text-gray-300">
               <li>Conta com {followersCount.toLocaleString()} seguidores e {postsCount.toLocaleString()} publicações</li>
               <li>Tipo de conta: {accountType}</li>
               <li>Taxa de engajamento média: {engagementRate.toFixed(2)}%</li>

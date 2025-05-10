@@ -1,26 +1,22 @@
-
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import ContactForm from './ContactForm';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const isMobile = useIsMobile();
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
   }, []);
-
-  return <div className="relative flex items-center justify-center overflow-hidden" style={{
+  return <div style={{
     height: isMobile ? '100vh' : 'calc(100vh - 80px)'
-  }}>
+  }} className="relative flex items-center justify-center overflow-hidden py-0">
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
         {/* Digital code lines animation overlay */}
@@ -48,7 +44,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/95 pointer-events-none"></div>
       
       {/* Automation graphics - floating nodes repositioned around text */}
-      <div className="absolute inset-0 z-10 overflow-hidden p-0 px-[7px] my-0">
+      <div className="absolute inset-0 z-10 overflow-hidden p-0 px-[7px] py-[7px] my-[195px]">
         {/* Top left node */}
         <div className="node w-3 h-3 rounded-full bg-growave-green absolute top-[15%] left-[15%] animate-glow"></div>
         
@@ -173,5 +169,4 @@ const HeroSection = () => {
       </div>
     </div>;
 };
-
 export default HeroSection;

@@ -1,14 +1,11 @@
-
 import { useRef, useEffect, useState } from 'react';
 import { CheckCircle, HeartPulse, Award, TrendingUp } from 'lucide-react';
-
 type FeatureCardProps = {
   icon: React.ReactNode;
   title: string;
   description: string;
   delay: number;
 };
-
 const FeatureCard = ({
   icon,
   title,
@@ -17,7 +14,6 @@ const FeatureCard = ({
 }: FeatureCardProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -28,18 +24,15 @@ const FeatureCard = ({
     }, {
       threshold: 0.1
     });
-
     if (ref.current) {
       observer.observe(ref.current);
     }
-
     return () => {
       if (ref.current) {
         observer.unobserve(ref.current);
       }
     };
   }, [delay]);
-
   return <div ref={ref} className="bg-black/60 backdrop-blur border border-growave-green/10 rounded-lg p-6 transform transition-all duration-500" style={{
     opacity: isVisible ? 1 : 0,
     transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
@@ -51,15 +44,14 @@ const FeatureCard = ({
       <p className="text-gray-400">{description}</p>
     </div>;
 };
-
 const AboutSection = () => {
   return <section id="about" className="py-16 relative">
       {/* Background with enhanced gradient effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-growave-blue/20 to-black/90 z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-growave-blue/20 to-black/90 z-0 my-0 py-[41px]"></div>
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto sm:px-6 lg:px-8 relative z-10 my- px-[30px] py-0 my-0">
         <div className="text-center mb-10">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Por que a Growave?</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 my-0">Por que a Growave?</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Somos especialistas em marketing digital para o setor de saúde, 
             com profundo conhecimento técnico e estratégias comprovadas para clínicas e consultórios.
@@ -75,5 +67,4 @@ const AboutSection = () => {
       </div>
     </section>;
 };
-
 export default AboutSection;

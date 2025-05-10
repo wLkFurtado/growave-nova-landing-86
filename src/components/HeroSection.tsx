@@ -100,13 +100,13 @@ const HeroSection = () => {
           <div className={`mt-16 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
               <div className="bg-white/10 rounded-lg p-3 backdrop-blur hover:bg-white/15 transition-colors">
-                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="Meta Ads" className="h-8" />
+                <img src="/lovable-uploads/940c41ad-e6cf-4b88-9829-5686348208f3.png" alt="Meta Ads" className="h-8" />
               </div>
               <div className="bg-white/10 rounded-lg p-3 backdrop-blur hover:bg-white/15 transition-colors">
-                <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google Ads" className="h-8" />
+                <img src="/lovable-uploads/0897b35a-20cf-4842-9bdc-dd5d406e61f6.png" alt="Google Ads" className="h-8" />
               </div>
               <div className="bg-white/10 rounded-lg p-3 backdrop-blur hover:bg-white/15 transition-colors">
-                <img src="https://avatars.githubusercontent.com/u/60006201" alt="n8n" className="h-8" />
+                <img src="/lovable-uploads/f03d5386-3926-40be-a22e-52a5d73f1e6f.png" alt="n8n" className="h-8" />
               </div>
             </div>
           </div>

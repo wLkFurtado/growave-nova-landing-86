@@ -1,19 +1,23 @@
+
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import ContactForm from './ContactForm';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const isMobile = useIsMobile();
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
   }, []);
+
   return <div className="relative flex items-center justify-center overflow-hidden" style={{
     height: isMobile ? 'calc(100vh - 0px)' : 'calc(100vh - 10px)'
   }}>
@@ -43,16 +47,23 @@ const HeroSection = () => {
       
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/95 pointer-events-none"></div>
       
-      {/* Automation graphics - floating nodes without red lines */}
+      {/* Automation graphics - floating nodes repositioned around text */}
       <div className="absolute inset-0 z-10 overflow-hidden p-0 px-[7px] my-0">
-        <div className="node w-3 h-3 rounded-full bg-growave-green absolute top-1/4 left-1/4 animate-glow"></div>
-        <div className="node w-2 h-2 rounded-full bg-growave-green absolute top-1/3 right-1/3 animate-glow" style={{
+        {/* Top left node */}
+        <div className="node w-3 h-3 rounded-full bg-growave-green absolute top-[15%] left-[15%] animate-glow"></div>
+        
+        {/* Top right node */}
+        <div className="node w-2 h-2 rounded-full bg-growave-green absolute top-[15%] right-[15%] animate-glow" style={{
         animationDelay: '0.3s'
       }}></div>
-        <div className="node w-4 h-4 rounded-full bg-growave-green absolute bottom-1/3 left-1/2 animate-glow" style={{
+        
+        {/* Bottom left node */}
+        <div className="node w-4 h-4 rounded-full bg-growave-green absolute bottom-[35%] left-[20%] animate-glow" style={{
         animationDelay: '0.6s'
       }}></div>
-        <div className="node w-2 h-2 rounded-full bg-growave-green absolute bottom-1/4 right-1/4 animate-glow" style={{
+        
+        {/* Bottom right node */}
+        <div className="node w-2 h-2 rounded-full bg-growave-green absolute bottom-[35%] right-[20%] animate-glow" style={{
         animationDelay: '0.9s'
       }}></div>
       </div>
@@ -162,4 +173,5 @@ const HeroSection = () => {
       </div>
     </div>;
 };
+
 export default HeroSection;

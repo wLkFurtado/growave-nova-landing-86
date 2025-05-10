@@ -179,7 +179,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
         </TabContent>
       </Tabs>
 
-      {/* Action button for all tabs */}
+      {/* Action button is always shown and outside the tab content */}
       <ActionButton onReset={handleReset} isMobile={isMobile} />
     </div>
   );

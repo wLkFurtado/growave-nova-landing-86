@@ -19,7 +19,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center pt-12 pb-12 overflow-hidden">
       {/* Circuit board background with animation */}
       <div className="absolute inset-0 z-0 circuit-pattern">
         {/* Digital code lines animation overlay */}
@@ -47,7 +47,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/95 pointer-events-none"></div>
       
       {/* Automation graphics - floating nodes and connections */}
-      <div className="absolute inset-0 z-10 overflow-hidden py-0 ">
+      <div className="absolute inset-0 z-10 overflow-hidden py-0">
         <div className="node w-3 h-3 rounded-full bg-growave-green absolute top-1/4 left-1/4 animate-glow"></div>
         <div className="node w-2 h-2 rounded-full bg-growave-green absolute top-1/3 right-1/3 animate-glow" style={{
         animationDelay: '0.3s'
@@ -64,16 +64,16 @@ const HeroSection = () => {
       <div className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-glow opacity-30 blur-3xl rounded-full pointer-events-none"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-[-1px]">
-        <div className="text-center max-w-4xl mx-auto mt-16 md:mt-0">
+        <div className="text-center max-w-4xl mx-auto mt-0">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <h1 className="sm:text-5xl font-bold mb-7 lg:text-7xl md:text-7xl text-4xl">
+            <h1 className="sm:text-5xl font-bold mb-4 lg:text-7xl md:text-7xl text-4xl">
               Transforme sua Clínica com 
-              <span className="gradient-text block mt-2">Marketing Digital Especializado</span>
+              <span className="gradient-text block mt-1">Marketing Digital Especializado</span>
             </h1>
           </div>
           
           <div className={`transition-all duration-700 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-300 mb-6 max-w-2xl mx-auto">
               Estratégias personalizadas para clínicas e consultórios de saúde que aumentam agendamentos e fidelizam pacientes.
             </p>
           </div>
@@ -102,7 +102,7 @@ const HeroSection = () => {
           {/* Technology logos - responsive layout */}
           {isMobile ? (
             // Mobile layout - logos in a flex container below content
-            <div className={`mt-16 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+            <div className={`mt-12 transition-all duration-700 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
               <div className="flex flex-wrap justify-center items-center gap-6">
                 {/* Meta Ads logo */}
                 <div className="bg-white/10 rounded-lg p-3 backdrop-blur hover:bg-white/15 transition-colors animate-float" 

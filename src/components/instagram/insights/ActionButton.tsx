@@ -15,7 +15,7 @@ const ActionButton = ({ onReset, isMobile }: ActionButtonProps) => {
             onClick={onReset}
             className="w-full bg-growave-green text-black hover:bg-growave-green-light mt-6 mb-8"
           >
-            Finalizar
+            Próximo
           </Button>
           <p className="text-xs text-gray-400 mt-3 text-center">
             Este diagnóstico é baseado em dados públicos do seu perfil. Para uma análise mais profunda e personalizada, nossos especialistas entrarão em contato.
@@ -31,7 +31,7 @@ const ActionButton = ({ onReset, isMobile }: ActionButtonProps) => {
         onClick={onReset} 
         className="w-full bg-growave-green text-black hover:bg-growave-green-light"
       >
-        Finalizar
+        Próximo
       </Button>
       <p className="text-xs text-gray-400 mt-2 text-center bg-black/90 p-2 rounded-md">
         Este diagnóstico é baseado em dados públicos do seu perfil. Para uma análise mais profunda e personalizada, nossos especialistas entrarão em contato.

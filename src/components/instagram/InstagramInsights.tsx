@@ -28,19 +28,17 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
 
   return (
     <div className="text-white flex flex-col items-center justify-center w-full">
-      <div className="w-full max-w-md mx-auto px-4 md:px-6 pb-20">
+      <div className="w-full max-w-md mx-auto px-4 md:px-6">
         <ProfileHeader username={profileData.username} />
         
         {isMobile ? (
-          <div className="relative w-full">
-            <div className="pb-24">
-              <OverviewSection 
-                profileData={profileData}
-                profileAnalysis={profileAnalysis}
-                onReset={handleReset}
-                isMobile={isMobile}
-              />
-            </div>
+          <div className="relative w-full pb-4">
+            <OverviewSection 
+              profileData={profileData}
+              profileAnalysis={profileAnalysis}
+              onReset={handleReset}
+              isMobile={isMobile}
+            />
           </div>
         ) : (
           <OverviewSection 

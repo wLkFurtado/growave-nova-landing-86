@@ -96,7 +96,7 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
           className="w-full bg-growave-green text-black hover:bg-growave-green-light"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Analisando..." : "Agendar Diagnóstico"}
+          {isSubmitting ? "Analisando..." : "Próximo"}
         </Button>
       </form>
     </Form>

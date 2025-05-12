@@ -10,6 +10,7 @@ export const fetchInstagramData = async (data: FormValues) => {
   const instagramHandle = data.instagram.replace('@', '');
   
   console.log('Fetching Instagram data for:', instagramHandle);
+  console.log('Full form data:', data);
   
   // Send data to webhook
   const response = await fetch('https://webhooks.growave.com.br/webhook/scraping-insta', {
@@ -20,7 +21,14 @@ export const fetchInstagramData = async (data: FormValues) => {
     body: JSON.stringify({
       name: data.name,
       phone: data.phone,
-      instagram: instagramHandle
+      instagram: instagramHandle,
+      // Include second stage fields if they exist
+      investimentoAds: data.investimentoAds || null,
+      equipeFrontOffice: data.equipeFrontOffice || null,
+      faturamentoMensal: data.faturamentoMensal || null,
+      trabalhouComAgencia: data.trabalhouComAgencia || null,
+      experienciaAnterior: data.experienciaAnterior || null,
+      expectativasAgencia: data.expectativasAgencia || null,
     }),
   });
 

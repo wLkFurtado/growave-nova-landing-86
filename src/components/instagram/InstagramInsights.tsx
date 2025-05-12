@@ -27,7 +27,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
 
   return (
     <div className="text-white flex flex-col items-center justify-center w-full">
-      <div className="w-full max-w-md mx-auto flex flex-col items-center">
+      <div className="w-full max-w-md mx-auto px-4 md:px-6 pb-20">
         <ProfileHeader username={profileData.username} />
         
         <OverviewSection 

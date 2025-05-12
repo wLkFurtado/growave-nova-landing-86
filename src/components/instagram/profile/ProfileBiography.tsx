@@ -7,9 +7,9 @@ const ProfileBiography = ({ biography }: ProfileBiographyProps) => {
   if (!biography) return null;
   
   return (
-    <div className="mt-1 sm:mt-2">
-      <h4 className="text-xs sm:text-sm font-medium mb-0.5">Biografia</h4>
-      <p className="text-xs sm:text-sm text-gray-300 bg-white/5 p-1 rounded-lg whitespace-pre-wrap">
+    <div className="mt-4 mb-4">
+      <h4 className="text-sm font-medium mb-2">Biografia</h4>
+      <p className="text-sm text-gray-300 bg-white/5 p-3 rounded-lg whitespace-pre-wrap max-h-[150px] overflow-y-auto">
         {biography}
       </p>
     </div>

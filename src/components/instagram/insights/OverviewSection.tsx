@@ -27,7 +27,7 @@ const OverviewSection = ({ profileData, profileAnalysis, onReset, isMobile }: Ov
   } = profileAnalysis;
   
   return (
-    <div className="flex flex-col items-center justify-center w-full">
+    <div className="flex flex-col items-center justify-center w-full max-w-[375px] mx-auto">
       <ProfileOverview
         username={username}
         fullName={fullName}

@@ -43,8 +43,8 @@ const ProfileOverview = ({
   const ContentWrapper = isMobile ? ScrollArea : 'div';
 
   return (
-    <Card className="bg-black/40 border-white/10">
-      <CardHeader className="py-1 px-2 sm:px-3 sm:py-2">
+    <Card className="bg-black/40 border-white/10 w-full max-w-[375px] mx-auto">
+      <CardHeader className="py-3 px-4">
         <ProfileHeader
           username={username}
           fullName={fullName}
@@ -53,7 +53,7 @@ const ProfileOverview = ({
         />
       </CardHeader>
       
-      <CardContent className="space-y-1 sm:space-y-2 px-2 py-1 sm:px-3">
+      <CardContent className="space-y-4 px-4 py-3">
         <ProfileStats
           followersCount={followersCount}
           followsCount={followsCount}

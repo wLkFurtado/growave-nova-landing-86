@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import ContactForm from './ContactForm';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -14,6 +15,7 @@ const HeroSection = () => {
     }, 100);
     return () => clearTimeout(timer);
   }, []);
+
   return <div style={{
     height: isMobile ? '100vh' : 'calc(100vh - 80px)'
   }} className="relative flex items-center justify-center overflow-hidden my-[6px] py-0">
@@ -90,7 +92,7 @@ const HeroSection = () => {
                     <ArrowRight className="ml-1 h-4 w-4" />
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[500px] bg-growave-black border-growave-green/20">
+                <DialogContent className="sm:max-w-[500px] bg-growave-black border-growave-green/20 mx-auto w-[95%] max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle className="text-xl text-white text-center">Agende seu Diagnóstico Gratuito</DialogTitle>
                   </DialogHeader>
@@ -168,4 +170,5 @@ const HeroSection = () => {
       </div>
     </div>;
 };
+
 export default HeroSection;

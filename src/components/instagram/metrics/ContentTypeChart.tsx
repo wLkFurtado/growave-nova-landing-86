@@ -9,16 +9,28 @@ interface ContentTypeChartProps {
 const ContentTypeChart = ({ contentTypeData, isMobile = false }: ContentTypeChartProps) => {
   if (!contentTypeData.length) return null;
   
+  // Altura dinâmica baseada no número de itens para mobile
+  const mobileHeight = Math.max(180, contentTypeData.length * 40);
+  
   return (
-    <div className={`${isMobile ? 'h-40' : 'h-64'} mt-4`}>
+    <div className={`mt-4 ${isMobile ? `h-[${mobileHeight}px]` : 'h-64'}`}>
       <ResponsiveContainer width="100%" height="100%">
         <RechartsBarChart
           data={contentTypeData}
           margin={{ top: 10, right: 10, left: 10, bottom: 20 }}
           barSize={isMobile ? 20 : 40}
+          layout={isMobile && contentTypeData.length > 3 ? "vertical" : "horizontal"}
         >
-          <XAxis dataKey="name" stroke="#9CA3AF" />
-          <YAxis stroke="#9CA3AF" />
+          <XAxis 
+            dataKey="name" 
+            stroke="#9CA3AF"
+            tick={{ fontSize: isMobile ? 12 : 14 }}
+            interval={0}
+          />
+          <YAxis 
+            stroke="#9CA3AF"
+            tick={{ fontSize: isMobile ? 12 : 14 }}
+          />
           <Tooltip 
             contentStyle={{ 
               backgroundColor: '#18181B',

@@ -20,26 +20,28 @@ const ContentTypeTable = ({ postsByType, performanceByType }: ContentTypeTablePr
   }
   
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="text-gray-300">Tipo</TableHead>
-          <TableHead className="text-gray-300">Quantidade</TableHead>
-          <TableHead className="text-right text-gray-300">Média de Curtidas</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {filteredTypes.map(([type, count]) => (
-          <TableRow key={type}>
-            <TableCell className="font-medium">{type}</TableCell>
-            <TableCell>{count}</TableCell>
-            <TableCell className="text-right">
-              {Math.round(performanceByType[type]).toLocaleString()}
-            </TableCell>
+    <div className="w-full overflow-x-auto">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="text-gray-300">Tipo</TableHead>
+            <TableHead className="text-gray-300">Quantidade</TableHead>
+            <TableHead className="text-right text-gray-300">Média de Curtidas</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {filteredTypes.map(([type, count]) => (
+            <TableRow key={type}>
+              <TableCell className="font-medium">{type}</TableCell>
+              <TableCell>{count}</TableCell>
+              <TableCell className="text-right">
+                {Math.round(performanceByType[type]).toLocaleString()}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

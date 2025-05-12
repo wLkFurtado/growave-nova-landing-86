@@ -33,7 +33,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
   }
 
   return (
-    <div className="space-y-6 text-white overflow-visible min-h-full pb-28 sm:pb-0">
+    <div className="text-white min-h-screen">
       <ProfileHeader username={profileData.username} />
 
       <Tabs 

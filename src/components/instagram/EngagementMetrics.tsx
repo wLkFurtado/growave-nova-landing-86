@@ -1,6 +1,5 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import MetricsDisplay from "./metrics/MetricsDisplay";
 import ContentTypeAnalysis from "./metrics/ContentTypeAnalysis";
 
@@ -36,24 +35,22 @@ const EngagementMetrics = ({
         </CardDescription>
       </CardHeader>
       
-      <ScrollArea className={`${isMobile ? 'h-[50vh]' : 'h-[40vh]'} px-1`}>
-        <CardContent className="space-y-4 pb-16">
-          <MetricsDisplay
-            engagementPercentage={engagementPercentage}
-            engagementRate={engagementRate}
-            averageLikes={averageLikes}
-            averageComments={averageComments}
-            likesScore={likesScore}
-            commentsScore={commentsScore}
-          />
-          
-          <ContentTypeAnalysis
-            postsByType={postsByType}
-            performanceByType={performanceByType}
-            isMobile={isMobile}
-          />
-        </CardContent>
-      </ScrollArea>
+      <CardContent className="space-y-4 pb-6">
+        <MetricsDisplay
+          engagementPercentage={engagementPercentage}
+          engagementRate={engagementRate}
+          averageLikes={averageLikes}
+          averageComments={averageComments}
+          likesScore={likesScore}
+          commentsScore={commentsScore}
+        />
+        
+        <ContentTypeAnalysis
+          postsByType={postsByType}
+          performanceByType={performanceByType}
+          isMobile={isMobile}
+        />
+      </CardContent>
     </Card>
   );
 };

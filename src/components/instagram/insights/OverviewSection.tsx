@@ -42,16 +42,7 @@ const OverviewSection = ({ profileData, profileAnalysis, onReset, isMobile }: Ov
         isMobile={isMobile}
       />
       
-      {!isMobile && (
-        <ActionButton onReset={onReset} isMobile={isMobile} />
-      )}
-      
-      {isMobile && (
-        <>
-          <div className="h-32" /> {/* Espaço extra para garantir que o conteúdo não seja coberto pelo botão fixo */}
-          <ActionButton onReset={onReset} isMobile={isMobile} />
-        </>
-      )}
+      <ActionButton onReset={onReset} isMobile={isMobile} />
     </div>
   );
 };

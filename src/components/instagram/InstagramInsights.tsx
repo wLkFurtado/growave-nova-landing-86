@@ -32,14 +32,14 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
         <ProfileHeader username={profileData.username} />
         
         {isMobile ? (
-          <div className="relative w-full pb-4">
+          <ScrollArea className="max-h-[calc(100vh-100px)]">
             <OverviewSection 
               profileData={profileData}
               profileAnalysis={profileAnalysis}
               onReset={handleReset}
               isMobile={isMobile}
             />
-          </div>
+          </ScrollArea>
         ) : (
           <OverviewSection 
             profileData={profileData}

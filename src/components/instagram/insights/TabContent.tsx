@@ -13,7 +13,7 @@ const TabContent = ({ value, children, isMobile }: TabContentProps) => {
   return (
     <TabsContent value={value} className="space-y-6">
       {isMobile ? (
-        <div className="overflow-visible">
+        <div className="overflow-visible pb-20">
           {children}
         </div>
       ) : (

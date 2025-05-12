@@ -9,7 +9,7 @@ interface ActionButtonProps {
 const ActionButton = ({ onReset, isMobile }: ActionButtonProps) => {
   if (isMobile) {
     return (
-      <div className="mt-12 mb-16 p-4 bg-black/80 border border-white/10 rounded-lg z-10">
+      <div className="mt-12 mb-20 p-4 bg-black/80 border border-white/10 rounded-lg">
         <div className="w-full">
           <Button 
             onClick={onReset}

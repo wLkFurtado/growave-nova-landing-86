@@ -37,11 +37,7 @@ const ContentTypeAnalysis = ({
         />
       </div>
       
-      {/* Indicador de rolagem */}
-      <div className="text-center text-gray-400 text-sm pt-2">
-        <ChevronDown className="h-4 w-4 inline animate-bounce" />
-        <span className="ml-1">Role para ver mais</span>
-      </div>
+      {/* Remover indicador de rolagem */}
     </div>
   );
 };

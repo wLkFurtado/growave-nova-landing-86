@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Tabs } from "@/components/ui/tabs";
 import { calculateEngagementMetrics, getAccountTypeLabel, getImprovementAreas, getPracticalSuggestions, getProfileStrengths } from "./utils";
@@ -25,6 +26,10 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
   const profile = Array.isArray(data) ? data[0] : data; // Handle array or direct object
   
   useEffect(() => {
+    // Garantir rolagem suave em dispositivos móveis
+    document.body.style.overflow = 'auto';
+    document.documentElement.style.overflow = 'auto';
+    
     console.log('Profile data received in InstagramInsights:', profile);
     if (profile) {
       console.log('Profile image URL (profilePicUrl):', profile.profilePicUrl);
@@ -49,6 +54,12 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
           });
       }
     }
+    
+    // Cleanup
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
   }, [profile]);
 
   // Extract basic profile information
@@ -113,12 +124,15 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
     setActiveTab(value);
     if (isMobile) {
       // Scroll to top of tab content when switching tabs on mobile
-      window.scrollTo(0, 0);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     }
   };
 
   return (
-    <div className="space-y-6 text-white">
+    <div className="space-y-6 text-white overflow-visible">
       <ProfileHeader username={username} />
 
       <Tabs 

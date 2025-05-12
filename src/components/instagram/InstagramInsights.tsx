@@ -33,7 +33,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
   }
 
   return (
-    <div className="text-white min-h-screen">
+    <div className={`text-white ${isMobile ? 'min-h-[600px] max-w-[375px] mx-auto box-border' : 'min-h-screen'}`}>
       <ProfileHeader username={profileData.username} />
 
       <Tabs 

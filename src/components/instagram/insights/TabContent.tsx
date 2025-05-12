@@ -11,7 +11,10 @@ interface TabContentProps {
 const TabContent = ({ value, children, isMobile }: TabContentProps) => {
   return (
     <TabsContent value={value} className="space-y-6">
-      <div className={isMobile ? "pb-24" : "max-h-[calc(100vh-200px)] overflow-y-auto pr-2"}>
+      <div className={isMobile 
+        ? "w-full max-w-[375px] mx-auto overflow-y-auto box-border pb-28" 
+        : "max-h-[calc(100vh-200px)] overflow-y-auto pr-2"
+      }>
         {children}
       </div>
     </TabsContent>

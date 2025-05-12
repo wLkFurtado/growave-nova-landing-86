@@ -10,26 +10,29 @@ const ContentTypeChart = ({ contentTypeData, isMobile = false }: ContentTypeChar
   if (!contentTypeData.length) return null;
   
   // Altura dinâmica baseada no número de itens para mobile
-  const mobileHeight = Math.max(180, contentTypeData.length * 40);
+  const mobileHeight = Math.max(200, contentTypeData.length * 50);
   
   return (
-    <div className={`mt-4 ${isMobile ? `h-[${mobileHeight}px]` : 'h-64'}`}>
+    <div className={`mt-4 ${isMobile ? `h-[${mobileHeight}px]` : 'h-64'} px-2`}>
       <ResponsiveContainer width="100%" height="100%">
         <RechartsBarChart
           data={contentTypeData}
-          margin={{ top: 10, right: 10, left: 10, bottom: 20 }}
-          barSize={isMobile ? 20 : 40}
-          layout={isMobile && contentTypeData.length > 3 ? "vertical" : "horizontal"}
+          margin={{ top: 10, right: 5, left: 5, bottom: 20 }}
+          barSize={isMobile ? 15 : 40}
+          layout={isMobile ? "vertical" : "horizontal"}
         >
           <XAxis 
             dataKey="name" 
             stroke="#9CA3AF"
-            tick={{ fontSize: isMobile ? 12 : 14 }}
+            tick={{ fontSize: isMobile ? 10 : 14 }}
             interval={0}
+            angle={isMobile ? -45 : 0}
+            textAnchor={isMobile ? "end" : "middle"}
+            height={isMobile ? 50 : 30}
           />
           <YAxis 
             stroke="#9CA3AF"
-            tick={{ fontSize: isMobile ? 12 : 14 }}
+            tick={{ fontSize: isMobile ? 10 : 14 }}
           />
           <Tooltip 
             contentStyle={{ 

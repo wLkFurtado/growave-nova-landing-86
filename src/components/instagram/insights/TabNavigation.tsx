@@ -7,10 +7,10 @@ interface TabNavigationProps {
 
 const TabNavigation = ({ isMobile }: TabNavigationProps) => {
   return (
-    <TabsList className={`w-full grid grid-cols-3 mb-4 ${isMobile ? 'sticky top-0 z-20 bg-black/95 backdrop-blur-sm' : ''}`}>
-      <TabsTrigger value="overview">Resumo</TabsTrigger>
-      <TabsTrigger value="engagement">Engajamento</TabsTrigger>
-      <TabsTrigger value="recommendations">Recomendações</TabsTrigger>
+    <TabsList className={`w-full max-w-[375px] mx-auto grid grid-cols-3 mb-4 ${isMobile ? 'sticky top-0 z-20 bg-black/95 backdrop-blur-sm px-2 box-border' : ''}`}>
+      <TabsTrigger value="overview" className="text-xs sm:text-sm">Resumo</TabsTrigger>
+      <TabsTrigger value="engagement" className="text-xs sm:text-sm">Engajamento</TabsTrigger>
+      <TabsTrigger value="recommendations" className="text-xs sm:text-sm">Recomendações</TabsTrigger>
     </TabsList>
   );
 };

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
@@ -9,6 +10,7 @@ const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const isMobile = useIsMobile();
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -88,7 +90,7 @@ const HeroSection = () => {
               <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
                   <Button className="text-sm py-4 px-5 bg-growave-green text-black hover:bg-growave-green-light animate-pulse-soft">
-                    Agendar Diagnóstico Gratuito
+                    Liberar Minha Análise Estratégica
                     <ArrowRight className="ml-1 h-4 w-4" />
                   </Button>
                 </DialogTrigger>

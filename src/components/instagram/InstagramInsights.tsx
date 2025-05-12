@@ -1,11 +1,7 @@
 
-import { Tabs } from "@/components/ui/tabs";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useInstagramProfile } from "@/hooks/use-instagram-profile";
-import { useInstagramTabs } from "@/hooks/use-instagram-tabs";
 import ProfileHeader from "./insights/ProfileHeader";
-import TabNavigation from "./insights/TabNavigation";
-import TabContent from "./insights/TabContent";
 import OverviewSection from "./insights/OverviewSection";
 
 interface InstagramInsightsProps {
@@ -16,7 +12,6 @@ interface InstagramInsightsProps {
 const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
   const isMobile = useIsMobile();
   const { profileData, profileAnalysis, clearImages } = useInstagramProfile(data);
-  const { activeTab, handleTabChange } = useInstagramTabs(isMobile);
   
   // Handler for reset with cleanup
   const handleReset = () => {
@@ -31,26 +26,17 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
   }
 
   return (
-    <div className={`text-white ${isMobile ? 'min-h-[600px] max-w-[375px] mx-auto box-border' : 'min-h-screen'}`}>
+    <div className={`text-white flex flex-col items-center ${isMobile ? 'min-h-[600px] max-w-[375px] mx-auto box-border' : 'min-h-screen'}`}>
       <ProfileHeader username={profileData.username} />
-
-      <Tabs 
-        defaultValue="overview" 
-        className="w-full" 
-        value={activeTab}
-        onValueChange={handleTabChange}
-      >
-        <TabNavigation isMobile={isMobile} />
-        
-        <TabContent value="overview" isMobile={isMobile}>
-          <OverviewSection 
-            profileData={profileData}
-            profileAnalysis={profileAnalysis}
-            onReset={handleReset}
-            isMobile={isMobile}
-          />
-        </TabContent>
-      </Tabs>
+      
+      <div className="w-full flex justify-center items-center flex-grow py-4">
+        <OverviewSection 
+          profileData={profileData}
+          profileAnalysis={profileAnalysis}
+          onReset={handleReset}
+          isMobile={isMobile}
+        />
+      </div>
     </div>
   );
 };

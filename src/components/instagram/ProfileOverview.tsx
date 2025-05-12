@@ -1,6 +1,5 @@
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { useEffect } from "react";
 import ProfileHeader from "./profile/ProfileHeader";
 import ProfileStats from "./profile/ProfileStats";
@@ -41,8 +40,8 @@ const ProfileOverview = ({
   }, [profileImage]);
 
   return (
-    <Card className="bg-black/40 border-white/10 w-full max-w-[375px] mx-auto">
-      <CardHeader className="py-4 px-5">
+    <Card className={`bg-black/40 border-white/10 w-full mx-auto ${isMobile ? 'p-0' : 'max-w-[375px]'}`}>
+      <CardHeader className={isMobile ? "py-2 px-3" : "py-4 px-5"}>
         <ProfileHeader
           username={username}
           fullName={fullName}
@@ -51,45 +50,28 @@ const ProfileOverview = ({
         />
       </CardHeader>
       
-      {isMobile ? (
-        <ScrollArea className="h-[calc(100vh-260px)]">
-          <CardContent className="space-y-6 px-5 py-4">
-            <ProfileStats
-              followersCount={followersCount}
-              followsCount={followsCount}
-              postsCount={postsCount}
-            />
-            
-            <ProfileBiography biography={biography} />
-            
-            <ProfileSummary
-              followersCount={followersCount}
-              postsCount={postsCount}
-              accountType={accountType}
-              engagementRate={engagementRate}
-              averageLikes={averageLikes}
-            />
-          </CardContent>
-        </ScrollArea>
-      ) : (
-        <CardContent className="space-y-4 px-5 py-4">
-          <ProfileStats
-            followersCount={followersCount}
-            followsCount={followsCount}
-            postsCount={postsCount}
-          />
-          
-          <ProfileBiography biography={biography} />
-          
-          <ProfileSummary
-            followersCount={followersCount}
-            postsCount={postsCount}
-            accountType={accountType}
-            engagementRate={engagementRate}
-            averageLikes={averageLikes}
-          />
-        </CardContent>
-      )}
+      <CardContent className={isMobile ? "space-y-2 px-3 py-2" : "space-y-4 px-5 py-4"}>
+        <ProfileStats
+          followersCount={followersCount}
+          followsCount={followsCount}
+          postsCount={postsCount}
+          isMobile={isMobile}
+        />
+        
+        <ProfileBiography 
+          biography={biography} 
+          isMobile={isMobile}
+        />
+        
+        <ProfileSummary
+          followersCount={followersCount}
+          postsCount={postsCount}
+          accountType={accountType}
+          engagementRate={engagementRate}
+          averageLikes={averageLikes}
+          isMobile={isMobile}
+        />
+      </CardContent>
     </Card>
   );
 };

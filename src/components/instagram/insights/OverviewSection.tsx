@@ -27,7 +27,7 @@ const OverviewSection = ({ profileData, profileAnalysis, onReset, isMobile }: Ov
   } = profileAnalysis;
   
   return (
-    <>
+    <div className="flex flex-col items-center justify-center max-w-md mx-auto">
       <ProfileOverview
         username={username}
         fullName={fullName}
@@ -42,7 +42,7 @@ const OverviewSection = ({ profileData, profileAnalysis, onReset, isMobile }: Ov
         isMobile={isMobile}
       />
       <ActionButton onReset={onReset} isMobile={isMobile} />
-    </>
+    </div>
   );
 };
 

@@ -40,11 +40,9 @@ const ProfileOverview = ({
     console.log('Profile image URL in ProfileOverview:', profileImage);
   }, [profileImage]);
 
-  const ContentWrapper = isMobile ? ScrollArea : 'div';
-
   return (
     <Card className="bg-black/40 border-white/10 w-full max-w-[375px] mx-auto">
-      <CardHeader className="py-3 px-4">
+      <CardHeader className="py-4 px-5">
         <ProfileHeader
           username={username}
           fullName={fullName}
@@ -53,23 +51,45 @@ const ProfileOverview = ({
         />
       </CardHeader>
       
-      <CardContent className="space-y-4 px-4 py-3">
-        <ProfileStats
-          followersCount={followersCount}
-          followsCount={followsCount}
-          postsCount={postsCount}
-        />
-        
-        <ProfileBiography biography={biography} />
-        
-        <ProfileSummary
-          followersCount={followersCount}
-          postsCount={postsCount}
-          accountType={accountType}
-          engagementRate={engagementRate}
-          averageLikes={averageLikes}
-        />
-      </CardContent>
+      {isMobile ? (
+        <ScrollArea className="h-[calc(100vh-260px)]">
+          <CardContent className="space-y-6 px-5 py-4">
+            <ProfileStats
+              followersCount={followersCount}
+              followsCount={followsCount}
+              postsCount={postsCount}
+            />
+            
+            <ProfileBiography biography={biography} />
+            
+            <ProfileSummary
+              followersCount={followersCount}
+              postsCount={postsCount}
+              accountType={accountType}
+              engagementRate={engagementRate}
+              averageLikes={averageLikes}
+            />
+          </CardContent>
+        </ScrollArea>
+      ) : (
+        <CardContent className="space-y-4 px-5 py-4">
+          <ProfileStats
+            followersCount={followersCount}
+            followsCount={followsCount}
+            postsCount={postsCount}
+          />
+          
+          <ProfileBiography biography={biography} />
+          
+          <ProfileSummary
+            followersCount={followersCount}
+            postsCount={postsCount}
+            accountType={accountType}
+            engagementRate={engagementRate}
+            averageLikes={averageLikes}
+          />
+        </CardContent>
+      )}
     </Card>
   );
 };

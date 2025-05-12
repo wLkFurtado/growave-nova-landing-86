@@ -3,6 +3,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { useInstagramProfile } from "@/hooks/use-instagram-profile";
 import ProfileHeader from "./insights/ProfileHeader";
 import OverviewSection from "./insights/OverviewSection";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface InstagramInsightsProps {
   data: any;
@@ -30,12 +31,25 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
       <div className="w-full max-w-md mx-auto px-4 md:px-6 pb-20">
         <ProfileHeader username={profileData.username} />
         
-        <OverviewSection 
-          profileData={profileData}
-          profileAnalysis={profileAnalysis}
-          onReset={handleReset}
-          isMobile={isMobile}
-        />
+        {isMobile ? (
+          <div className="relative w-full">
+            <div className="pb-24">
+              <OverviewSection 
+                profileData={profileData}
+                profileAnalysis={profileAnalysis}
+                onReset={handleReset}
+                isMobile={isMobile}
+              />
+            </div>
+          </div>
+        ) : (
+          <OverviewSection 
+            profileData={profileData}
+            profileAnalysis={profileAnalysis}
+            onReset={handleReset}
+            isMobile={isMobile}
+          />
+        )}
       </div>
     </div>
   );

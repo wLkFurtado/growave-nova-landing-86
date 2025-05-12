@@ -15,10 +15,10 @@ const ProfileSummary = ({
   averageLikes,
 }: ProfileSummaryProps) => {
   return (
-    <div className="mt-4 mb-2">
-      <h4 className="text-sm font-medium mb-2">Resumo Geral do Perfil</h4>
-      <div className="bg-white/5 p-3 rounded-lg">
-        <ul className="list-disc list-inside text-sm space-y-2 text-gray-300">
+    <div className="mt-6 mb-4">
+      <h4 className="text-sm font-medium mb-3">Resumo Geral do Perfil</h4>
+      <div className="bg-white/5 p-4 rounded-lg">
+        <ul className="list-disc list-inside text-sm space-y-3 text-gray-300">
           <li>Conta com {followersCount.toLocaleString()} seguidores e {postsCount.toLocaleString()} publicações</li>
           <li>Tipo de conta: {accountType}</li>
           <li>Taxa de engajamento média: {engagementRate.toFixed(2)}%</li>

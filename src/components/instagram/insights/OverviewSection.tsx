@@ -41,7 +41,12 @@ const OverviewSection = ({ profileData, profileAnalysis, onReset, isMobile }: Ov
         averageLikes={average_likes}
         isMobile={isMobile}
       />
-      <ActionButton onReset={onReset} isMobile={isMobile} />
+      {!isMobile && (
+        <ActionButton onReset={onReset} isMobile={isMobile} />
+      )}
+      {isMobile && (
+        <div className="h-24" /> /* Placeholder for fixed button space */
+      )}
     </div>
   );
 };

@@ -26,10 +26,10 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
   }
 
   return (
-    <div className={`text-white flex flex-col items-center ${isMobile ? 'min-h-[600px] max-w-[375px] mx-auto box-border' : 'min-h-screen'}`}>
-      <ProfileHeader username={profileData.username} />
-      
-      <div className="w-full flex justify-center items-center flex-grow py-4">
+    <div className="text-white flex flex-col items-center justify-center w-full">
+      <div className="w-full max-w-md mx-auto flex flex-col items-center">
+        <ProfileHeader username={profileData.username} />
+        
         <OverviewSection 
           profileData={profileData}
           profileAnalysis={profileAnalysis}

@@ -1,13 +1,12 @@
-
 import { useState } from "react";
 
 export const useInstagramTabs = (isMobile: boolean) => {
-  const [activeTab, setActiveTab] = useState("overview");
+  const [activeTab] = useState("overview");
 
   // Handler for tab change to ensure scroll to top when switching tabs on mobile
   const handleTabChange = (value: string) => {
-    setActiveTab(value);
-    if (isMobile) {
+    // Keep this function for future tab additions if needed
+    if (isMobile && value === "overview") {
       // Scroll to top of tab content when switching tabs on mobile
       window.scrollTo({
         top: 0,

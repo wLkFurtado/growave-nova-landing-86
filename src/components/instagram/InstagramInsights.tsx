@@ -7,8 +7,6 @@ import ProfileHeader from "./insights/ProfileHeader";
 import TabNavigation from "./insights/TabNavigation";
 import TabContent from "./insights/TabContent";
 import OverviewSection from "./insights/OverviewSection";
-import EngagementSection from "./insights/EngagementSection";
-import RecommendationsSection from "./insights/RecommendationsSection";
 
 interface InstagramInsightsProps {
   data: any;
@@ -47,22 +45,6 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
         <TabContent value="overview" isMobile={isMobile}>
           <OverviewSection 
             profileData={profileData}
-            profileAnalysis={profileAnalysis}
-            onReset={handleReset}
-            isMobile={isMobile}
-          />
-        </TabContent>
-        
-        <TabContent value="engagement" isMobile={isMobile}>
-          <EngagementSection
-            profileAnalysis={profileAnalysis}
-            onReset={handleReset}
-            isMobile={isMobile}
-          />
-        </TabContent>
-        
-        <TabContent value="recommendations" isMobile={isMobile}>
-          <RecommendationsSection
             profileAnalysis={profileAnalysis}
             onReset={handleReset}
             isMobile={isMobile}

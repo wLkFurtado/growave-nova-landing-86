@@ -13,15 +13,15 @@ const TabContent = ({ value, children, isMobile }: TabContentProps) => {
   return (
     <TabsContent value={value} className="space-y-6">
       {isMobile ? (
-        <div className="overflow-visible pb-20">
+        // Removido height fixo e garantido overflow visível com padding adequado
+        <div className="overflow-visible pb-28">
           {children}
         </div>
       ) : (
-        <ScrollArea className="h-[calc(100vh-200px)]">
-          <div className="pb-6">
-            {children}
-          </div>
-        </ScrollArea>
+        // Implementação de desktop com altura máxima mais flexível
+        <div className="max-h-[calc(100vh-200px)] overflow-y-auto pr-2">
+          {children}
+        </div>
       )}
     </TabsContent>
   );

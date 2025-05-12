@@ -29,6 +29,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
     // Garantir rolagem suave em dispositivos móveis
     document.body.style.overflow = 'auto';
     document.documentElement.style.overflow = 'auto';
+    document.body.style.minHeight = '100%';
     
     console.log('Profile data received in InstagramInsights:', profile);
     if (profile) {
@@ -59,6 +60,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
     return () => {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
+      document.body.style.minHeight = '';
     };
   }, [profile]);
 
@@ -132,7 +134,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
   };
 
   return (
-    <div className="space-y-6 text-white overflow-visible">
+    <div className="space-y-6 text-white overflow-visible min-h-full pb-28 sm:pb-0">
       <ProfileHeader username={username} />
 
       <Tabs 

@@ -1,5 +1,4 @@
 
-import { ChevronDown } from "lucide-react";
 import ContentTypeTable from "./ContentTypeTable";
 import ContentTypeChart from "./ContentTypeChart";
 
@@ -36,8 +35,6 @@ const ContentTypeAnalysis = ({
           isMobile={isMobile} 
         />
       </div>
-      
-      {/* Remover indicador de rolagem */}
     </div>
   );
 };

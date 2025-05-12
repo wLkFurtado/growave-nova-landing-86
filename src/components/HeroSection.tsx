@@ -1,23 +1,19 @@
-
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import ContactForm from './ContactForm';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const isMobile = useIsMobile();
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
   }, []);
-
   return <div style={{
     height: isMobile ? '100vh' : 'calc(100vh - 80px)'
   }} className="relative flex items-center justify-center overflow-hidden my-[6px] py-0">
@@ -96,7 +92,7 @@ const HeroSection = () => {
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[500px] bg-growave-black border-growave-green/20 mx-auto w-[95%] max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
-                    <DialogTitle className="text-xl text-white text-center">Agende seu Diagnóstico Gratuito</DialogTitle>
+                    <DialogTitle className="text-xl text-white text-center"></DialogTitle>
                   </DialogHeader>
                   <div className="py-2">
                     <ContactForm onSuccess={() => setIsDialogOpen(false)} />
@@ -172,5 +168,4 @@ const HeroSection = () => {
       </div>
     </div>;
 };
-
 export default HeroSection;

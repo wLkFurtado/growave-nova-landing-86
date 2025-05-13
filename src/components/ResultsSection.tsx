@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react';
 import { Users, Calendar, TrendingUp, Target } from 'lucide-react';
 import { Card } from '@/components/ui/card';
@@ -48,9 +49,15 @@ const StatCard = ({
       </div>
       <h3 className="text-lg text-gray-200 font-medium mb-2">{title}</h3>
       <div className="mb-2 flex items-center">
-        <span className="text-3xl font-bold gradient-text">
-          {isVisible ? value : "0"}
-        </span>
+        {title === "Consultas Geradas" ? (
+          <span className="text-3xl font-bold">
+            <span className="text-growave-green">Diversas</span> consultas
+          </span>
+        ) : (
+          <span className="text-3xl font-bold gradient-text">
+            {isVisible ? value : "0"}
+          </span>
+        )}
       </div>
       <p className="text-gray-400 text-sm">{subtitle}</p>
     </div>;

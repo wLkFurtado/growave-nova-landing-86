@@ -86,12 +86,12 @@ const CTASection = () => {
                 <div className="absolute -bottom-4 -left-4 w-20 h-20 border-b-2 border-l-2 border-growave-green/30 rounded-bl-lg"></div>
                 
                 <CardContent className="p-6">
-                  <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                  <div className="flex flex-col items-center gap-6">
                     {/* Profile Image */}
-                    <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md border-2 border-growave-green/20 flex-shrink-0">
+                    <div className="w-52 h-52 rounded-xl overflow-hidden shadow-md border-2 border-growave-green/20 flex-shrink-0">
                       <AspectRatio ratio={1}>
                         <img 
-                          src="/lovable-uploads/1ba04e1c-594b-4528-b334-aac36e8c66fd.png" 
+                          src="/lovable-uploads/bb02065d-de0e-4395-9da2-e9848cc1e5db.png" 
                           alt="Wallker Furtado" 
                           className="object-cover w-full h-full"
                         />
@@ -99,7 +99,7 @@ const CTASection = () => {
                     </div>
                     
                     {/* Profile Info */}
-                    <div className="flex flex-col text-center md:text-left">
+                    <div className="flex flex-col text-center">
                       <h3 className="text-2xl font-bold gradient-text mb-1">Wallker Furtado</h3>
                       <p className="text-gray-300 mb-4">Especialista em Marketing e Automação para Clínicas</p>
                       

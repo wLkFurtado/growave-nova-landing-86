@@ -1,9 +1,15 @@
+
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '@/components/ui/dialog';
+import ContactForm from './ContactForm';
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -12,6 +18,7 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  
   return <header className="py-1 lg:py-2">
       <div className="container mx-auto px-1 sm:px-2 lg:px-4">
         <div className="flex items-center justify-between sm:px-2 lg:px-[30px] py-[15px] px-[36px] mx-[2px] my-">
@@ -33,9 +40,22 @@ const Header = () => {
             <a href="#testimonials" className="text-white hover:text-growave-green transition-colors">
               Depoimentos
             </a>
-            <Button className="glow-button bg-transparent border border-growave-green text-growave-green hover:border-growave-green">
-              Agendar Diagnóstico
-            </Button>
+            
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+              <DialogTrigger asChild>
+                <Button className="glow-button bg-transparent border border-growave-green text-growave-green hover:border-growave-green">
+                  Agendar Diagnóstico
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[500px] bg-growave-black border-growave-green/20">
+                <DialogHeader>
+                  <DialogHeader className="text-xl text-white text-center"></DialogHeader>
+                </DialogHeader>
+                <div className="py-2">
+                  <ContactForm onSuccess={() => setIsDialogOpen(false)} />
+                </div>
+              </DialogContent>
+            </Dialog>
           </nav>
 
           {/* Mobile Menu Trigger */}
@@ -61,9 +81,22 @@ const Header = () => {
               <a href="#testimonials" className="text-white hover:text-growave-green transition-colors" onClick={() => setMobileMenuOpen(false)}>
                 Depoimentos
               </a>
-              <Button className="glow-button bg-transparent border border-growave-green text-growave-green w-full hover:border-growave-green" onClick={() => setMobileMenuOpen(false)}>
-                Agendar Diagnóstico
-              </Button>
+              
+              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button className="glow-button bg-transparent border border-growave-green text-growave-green w-full hover:border-growave-green" onClick={() => setMobileMenuOpen(false)}>
+                    Agendar Diagnóstico
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[500px] bg-growave-black border-growave-green/20">
+                  <DialogHeader>
+                    <DialogHeader className="text-xl text-white text-center"></DialogHeader>
+                  </DialogHeader>
+                  <div className="py-2">
+                    <ContactForm onSuccess={() => setIsDialogOpen(false)} />
+                  </div>
+                </DialogContent>
+              </Dialog>
             </nav>
           </div>}
       </div>

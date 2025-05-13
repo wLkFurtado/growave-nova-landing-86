@@ -14,6 +14,8 @@ import FaturamentoMensalField from '../form/FaturamentoMensalField';
 import AgenciaAnteriorField from '../form/AgenciaAnteriorField';
 import ExpectativasField from '../form/ExpectativasField';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '@/components/ui/dialog';
+import ContactForm from '@/components/ContactForm';
 
 interface QuestionnaireFormProps {
   initialValues: FormValues;
@@ -24,6 +26,7 @@ interface QuestionnaireFormProps {
 const QuestionnaireForm = ({ initialValues, onComplete, onCancel }: QuestionnaireFormProps) => {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const isMobile = useIsMobile();
   const { toast } = useToast();
   const totalSteps = 5;
@@ -154,16 +157,28 @@ const QuestionnaireForm = ({ initialValues, onComplete, onCancel }: Questionnair
               {currentStep === 1 ? 'Voltar ao diagnóstico' : 'Voltar'}
             </Button>
             
-            <Button
-              type="button"
-              onClick={handleNext}
-              className="bg-growave-green text-black hover:bg-growave-green-light"
-              disabled={isSubmitting}
-            >
-              {currentStep === totalSteps ? 
-                (isSubmitting ? 'Enviando...' : 'Finalizar') : 
-                'Próximo'}
-            </Button>
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+              <DialogTrigger asChild>
+                <Button
+                  type="button"
+                  onClick={handleNext}
+                  className="bg-growave-green text-black hover:bg-growave-green-light"
+                  disabled={isSubmitting}
+                >
+                  {currentStep === totalSteps ? 
+                    (isSubmitting ? 'Enviando...' : 'Finalizar') : 
+                    'Próximo'}
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[500px] bg-growave-black border-growave-green/20">
+                <DialogHeader>
+                  <DialogHeader className="text-xl text-white text-center"></DialogHeader>
+                </DialogHeader>
+                <div className="py-2">
+                  <ContactForm onSuccess={() => setIsDialogOpen(false)} />
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </form>
       </Form>

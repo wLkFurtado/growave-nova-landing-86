@@ -24,8 +24,8 @@ const clientLogos = [
   },
   {
     id: 5,
-    name: 'GoGold',
-    logo: '/lovable-uploads/b96dc47d-7cfb-4e8b-aa45-6f7251bc08a8.png',
+    name: 'Odonto Corporate',
+    logo: '/lovable-uploads/71b1f69b-02ab-45cc-b50c-61a67ec59268.png',
   },
 ];
 

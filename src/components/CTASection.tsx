@@ -62,13 +62,13 @@ const CTASection = () => {
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                   >
-                    Agendar Diagnóstico Gratuito
+                    Diagnóstico Estratégico
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[500px] bg-growave-black border-growave-green/20">
                   <DialogHeader>
-                    <DialogTitle className="text-xl text-white text-center">Agende seu Diagnóstico Gratuito</DialogTitle>
+                    <DialogTitle className="text-xl text-white text-center">Diagnóstico Estratégico</DialogTitle>
                   </DialogHeader>
                   <div className="py-4">
                     <ContactForm onSuccess={() => setIsDialogOpen(false)} />

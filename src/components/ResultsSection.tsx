@@ -50,9 +50,10 @@ const StatCard = ({
       <h3 className="text-lg text-gray-200 font-medium mb-2">{title}</h3>
       <div className="mb-2 flex items-center">
         {title === "Consultas Geradas" ? (
-          <span className="text-3xl font-bold">
-            <span className="text-growave-green">Crescimento</span> no Volume de Consultas
-          </span>
+          <div className="text-3xl font-bold flex flex-col">
+            <span className="text-white">Crescimento no Volume de</span>
+            <span className="text-growave-green">Consultas</span>
+          </div>
         ) : (
           <span className="text-3xl font-bold gradient-text">
             {isVisible ? value : "0"}

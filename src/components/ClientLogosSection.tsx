@@ -24,18 +24,8 @@ const clientLogos = [
   },
   {
     id: 5,
-    name: 'Odonto Corporate',
-    logo: '/lovable-uploads/c2b306d0-aa0b-4e64-8282-b2ba432f0f88.png',
-  },
-  {
-    id: 6,
-    name: 'Espaço Estética',
-    logo: '/lovable-uploads/ff99a615-247a-4713-a7e6-a4030d13f455.png',
-  },
-  {
-    id: 7,
-    name: 'Blank Logo',
-    logo: '/lovable-uploads/45f96236-54ad-4720-9fee-228771a81ddf.png',
+    name: 'Clínica E',
+    logo: 'https://via.placeholder.com/150x80?text=Clínica+E',
   },
 ];
 
@@ -72,7 +62,7 @@ const ClientLogosSection = () => {
         <div ref={ref}>
           <h3 className="text-2xl font-bold text-center mb-10">Clínicas que Confiam na Growave</h3>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 items-center">
             {clientLogos.map((partner, index) => (
               <div 
                 key={partner.id} 

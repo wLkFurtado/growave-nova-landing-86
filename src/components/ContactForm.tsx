@@ -3,77 +3,16 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
 import InstagramInsights from './instagram/InstagramInsights';
 import { formSchema, FormValues } from '@/validators/contactFormSchema';
-import NameField from './form/NameField';
-import PhoneField from './form/PhoneField';
-import InstagramField from './form/InstagramField';
-import LoadingIndicator from './form/LoadingIndicator';
 import { fetchInstagramData } from '@/utils/instagramFetch';
-import FormStepIndicator from './form/FormStepIndicator';
+import { sendFormDataToWebhook } from '@/utils/formWebhook';
+import InitialForm from './form/InitialForm';
 
 interface ContactFormProps {
   onSuccess?: () => void;
 }
-
-// Updated function to send form data to the webhook with CORS handling
-const sendFormDataToWebhook = async (formData: FormValues) => {
-  try {
-    console.log('Sending data to webhook:', formData);
-    
-    // Prepare the payload
-    const payload = {
-      // Basic data
-      name: formData.name,
-      phone: formData.phone,
-      instagram: formData.instagram.replace('@', ''),
-      
-      // Questionnaire data
-      investimentoAds: formData.investimentoAds,
-      equipeFrontOffice: formData.equipeFrontOffice,
-      faturamentoMensal: formData.faturamentoMensal,
-      trabalhouComAgencia: formData.trabalhouComAgencia,
-      experienciaAnterior: formData.experienciaAnterior,
-      expectativasAgencia: formData.expectativasAgencia,
-      
-      // Metadata
-      dataSubmissao: new Date().toISOString(),
-      origem: window.location.href,
-    };
-    
-    // Using the new webhook URL
-    const webhookUrl = 'https://meueditor.growave.com.br/webhook-test/Formulario';
-    
-    const response = await fetch(webhookUrl, {
-      method: 'POST',
-      mode: 'cors', // Using cors mode
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
-    
-    console.log('Webhook response status:', response.status);
-    
-    // For no-cors mode, we won't get a valid response status, so we assume success
-    if (response.status === 0 || !response.ok) {
-      console.warn('Resposta do webhook não confirmada, mas o envio foi tentado');
-      return { success: true, message: 'Envio processado' };
-    }
-    
-    return await response.json().catch(() => {
-      // If response can't be parsed as JSON, still return success
-      return { success: true };
-    });
-  } catch (error) {
-    console.error('Erro detalhado ao enviar dados para webhook:', error);
-    // Don't throw the error, so the form submission still succeeds
-    return { success: false, error: error };
-  }
-};
 
 const ContactForm = ({ onSuccess }: ContactFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -190,31 +129,12 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={(e) => { e.preventDefault(); handleSubmitInitialForm(); }} className="space-y-4">
-        <FormStepIndicator currentStep={1} totalSteps={2} />
-        
-        <div className="text-sm text-gray-400 mb-4">
-          Insira seus dados para iniciar o diagnóstico gratuito:
-        </div>
-        
-        <NameField form={form} disabled={isSubmitting} />
-        <PhoneField form={form} disabled={isSubmitting} />
-        <InstagramField form={form} disabled={isSubmitting} />
-
-        <LoadingIndicator isLoading={isLoading} />
-
-        <div className="flex justify-center mt-6">
-          <Button
-            type="submit"
-            className="w-full bg-growave-green text-black hover:bg-growave-green-light"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Analisando..." : "Iniciar Diagnóstico"}
-          </Button>
-        </div>
-      </form>
-    </Form>
+    <InitialForm 
+      form={form}
+      isSubmitting={isSubmitting}
+      isLoading={isLoading}
+      onSubmit={handleSubmitInitialForm}
+    />
   );
 };
 

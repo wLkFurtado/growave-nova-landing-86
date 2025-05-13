@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import { Users, Calendar, TrendingUp, Target } from 'lucide-react';
 import { Card } from '@/components/ui/card';
@@ -127,7 +126,7 @@ const ResultsSection = () => {
             value="+" 
             subtitle="Crescimento expressivo em campanhas mensais para nossos parceiros" 
             delay={400}
-            highlightWord="Expressivos" 
+            highlightWord="Crescentes" 
           />
           <StatCard 
             icon={<Target className="w-6 h-6 text-growave-green" />} 

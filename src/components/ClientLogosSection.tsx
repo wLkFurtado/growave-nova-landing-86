@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 
 const clientLogos = [
@@ -10,7 +9,7 @@ const clientLogos = [
   {
     id: 2,
     name: 'Centro Médico B',
-    logo: 'https://via.placeholder.com/150x80?text=Centro+B',
+    logo: '/lovable-uploads/9e5d976b-1cc5-4f39-8719-e92140e46645.png',
   },
   {
     id: 3,

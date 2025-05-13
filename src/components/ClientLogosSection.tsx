@@ -15,7 +15,7 @@ const clientLogos = [
   {
     id: 3,
     name: 'Hospital C',
-    logo: 'https://via.placeholder.com/150x80?text=Hospital+C',
+    logo: '/lovable-uploads/208670bc-e59c-44c7-b760-f8b7763d131e.png',
   },
   {
     id: 4,

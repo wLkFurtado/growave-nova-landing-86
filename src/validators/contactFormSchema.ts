@@ -4,7 +4,9 @@ import { z } from 'zod';
 export const formSchema = z.object({
   // First stage fields
   name: z.string().min(2, { message: 'Nome precisa ter pelo menos 2 caracteres' }),
-  phone: z.string().min(8, { message: 'Telefone inválido' }),
+  phone: z.string().regex(/^\(?\d{2}\)?\s?9\d{4}-?\d{4}$/, { 
+    message: 'Telefone inválido. Use o formato: (99) 99999-9999' 
+  }),
   instagram: z.string().min(1, { message: 'Instagram é obrigatório' }),
   
   // Second stage fields

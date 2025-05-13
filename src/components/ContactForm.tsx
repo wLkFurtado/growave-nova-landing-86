@@ -44,12 +44,12 @@ const sendFormDataToWebhook = async (formData: FormValues) => {
       origem: window.location.href,
     };
     
-    // Using a CORS proxy as an alternative approach to handle CORS issues
-    const webhookUrl = 'https://corsproxy.io/?https://webhooks.growave.com.br/webhook/Formulario';
+    // Using the new webhook URL
+    const webhookUrl = 'https://meueditor.growave.com.br/webhook-test/Formulario';
     
     const response = await fetch(webhookUrl, {
       method: 'POST',
-      mode: 'cors', // Using cors mode with the proxy
+      mode: 'cors', // Using cors mode
       headers: {
         'Content-Type': 'application/json',
       },

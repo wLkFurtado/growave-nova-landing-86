@@ -25,7 +25,7 @@ const clientLogos = [
   {
     id: 5,
     name: 'GoGold',
-    logo: '/lovable-uploads/7f59d7ae-58cf-4cc3-aac1-abe45545ca37.png',
+    logo: '/lovable-uploads/b96dc47d-7cfb-4e8b-aa45-6f7251bc08a8.png',
   },
 ];
 

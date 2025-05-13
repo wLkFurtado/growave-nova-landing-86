@@ -52,7 +52,7 @@ const StatCard = ({
       return (
         <>
           <h3 className="text-lg text-gray-200 font-medium mb-1">{titleParts[0]}</h3>
-          <h3 className="text-lg gradient-text font-medium mb-2">{titleParts[1]}</h3>
+          <h3 className="text-lg text-growave-green font-medium mb-2">{titleParts[1]}</h3>
         </>
       );
     }

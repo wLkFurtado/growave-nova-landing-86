@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 
 const clientLogos = [
@@ -21,11 +20,6 @@ const clientLogos = [
     id: 4,
     name: 'Odonto Company',
     logo: '/lovable-uploads/220fb439-247b-4b25-9955-3bcdac953c0b.png',
-  },
-  {
-    id: 5,
-    name: 'Clínica E',
-    logo: '/lovable-uploads/228db237-b7aa-44a6-bf26-fc952f772c71.png',
   },
 ];
 

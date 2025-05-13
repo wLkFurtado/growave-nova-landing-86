@@ -79,7 +79,7 @@ const CTASection = () => {
               </Dialog>
             </div>
             
-            {/* Wallker Furtado Specialist Presentation - Enlarged photo */}
+            {/* Wallker Furtado Specialist Presentation - Professional Photo */}
             <div className="flex items-center justify-center">
               <Card className="w-full bg-black/60 backdrop-blur border border-growave-green/20 rounded-lg overflow-hidden shadow-lg relative hover:shadow-growave-green/20 hover:shadow-xl transition-all duration-300">
                 <div className="absolute -top-4 -right-4 w-20 h-20 border-t-2 border-r-2 border-growave-green/30 rounded-tr-lg"></div>
@@ -87,13 +87,13 @@ const CTASection = () => {
                 
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center gap-4">
-                    {/* Enlarged Profile Image */}
-                    <div className="w-64 h-64 rounded-xl overflow-hidden shadow-md border-2 border-growave-green/20 flex-shrink-0">
-                      <AspectRatio ratio={1}>
+                    {/* Professional Profile Image */}
+                    <div className="w-72 h-80 rounded-xl overflow-hidden shadow-xl border-2 border-growave-green/20 flex-shrink-0">
+                      <AspectRatio ratio={3/4}>
                         <img 
-                          src="/lovable-uploads/bb02065d-de0e-4395-9da2-e9848cc1e5db.png" 
+                          src="/lovable-uploads/db49d1ca-7aa8-4c8c-84e6-729076ddf9d1.png" 
                           alt="Wallker Furtado" 
-                          className="object-cover w-full h-full"
+                          className="object-contain w-full h-full"
                         />
                       </AspectRatio>
                     </div>
@@ -101,9 +101,9 @@ const CTASection = () => {
                     {/* Reduced Profile Info */}
                     <div className="flex flex-col text-center">
                       <h3 className="text-2xl font-bold gradient-text mb-1">Wallker Furtado</h3>
-                      <p className="text-gray-300 text-sm mb-3">Especialista em Marketing e Automação para Clínicas</p>
+                      <p className="text-gray-300 text-sm mb-2">Especialista em Marketing e Automação para Clínicas</p>
                       
-                      <ul className="space-y-2 mb-3 text-xs md:text-sm">
+                      <ul className="space-y-1 mb-2 text-xs md:text-sm">
                         <li className="flex items-start gap-2">
                           <span className="text-growave-green shrink-0">•</span>
                           <span>Há 4 anos ajudando clínicas e consultórios a crescerem de forma estratégica</span>

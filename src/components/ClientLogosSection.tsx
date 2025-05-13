@@ -10,7 +10,7 @@ const clientLogos = [
   {
     id: 2,
     name: 'Centro Médico B',
-    logo: '/lovable-uploads/91b5d30d-45ca-4fda-a9c7-99e332fa8ad0.png',
+    logo: '/lovable-uploads/fa365ea0-13ce-43e7-9a82-dfb89745255d.png',
   },
   {
     id: 3,

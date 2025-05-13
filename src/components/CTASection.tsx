@@ -91,7 +91,7 @@ const CTASection = () => {
                     <div className="w-72 h-80 rounded-xl overflow-hidden shadow-xl border-2 border-growave-green/20 flex-shrink-0">
                       <AspectRatio ratio={3/4}>
                         <img 
-                          src="/lovable-uploads/db49d1ca-7aa8-4c8c-84e6-729076ddf9d1.png" 
+                          src="/lovable-uploads/bb02065d-de0e-4395-9da2-e9848cc1e5db.png" 
                           alt="Wallker Furtado" 
                           className="object-contain w-full h-full"
                         />

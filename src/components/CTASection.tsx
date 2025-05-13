@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle, Briefcase, User } from 'lucide-react';
+import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import ContactForm from './ContactForm';
 import { Card, CardContent } from '@/components/ui/card';

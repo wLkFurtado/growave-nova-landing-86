@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 
 const clientLogos = [
@@ -10,7 +9,7 @@ const clientLogos = [
   {
     id: 2,
     name: 'Centro Médico B',
-    logo: 'https://via.placeholder.com/150x80?text=Centro+B',
+    logo: '/lovable-uploads/9e5d976b-1cc5-4f39-8719-e92140e46645.png',
   },
   {
     id: 3,
@@ -26,11 +25,6 @@ const clientLogos = [
     id: 5,
     name: 'Clínica E',
     logo: 'https://via.placeholder.com/150x80?text=Clínica+E',
-  },
-  {
-    id: 6,
-    name: 'Essência Clínica',
-    logo: '/lovable-uploads/b0797493-34e7-4dc7-aadf-ad23f886bde7.png',
   },
 ];
 
@@ -67,7 +61,7 @@ const ClientLogosSection = () => {
         <div ref={ref}>
           <h3 className="text-2xl font-bold text-center mb-10">Clínicas que Confiam na Growave</h3>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 items-center">
             {clientLogos.map((partner, index) => (
               <div 
                 key={partner.id} 

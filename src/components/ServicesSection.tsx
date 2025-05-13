@@ -1,13 +1,14 @@
 
 import { useState, useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
 import { Calendar, FileText, BarChart, Infinity } from 'lucide-react';
+
 type ServiceCardProps = {
   title: string;
   description: string;
   icon: React.ReactNode;
   delay: number;
 };
+
 const ServiceCard = ({
   title,
   description,
@@ -16,6 +17,7 @@ const ServiceCard = ({
 }: ServiceCardProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -26,15 +28,18 @@ const ServiceCard = ({
     }, {
       threshold: 0.1
     });
+    
     if (ref.current) {
       observer.observe(ref.current);
     }
+    
     return () => {
       if (ref.current) {
         observer.unobserve(ref.current);
       }
     };
   }, [delay]);
+  
   return <div ref={ref} className="flex flex-col bg-black/60 backdrop-blur border border-growave-green/10 rounded-lg p-6 transform transition-all duration-500 hover:border-growave-green/30 card-glow" style={{
     opacity: isVisible ? 1 : 0,
     transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
@@ -44,11 +49,9 @@ const ServiceCard = ({
       </div>
       <h3 className="text-xl font-bold mb-4 text-white">{title}</h3>
       <p className="text-gray-400 mb-6 flex-grow">{description}</p>
-      <Button variant="ghost" className="text-growave-green border border-growave-green/30 hover:bg-growave-green hover:text-black justify-start">
-        Saiba mais
-      </Button>
     </div>;
 };
+
 const ServicesSection = () => {
   return <section id="services" className="py-16 relative circuit-pattern">
       <div className="absolute inset-0 bg-black/70 pointer-events-none"></div>
@@ -72,4 +75,5 @@ const ServicesSection = () => {
       </div>
     </section>;
 };
+
 export default ServicesSection;

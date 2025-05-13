@@ -24,8 +24,8 @@ const clientLogos = [
   },
   {
     id: 5,
-    name: 'Clínica E',
-    logo: 'https://via.placeholder.com/150x80?text=Clínica+E',
+    name: 'GoGold',
+    logo: '/lovable-uploads/7f59d7ae-58cf-4cc3-aac1-abe45545ca37.png',
   },
 ];
 

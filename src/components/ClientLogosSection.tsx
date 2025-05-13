@@ -20,7 +20,7 @@ const clientLogos = [
   {
     id: 4,
     name: 'Consultório D',
-    logo: 'https://via.placeholder.com/150x80?text=Consultório+D',
+    logo: '/lovable-uploads/774e8d7e-b1d9-4896-8bbf-36a17182c60e.png',
   },
   {
     id: 5,

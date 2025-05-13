@@ -1,9 +1,11 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, Briefcase, User } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import ContactForm from './ContactForm';
+import { Card, CardContent } from '@/components/ui/card';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const benefits = [
   'Estratégias específicas para sua especialidade médica',
@@ -77,35 +79,52 @@ const CTASection = () => {
               </Dialog>
             </div>
             
+            {/* Wallker Furtado Specialist Presentation */}
             <div className="flex items-center justify-center">
-              <div className="relative w-full max-w-md">
-                {/* Form-like visual */}
-                <div className="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-6">
-                  <h3 className="text-xl font-bold mb-4 text-growave-green">Fale Conosco</h3>
-                  
-                  <div className="space-y-4">
-                    <div className="h-10 bg-white/10 rounded"></div>
-                    <div className="h-10 bg-white/10 rounded"></div>
-                    <div className="h-10 bg-white/10 rounded"></div>
-                    <div className="h-24 bg-white/10 rounded"></div>
-                    <Button 
-                      className="w-full bg-growave-green text-black hover:bg-growave-green-light"
-                      onMouseEnter={() => setIsHovered(true)}
-                      onMouseLeave={() => setIsHovered(false)}
-                    >
-                      Enviar
-                    </Button>
-                  </div>
-                  
-                  <div className="mt-4 text-sm text-center text-gray-400">
-                    Responderemos em até 24 horas úteis
-                  </div>
-                </div>
-                
-                {/* Decorative elements */}
+              <Card className="w-full bg-black/60 backdrop-blur border border-growave-green/20 rounded-lg overflow-hidden shadow-lg relative hover:shadow-growave-green/20 hover:shadow-xl transition-all duration-300">
                 <div className="absolute -top-4 -right-4 w-20 h-20 border-t-2 border-r-2 border-growave-green/30 rounded-tr-lg"></div>
                 <div className="absolute -bottom-4 -left-4 w-20 h-20 border-b-2 border-l-2 border-growave-green/30 rounded-bl-lg"></div>
-              </div>
+                
+                <CardContent className="p-6">
+                  <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                    {/* Profile Image */}
+                    <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md border-2 border-growave-green/20 flex-shrink-0">
+                      <AspectRatio ratio={1}>
+                        <img 
+                          src="/lovable-uploads/1ba04e1c-594b-4528-b334-aac36e8c66fd.png" 
+                          alt="Wallker Furtado" 
+                          className="object-cover w-full h-full"
+                        />
+                      </AspectRatio>
+                    </div>
+                    
+                    {/* Profile Info */}
+                    <div className="flex flex-col text-center md:text-left">
+                      <h3 className="text-2xl font-bold gradient-text mb-1">Wallker Furtado</h3>
+                      <p className="text-gray-300 mb-4">Especialista em Marketing e Automação para Clínicas</p>
+                      
+                      <ul className="space-y-3 mb-4 text-sm md:text-base">
+                        <li className="flex items-center gap-3">
+                          <span className="text-xl">💼</span>
+                          <span>Há 4 anos ajudando clínicas e consultórios a crescerem de forma estratégica</span>
+                        </li>
+                        <li className="flex items-center gap-3">
+                          <span className="text-xl">⚙️</span>
+                          <span>Com automações que aumentam os agendamentos e otimizam o atendimento</span>
+                        </li>
+                        <li className="flex items-center gap-3">
+                          <span className="text-xl">📲</span>
+                          <span>Campanhas focadas em atrair pacientes com previsibilidade e autoridade</span>
+                        </li>
+                      </ul>
+                      
+                      <div className="mt-2 border-l-4 border-growave-green pl-3 py-1 italic text-gray-300">
+                        "Meu objetivo é transformar sua clínica em uma máquina de agendamentos usando inteligência, posicionamento e automação"
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>

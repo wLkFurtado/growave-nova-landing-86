@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 
 const clientLogos = [
@@ -9,17 +10,22 @@ const clientLogos = [
   {
     id: 2,
     name: 'Centro Médico B',
-    logo: '/lovable-uploads/9e5d976b-1cc5-4f39-8719-e92140e46645.png',
+    logo: 'https://via.placeholder.com/150x80?text=Centro+B',
   },
   {
     id: 3,
     name: 'Hospital C',
-    logo: '/lovable-uploads/fae7aed3-ff5d-42c9-8f42-f75442fca531.png',
+    logo: 'https://via.placeholder.com/150x80?text=Hospital+C',
   },
   {
     id: 4,
-    name: 'Odonto Company',
-    logo: '/lovable-uploads/220fb439-247b-4b25-9955-3bcdac953c0b.png',
+    name: 'Consultório D',
+    logo: 'https://via.placeholder.com/150x80?text=Consultório+D',
+  },
+  {
+    id: 5,
+    name: 'Clínica E',
+    logo: 'https://via.placeholder.com/150x80?text=Clínica+E',
   },
 ];
 

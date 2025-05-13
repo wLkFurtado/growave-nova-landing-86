@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 
 const clientLogos = [
@@ -24,7 +25,7 @@ const clientLogos = [
   {
     id: 5,
     name: 'Clínica E',
-    logo: 'https://via.placeholder.com/150x80?text=Clínica+E',
+    logo: '/lovable-uploads/228db237-b7aa-44a6-bf26-fc952f772c71.png',
   },
 ];
 

@@ -72,11 +72,13 @@ const StatCard = ({
         {icon}
       </div>
       {renderTitle()}
-      <div className="mb-2 flex items-center">
-        <span className="text-3xl font-bold gradient-text">
-          {isVisible ? value : "0"}
-        </span>
-      </div>
+      {value && (
+        <div className="mb-2 flex items-center">
+          <span className="text-3xl font-bold gradient-text">
+            {isVisible ? value : "0"}
+          </span>
+        </div>
+      )}
       <p className="text-gray-400 text-sm">{subtitle}</p>
     </div>
   );
@@ -97,7 +99,7 @@ const ResultsSection = () => {
           <StatCard 
             icon={<Calendar className="w-6 h-6 text-growave-green" />} 
             title="Crescimento no Volume de|Consultas" 
-            value="5.000+" 
+            value="" 
             subtitle="Campanhas que impulsionam o volume de pacientes para clínicas em todo o Brasil" 
             delay={0} 
             highlightSecondLine={true}

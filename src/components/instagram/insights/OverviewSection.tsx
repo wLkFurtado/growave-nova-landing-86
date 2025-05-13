@@ -7,10 +7,17 @@ interface OverviewSectionProps {
   profileData: InstagramProfileData;
   profileAnalysis: ProfileAnalysis;
   onReset: () => void;
+  onStartQuestionnaire: () => void;
   isMobile: boolean;
 }
 
-const OverviewSection = ({ profileData, profileAnalysis, onReset, isMobile }: OverviewSectionProps) => {
+const OverviewSection = ({ 
+  profileData, 
+  profileAnalysis, 
+  onReset, 
+  onStartQuestionnaire,
+  isMobile 
+}: OverviewSectionProps) => {
   const {
     username,
     fullName,
@@ -42,7 +49,11 @@ const OverviewSection = ({ profileData, profileAnalysis, onReset, isMobile }: Ov
         isMobile={isMobile}
       />
       
-      <ActionButton onReset={onReset} isMobile={isMobile} />
+      <ActionButton 
+        onReset={onReset} 
+        isMobile={isMobile} 
+        onStartQuestionnaire={onStartQuestionnaire} 
+      />
     </div>
   );
 };

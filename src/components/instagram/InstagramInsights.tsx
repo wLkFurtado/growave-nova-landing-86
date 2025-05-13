@@ -1,17 +1,28 @@
 
+import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useInstagramProfile } from "@/hooks/use-instagram-profile";
 import ProfileHeader from "./insights/ProfileHeader";
 import OverviewSection from "./insights/OverviewSection";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import QuestionnaireForm from "../questionnaire/QuestionnaireForm";
+import { FormValues } from "@/validators/contactFormSchema";
 
 interface InstagramInsightsProps {
   data: any;
   onReset: () => void;
+  formValues: FormValues;
+  onSubmitQuestionnaire: (data: FormValues) => void;
 }
 
-const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
+const InstagramInsights = ({ 
+  data, 
+  onReset, 
+  formValues,
+  onSubmitQuestionnaire
+}: InstagramInsightsProps) => {
   const isMobile = useIsMobile();
+  const [showQuestionnaire, setShowQuestionnaire] = useState(false);
   const { profileData, profileAnalysis, clearImages } = useInstagramProfile(data);
   
   // Handler for reset with cleanup
@@ -22,8 +33,35 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
     onReset();
   };
 
+  // Handler to start questionnaire
+  const handleStartQuestionnaire = () => {
+    setShowQuestionnaire(true);
+    window.scrollTo(0, 0);
+  };
+
+  // Handler when questionnaire is completed
+  const handleQuestionnaireComplete = (updatedFormValues: FormValues) => {
+    onSubmitQuestionnaire(updatedFormValues);
+  };
+
+  // Handle going back from questionnaire to insights
+  const handleBackToInsights = () => {
+    setShowQuestionnaire(false);
+    window.scrollTo(0, 0);
+  };
+
   if (!profileData || !profileAnalysis) {
     return null;
+  }
+
+  if (showQuestionnaire) {
+    return (
+      <QuestionnaireForm 
+        initialValues={formValues} 
+        onComplete={handleQuestionnaireComplete}
+        onCancel={handleBackToInsights}
+      />
+    );
   }
 
   return (
@@ -37,6 +75,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
               profileData={profileData}
               profileAnalysis={profileAnalysis}
               onReset={handleReset}
+              onStartQuestionnaire={handleStartQuestionnaire}
               isMobile={isMobile}
             />
           </ScrollArea>
@@ -45,6 +84,7 @@ const InstagramInsights = ({ data, onReset }: InstagramInsightsProps) => {
             profileData={profileData}
             profileAnalysis={profileAnalysis}
             onReset={handleReset}
+            onStartQuestionnaire={handleStartQuestionnaire}
             isMobile={isMobile}
           />
         )}

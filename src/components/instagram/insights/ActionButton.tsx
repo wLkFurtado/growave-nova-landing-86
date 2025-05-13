@@ -4,15 +4,24 @@ import { Button } from "@/components/ui/button";
 interface ActionButtonProps {
   onReset: () => void;
   isMobile: boolean;
+  onStartQuestionnaire?: () => void;
 }
 
-const ActionButton = ({ onReset, isMobile }: ActionButtonProps) => {
+const ActionButton = ({ onReset, isMobile, onStartQuestionnaire }: ActionButtonProps) => {
+  const handleClick = () => {
+    if (onStartQuestionnaire) {
+      onStartQuestionnaire();
+    } else {
+      onReset();
+    }
+  };
+
   if (isMobile) {
     return (
       <div className="relative border-t border-white/10 p-2 mt-2 box-border">
         <div className="w-full max-w-[300px] mx-auto my-0">
           <Button 
-            onClick={onReset}
+            onClick={handleClick}
             className="w-full bg-growave-green text-black hover:bg-growave-green-light"
           >
             Próximo
@@ -28,7 +37,7 @@ const ActionButton = ({ onReset, isMobile }: ActionButtonProps) => {
   return (
     <div className="mt-8 mb-6 max-w-[300px] mx-auto">
       <Button 
-        onClick={onReset} 
+        onClick={handleClick} 
         className="w-full bg-growave-green text-black hover:bg-growave-green-light"
       >
         Próximo

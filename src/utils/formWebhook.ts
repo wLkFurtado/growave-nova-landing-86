@@ -26,8 +26,8 @@ export const sendFormDataToWebhook = async (formData: FormValues) => {
       origem: window.location.href,
     };
     
-    // Using the new webhook URL
-    const webhookUrl = 'https://meueditor.growave.com.br/webhook-test/Formulario';
+    // Using the production webhook URL
+    const webhookUrl = 'https://webhooks.growave.com.br/webhook/Formulario';
     
     const response = await fetch(webhookUrl, {
       method: 'POST',

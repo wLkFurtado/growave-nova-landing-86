@@ -10,7 +10,7 @@ const clientLogos = [
   {
     id: 2,
     name: 'Centro Médico B',
-    logo: 'https://via.placeholder.com/150x80?text=Centro+B',
+    logo: '/lovable-uploads/855a8fc4-6d1e-416f-a0c7-5ea6c9fda4d0.png',
   },
   {
     id: 3,

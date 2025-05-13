@@ -51,7 +51,7 @@ const StatCard = ({
       <div className="mb-2 flex items-center">
         {title === "Consultas Geradas" ? (
           <span className="text-3xl font-bold">
-            <span className="text-growave-green">Diversas</span> consultas
+            <span className="text-growave-green">Crescimento</span> no Volume de Consultas
           </span>
         ) : (
           <span className="text-3xl font-bold gradient-text">

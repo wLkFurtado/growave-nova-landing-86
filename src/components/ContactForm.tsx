@@ -19,6 +19,45 @@ interface ContactFormProps {
   onSuccess?: () => void;
 }
 
+// New function to send form data to the webhook
+const sendFormDataToWebhook = async (formData: FormValues) => {
+  try {
+    const response = await fetch('https://webhooks.growave.com.br/webhook/Formulario', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        // Basic data
+        name: formData.name,
+        phone: formData.phone,
+        instagram: formData.instagram.replace('@', ''),
+        
+        // Questionnaire data
+        investimentoAds: formData.investimentoAds,
+        equipeFrontOffice: formData.equipeFrontOffice,
+        faturamentoMensal: formData.faturamentoMensal,
+        trabalhouComAgencia: formData.trabalhouComAgencia,
+        experienciaAnterior: formData.experienciaAnterior,
+        expectativasAgencia: formData.expectativasAgencia,
+        
+        // Metadata
+        dataSubmissao: new Date().toISOString(),
+        origem: window.location.href,
+      }),
+    });
+    
+    if (!response.ok) {
+      throw new Error('Falha ao enviar dados para o webhook');
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error('Erro ao enviar dados para webhook:', error);
+    throw error;
+  }
+};
+
 const ContactForm = ({ onSuccess }: ContactFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [instagramData, setInstagramData] = useState<any>(null);
@@ -86,13 +125,20 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
     setIsSubmitting(true);
     try {
       console.log('Questionário finalizado, dados completos:', updatedFormValues);
-      // Aqui você pode enviar os dados atualizados para a API
-      // Para este exemplo, apenas resetamos o formulário como se concluído
+      
+      // Send data to the webhook
+      await sendFormDataToWebhook(updatedFormValues);
+      
+      // Continue with normal flow
       resetForm();
       toast({
         title: "Diagnóstico finalizado!",
         description: "Entraremos em contato em breve.",
       });
+      
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error) {
       console.error("Erro ao finalizar diagnóstico:", error);
       toast({

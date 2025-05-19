@@ -13,7 +13,7 @@ import { loginAdmin } from '@/utils/adminAuth';
 
 // Login form schema
 const loginSchema = z.object({
-  username: z.string().min(1, { message: 'Nome de usuário é obrigatório' }),
+  username: z.string().email({ message: 'E-mail inválido' }).min(1, { message: 'E-mail é obrigatório' }),
   password: z.string().min(1, { message: 'Senha é obrigatória' }),
 });
 
@@ -37,11 +37,11 @@ const LoginForm = () => {
     },
   });
   
-  const onSubmit = (data: LoginFormValues) => {
+  const onSubmit = async (data: LoginFormValues) => {
     setIsLoading(true);
     
     try {
-      const success = loginAdmin(data.username, data.password);
+      const success = await loginAdmin(data.username, data.password);
       
       if (success) {
         toast({
@@ -77,11 +77,12 @@ const LoginForm = () => {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white">Usuário</FormLabel>
+                <FormLabel className="text-white">E-mail</FormLabel>
                 <FormControl>
                   <Input 
-                    placeholder="Digite seu nome de usuário" 
+                    placeholder="Digite seu e-mail" 
                     className="bg-white/10 border-white/20 text-white"
+                    type="email"
                     {...field} 
                   />
                 </FormControl>

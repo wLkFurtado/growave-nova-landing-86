@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -11,21 +10,37 @@ import {
   TableCell 
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { ContactEntry } from '@/utils/contactsStorage';
+import { 
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger
+} from '@/components/ui/tooltip';
+
+interface ContactEntry {
+  id: string;
+  name: string;
+  instagram: string;
+  phone: string;
+  data_submissao: string;
+  lead_status?: string;
+  lead_score?: number;
+  [key: string]: any;
+}
 
 interface ContactsTableProps {
   contacts: ContactEntry[];
   onViewDetails: (contactId: string) => void;
+  isLoading?: boolean;
 }
 
-const ContactsTable = ({ contacts, onViewDetails }: ContactsTableProps) => {
+const ContactsTable = ({ contacts, onViewDetails, isLoading = false }: ContactsTableProps) => {
   const [searchTerm, setSearchTerm] = useState('');
   
   // Filter contacts based on search term
   const filteredContacts = contacts.filter(contact => 
-    contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    contact.instagram.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    contact.phone.includes(searchTerm)
+    contact.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    contact.instagram?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    contact.phone?.includes(searchTerm)
   );
   
   // Format date for display
@@ -42,6 +57,29 @@ const ContactsTable = ({ contacts, onViewDetails }: ContactsTableProps) => {
     } catch (error) {
       return 'Data inválida';
     }
+  };
+  
+  // Get lead status badge color
+  const getLeadStatusColor = (status?: string): string => {
+    switch (status) {
+      case 'quente':
+        return 'bg-red-500/20 text-red-400';
+      case 'morno':
+        return 'bg-yellow-500/20 text-yellow-400';
+      case 'frio':
+        return 'bg-blue-500/20 text-blue-400';
+      default:
+        return 'bg-gray-500/20 text-gray-400';
+    }
+  };
+  
+  // Get lead score class based on score
+  const getLeadScoreClass = (score?: number): string => {
+    if (!score && score !== 0) return 'bg-gray-500/20 text-gray-400';
+    
+    if (score >= 50) return 'bg-red-500/20 text-red-400';
+    if (score >= 30) return 'bg-yellow-500/20 text-yellow-400';
+    return 'bg-blue-500/20 text-blue-400';
   };
   
   return (
@@ -63,18 +101,39 @@ const ContactsTable = ({ contacts, onViewDetails }: ContactsTableProps) => {
               <TableHead className="text-white">Nome</TableHead>
               <TableHead className="text-white">Instagram</TableHead>
               <TableHead className="text-white">Telefone</TableHead>
+              <TableHead className="text-white">Classificação</TableHead>
               <TableHead className="text-white">Data</TableHead>
               <TableHead className="text-white w-[100px]">Ações</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredContacts.length > 0 ? (
+            {isLoading ? (
+              <TableRow>
+                <TableCell colSpan={6} className="text-center py-8">
+                  <div className="flex justify-center">
+                    <div className="animate-spin rounded-full h-6 w-6 border-2 border-growave-green"></div>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ) : filteredContacts.length > 0 ? (
               filteredContacts.map((contact) => (
                 <TableRow key={contact.id} className="border-white/10">
                   <TableCell className="text-white">{contact.name}</TableCell>
                   <TableCell className="text-white">{contact.instagram}</TableCell>
                   <TableCell className="text-white">{contact.phone}</TableCell>
-                  <TableCell className="text-white">{formatDate(contact.dataSubmissao)}</TableCell>
+                  <TableCell>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span className={`inline-flex items-center px-2 py-1 rounded text-xs ${getLeadScoreClass(contact.lead_score)}`}>
+                          {contact.lead_score || 0} pts
+                        </span>
+                      </TooltipTrigger>
+                      <TooltipContent side="top">
+                        <p>Pontuação calculada com base nos dados do formulário</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TableCell>
+                  <TableCell className="text-white">{formatDate(contact.data_submissao)}</TableCell>
                   <TableCell>
                     <Button
                       variant="ghost"
@@ -88,7 +147,7 @@ const ContactsTable = ({ contacts, onViewDetails }: ContactsTableProps) => {
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={5} className="text-center text-white/60 py-8">
+                <TableCell colSpan={6} className="text-center text-white/60 py-8">
                   {searchTerm ? 'Nenhum contato encontrado' : 'Nenhum contato registrado'}
                 </TableCell>
               </TableRow>

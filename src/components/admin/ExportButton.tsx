@@ -1,10 +1,9 @@
 
 import { Button } from '@/components/ui/button';
 import { downloadContactsCSV } from '@/utils/exportUtils';
-import { ContactEntry } from '@/utils/contactsStorage';
 
 interface ExportButtonProps {
-  contacts: ContactEntry[];
+  contacts: any[];
 }
 
 const ExportButton = ({ contacts }: ExportButtonProps) => {

@@ -2,13 +2,28 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { logoutAdmin } from '@/utils/adminAuth';
+import { useToast } from '@/hooks/use-toast';
 
 const AdminHeader = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   
-  const handleLogout = () => {
-    logoutAdmin();
-    navigate('/admin/login');
+  const handleLogout = async () => {
+    try {
+      await logoutAdmin();
+      toast({
+        title: 'Logout bem-sucedido',
+        description: 'Você foi desconectado com sucesso.',
+      });
+      navigate('/admin/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+      toast({
+        title: 'Erro ao fazer logout',
+        description: 'Ocorreu um erro ao desconectar. Tente novamente.',
+        variant: 'destructive',
+      });
+    }
   };
   
   return (

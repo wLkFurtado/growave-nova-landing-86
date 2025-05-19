@@ -1,14 +1,15 @@
 
 import { FormValues } from '@/validators/contactFormSchema';
-import { saveContact } from './contactsStorage';
+import { saveContactToSupabase } from '@/services/supabaseService';
 
 // Function to send form data to the webhook with CORS handling
 export const sendFormDataToWebhook = async (formData: FormValues) => {
   try {
     console.log('Sending data to webhook:', formData);
     
-    // Save the form data locally for the admin panel
-    saveContact(formData);
+    // Save the form data to Supabase for the admin panel
+    const saveResult = await saveContactToSupabase(formData);
+    console.log('Supabase save result:', saveResult);
     
     // Prepare the payload
     const payload = {

@@ -1,10 +1,8 @@
 
-import { ContactEntry } from './contactsStorage';
-
 /**
  * Convert contacts array to CSV format
  */
-export const contactsToCSV = (contacts: ContactEntry[]): string => {
+export const contactsToCSV = (contacts: any[]): string => {
   // Define CSV headers
   const headers = [
     'ID',
@@ -18,7 +16,8 @@ export const contactsToCSV = (contacts: ContactEntry[]): string => {
     'Experiência Anterior',
     'Expectativas',
     'Data de Submissão',
-    'Origem'
+    'Origem',
+    'Pontuação do Lead'
   ];
   
   // Map investmentAds values to readable labels
@@ -62,20 +61,21 @@ export const contactsToCSV = (contacts: ContactEntry[]): string => {
     contact.name,
     contact.phone,
     contact.instagram,
-    mapInvestimentoAds(contact.investimentoAds),
-    mapEquipeFrontOffice(contact.equipeFrontOffice),
-    mapFaturamentoMensal(contact.faturamentoMensal),
-    contact.trabalhouComAgencia ? 'Sim' : 'Não',
-    contact.experienciaAnterior,
-    contact.expectativasAgencia,
-    new Date(contact.dataSubmissao).toLocaleString('pt-BR'),
-    contact.origem
+    mapInvestimentoAds(contact.investimento_ads),
+    mapEquipeFrontOffice(contact.equipe_front_office),
+    mapFaturamentoMensal(contact.faturamento_mensal),
+    contact.trabalhou_com_agencia ? 'Sim' : 'Não',
+    contact.experiencia_anterior,
+    contact.expectativas_agencia,
+    new Date(contact.data_submissao).toLocaleString('pt-BR'),
+    contact.origem,
+    contact.lead_score
   ]);
   
   // Combine headers and rows
   const csvContent = [
     headers.join(','),
-    ...rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+    ...rows.map(row => row.map(cell => `"${String(cell || '').replace(/"/g, '""')}"`).join(','))
   ].join('\n');
   
   return csvContent;
@@ -84,7 +84,7 @@ export const contactsToCSV = (contacts: ContactEntry[]): string => {
 /**
  * Download CSV file with contacts data
  */
-export const downloadContactsCSV = (contacts: ContactEntry[]): void => {
+export const downloadContactsCSV = (contacts: any[]): void => {
   const csv = contactsToCSV(contacts);
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const url = URL.createObjectURL(blob);

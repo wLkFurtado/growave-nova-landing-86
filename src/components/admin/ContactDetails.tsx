@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -8,6 +9,9 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { ContactEntry } from '@/utils/contactsStorage';
+import InteractionsHistory from './InteractionsHistory';
+import NewInteractionForm from './NewInteractionForm';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface ContactDetailsProps {
   contact: ContactEntry | null;
@@ -16,6 +20,9 @@ interface ContactDetailsProps {
 }
 
 const ContactDetails = ({ contact, isOpen, onClose }: ContactDetailsProps) => {
+  const [isNewInteractionOpen, setIsNewInteractionOpen] = useState(false);
+  const [interactionsKey, setInteractionsKey] = useState(0);
+
   if (!contact) {
     return null;
   }
@@ -36,7 +43,7 @@ const ContactDetails = ({ contact, isOpen, onClose }: ContactDetailsProps) => {
     }
   };
   
-  // Map investmentAds values to readable labels
+  // Map investimentoAds values to readable labels
   const getInvestimentoAdsLabel = (value: string): string => {
     const mapping: Record<string, string> = {
       nao_invisto: 'Não invisto',
@@ -70,87 +77,126 @@ const ContactDetails = ({ contact, isOpen, onClose }: ContactDetailsProps) => {
     };
     return mapping[value] || value;
   };
+  
+  const handleAddInteraction = () => {
+    setIsNewInteractionOpen(true);
+  };
+  
+  const handleInteractionSuccess = () => {
+    // Force refresh of interactions by changing the key
+    setInteractionsKey(prev => prev + 1);
+  };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-growave-black border-growave-green/20 text-white max-w-xl overflow-y-auto max-h-[80vh]">
-        <DialogHeader>
-          <DialogTitle className="text-xl">Detalhes do Contato</DialogTitle>
-        </DialogHeader>
-        
-        <div className="py-4 space-y-6">
-          <div className="space-y-4">
-            <h3 className="text-lg font-medium text-growave-green">Informações de Contato</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <p className="text-white/60 mb-1 text-sm">Nome</p>
-                <p>{contact.name}</p>
-              </div>
-              <div>
-                <p className="text-white/60 mb-1 text-sm">Telefone</p>
-                <p>{contact.phone}</p>
-              </div>
-              <div>
-                <p className="text-white/60 mb-1 text-sm">Instagram</p>
-                <p>{contact.instagram}</p>
-              </div>
-              <div>
-                <p className="text-white/60 mb-1 text-sm">Data de Submissão</p>
-                <p>{formatDate(contact.dataSubmissao)}</p>
-              </div>
-            </div>
+    <>
+      <Dialog open={isOpen} onOpenChange={onClose}>
+        <DialogContent className="bg-growave-black border-growave-green/20 text-white max-w-xl overflow-y-auto max-h-[80vh]">
+          <DialogHeader>
+            <DialogTitle className="text-xl">Detalhes do Contato</DialogTitle>
+          </DialogHeader>
+          
+          <div className="py-4">
+            <Tabs defaultValue="details" className="w-full">
+              <TabsList className="bg-white/10 text-white w-full">
+                <TabsTrigger value="details" className="data-[state=active]:bg-growave-green data-[state=active]:text-black">
+                  Informações
+                </TabsTrigger>
+                <TabsTrigger value="interactions" className="data-[state=active]:bg-growave-green data-[state=active]:text-black">
+                  Interações
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="details" className="space-y-6 mt-4">
+                <div className="space-y-4">
+                  <h3 className="text-lg font-medium text-growave-green">Informações de Contato</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-white/60 mb-1 text-sm">Nome</p>
+                      <p>{contact.name}</p>
+                    </div>
+                    <div>
+                      <p className="text-white/60 mb-1 text-sm">Telefone</p>
+                      <p>{contact.phone}</p>
+                    </div>
+                    <div>
+                      <p className="text-white/60 mb-1 text-sm">Instagram</p>
+                      <p>{contact.instagram}</p>
+                    </div>
+                    <div>
+                      <p className="text-white/60 mb-1 text-sm">Data de Submissão</p>
+                      <p>{formatDate(contact.dataSubmissao)}</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <h3 className="text-lg font-medium text-growave-green">Questionário</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-white/60 mb-1 text-sm">Investimento em Ads</p>
+                      <p>{getInvestimentoAdsLabel(contact.investimentoAds)}</p>
+                    </div>
+                    <div>
+                      <p className="text-white/60 mb-1 text-sm">Equipe Front Office</p>
+                      <p>{getEquipeFrontOfficeLabel(contact.equipeFrontOffice)}</p>
+                    </div>
+                    <div>
+                      <p className="text-white/60 mb-1 text-sm">Faturamento Mensal</p>
+                      <p>{getFaturamentoMensalLabel(contact.faturamentoMensal)}</p>
+                    </div>
+                    <div>
+                      <p className="text-white/60 mb-1 text-sm">Trabalhou com Agência?</p>
+                      <p>{contact.trabalhouComAgencia ? 'Sim' : 'Não'}</p>
+                    </div>
+                  </div>
+                  
+                  {contact.trabalhouComAgencia && (
+                    <div>
+                      <p className="text-white/60 mb-1 text-sm">Experiência Anterior</p>
+                      <p>{contact.experienciaAnterior || 'Não informado'}</p>
+                    </div>
+                  )}
+                  
+                  <div>
+                    <p className="text-white/60 mb-1 text-sm">Expectativas</p>
+                    <p>{contact.expectativasAgencia}</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <h3 className="text-lg font-medium text-growave-green">Metadados</h3>
+                  <div>
+                    <p className="text-white/60 mb-1 text-sm">Origem</p>
+                    <p className="break-all">{contact.origem}</p>
+                  </div>
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="interactions" className="mt-4">
+                <InteractionsHistory 
+                  key={interactionsKey}
+                  contactId={contact.id} 
+                  onAddInteraction={handleAddInteraction} 
+                />
+              </TabsContent>
+            </Tabs>
           </div>
           
-          <div className="space-y-4">
-            <h3 className="text-lg font-medium text-growave-green">Questionário</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <p className="text-white/60 mb-1 text-sm">Investimento em Ads</p>
-                <p>{getInvestimentoAdsLabel(contact.investimentoAds)}</p>
-              </div>
-              <div>
-                <p className="text-white/60 mb-1 text-sm">Equipe Front Office</p>
-                <p>{getEquipeFrontOfficeLabel(contact.equipeFrontOffice)}</p>
-              </div>
-              <div>
-                <p className="text-white/60 mb-1 text-sm">Faturamento Mensal</p>
-                <p>{getFaturamentoMensalLabel(contact.faturamentoMensal)}</p>
-              </div>
-              <div>
-                <p className="text-white/60 mb-1 text-sm">Trabalhou com Agência?</p>
-                <p>{contact.trabalhouComAgencia ? 'Sim' : 'Não'}</p>
-              </div>
-            </div>
-            
-            {contact.trabalhouComAgencia && (
-              <div>
-                <p className="text-white/60 mb-1 text-sm">Experiência Anterior</p>
-                <p>{contact.experienciaAnterior || 'Não informado'}</p>
-              </div>
-            )}
-            
-            <div>
-              <p className="text-white/60 mb-1 text-sm">Expectativas</p>
-              <p>{contact.expectativasAgencia}</p>
-            </div>
-          </div>
-          
-          <div className="space-y-4">
-            <h3 className="text-lg font-medium text-growave-green">Metadados</h3>
-            <div>
-              <p className="text-white/60 mb-1 text-sm">Origem</p>
-              <p className="break-all">{contact.origem}</p>
-            </div>
-          </div>
-        </div>
-        
-        <DialogClose asChild>
-          <Button className="bg-growave-green text-black hover:bg-growave-green-light">
-            Fechar
-          </Button>
-        </DialogClose>
-      </DialogContent>
-    </Dialog>
+          <DialogClose asChild>
+            <Button className="bg-growave-green text-black hover:bg-growave-green-light">
+              Fechar
+            </Button>
+          </DialogClose>
+        </DialogContent>
+      </Dialog>
+      
+      <NewInteractionForm
+        isOpen={isNewInteractionOpen}
+        onClose={() => setIsNewInteractionOpen(false)}
+        contactId={contact.id}
+        onSuccess={handleInteractionSuccess}
+      />
+    </>
   );
 };
 

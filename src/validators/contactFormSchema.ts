@@ -22,16 +22,18 @@ export const formSchema = z.object({
   trabalhouComAgencia: z.boolean({
     required_error: 'Por favor, selecione uma opção'
   }),
-  experienciaAnterior: z.string().refine(
-    (value, context) => {
-      // Only required if trabalhouComAgencia is true
-      const data = context.path?.[0] ? (context.path[0] as any)?.data : undefined;
-      return !data?.trabalhouComAgencia || value.length > 0;
-    },
-    {
-      message: 'Por favor, compartilhe sua experiência anterior'
+  experienciaAnterior: z.string().superRefine((value, ctx) => {
+    // Get parent data to check if trabalhouComAgencia is true
+    const parentData = ctx.path?.[0] ? (ctx.path[0] as any)?.data : undefined;
+    
+    // Only required if trabalhouComAgencia is true
+    if (parentData?.trabalhouComAgencia && value.length === 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Por favor, compartilhe sua experiência anterior'
+      });
     }
-  ),
+  }),
   expectativasAgencia: z.string().min(1, { message: 'Por favor, compartilhe suas expectativas' }),
 });
 

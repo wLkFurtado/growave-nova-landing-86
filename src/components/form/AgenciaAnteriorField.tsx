@@ -28,7 +28,10 @@ const AgenciaAnteriorField = ({ form, disabled }: AgenciaAnteriorFieldProps) => 
         name="trabalhouComAgencia"
         render={({ field }) => (
           <FormItem className="space-y-2">
-            <FormLabel className="text-white">Você já trabalhou com alguma agência ou gestor de tráfego?</FormLabel>
+            <FormLabel className="text-white">
+              Você já trabalhou com alguma agência ou gestor de tráfego?
+              <span className="text-red-500 ml-1">*</span>
+            </FormLabel>
             <FormControl>
               <RadioGroup
                 className="flex flex-col space-y-1"
@@ -66,7 +69,10 @@ const AgenciaAnteriorField = ({ form, disabled }: AgenciaAnteriorFieldProps) => 
           name="experienciaAnterior"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white">Como foi sua experiência com a agência ou gestor anterior?</FormLabel>
+              <FormLabel className="text-white">
+                Como foi sua experiência com a agência ou gestor anterior?
+                <span className="text-red-500 ml-1">*</span>
+              </FormLabel>
               <FormControl>
                 <Textarea 
                   placeholder="Pode me contar o que deu certo ou o que te frustrou?"

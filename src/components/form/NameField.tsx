@@ -17,7 +17,10 @@ const NameField = ({ form, disabled }: NameFieldProps) => {
       name="name"
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="text-white">Nome</FormLabel>
+          <FormLabel className="text-white">
+            Nome
+            <span className="text-red-500 ml-1">*</span>
+          </FormLabel>
           <FormControl>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">

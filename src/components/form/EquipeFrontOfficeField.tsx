@@ -17,7 +17,10 @@ const EquipeFrontOfficeField = ({ form, disabled }: EquipeFrontOfficeFieldProps)
       name="equipeFrontOffice"
       render={({ field }) => (
         <FormItem className="space-y-2">
-          <FormLabel className="text-white">Sua clínica tem secretária ou equipe de atendimento?</FormLabel>
+          <FormLabel className="text-white">
+            Sua clínica tem secretária ou equipe de atendimento?
+            <span className="text-red-500 ml-1">*</span>
+          </FormLabel>
           <FormControl>
             <RadioGroup
               className="flex flex-col space-y-1"

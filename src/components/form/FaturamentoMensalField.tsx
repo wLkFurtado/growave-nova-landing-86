@@ -17,7 +17,10 @@ const FaturamentoMensalField = ({ form, disabled }: FaturamentoMensalFieldProps)
       name="faturamentoMensal"
       render={({ field }) => (
         <FormItem className="space-y-2">
-          <FormLabel className="text-white">Qual é o faturamento médio mensal da clínica?</FormLabel>
+          <FormLabel className="text-white">
+            Qual é o faturamento médio mensal da clínica?
+            <span className="text-red-500 ml-1">*</span>
+          </FormLabel>
           <FormControl>
             <RadioGroup
               className="flex flex-col space-y-1"

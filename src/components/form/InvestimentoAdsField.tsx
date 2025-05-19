@@ -17,7 +17,10 @@ const InvestimentoAdsField = ({ form, disabled }: InvestimentoAdsFieldProps) => 
       name="investimentoAds"
       render={({ field }) => (
         <FormItem className="space-y-2">
-          <FormLabel className="text-white">Quanto você investe atualmente em tráfego pago (Meta Ads, Google Ads)?</FormLabel>
+          <FormLabel className="text-white">
+            Quanto você investe atualmente em tráfego pago (Meta Ads, Google Ads)?
+            <span className="text-red-500 ml-1">*</span>
+          </FormLabel>
           <FormControl>
             <RadioGroup
               className="flex flex-col space-y-1"

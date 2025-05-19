@@ -16,7 +16,10 @@ const ExpectativasField = ({ form, disabled }: ExpectativasFieldProps) => {
       name="expectativasAgencia"
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="text-white">O que você espera de uma agência de marketing hoje?</FormLabel>
+          <FormLabel className="text-white">
+            O que você espera de uma agência de marketing hoje?
+            <span className="text-red-500 ml-1">*</span>
+          </FormLabel>
           <FormControl>
             <Textarea 
               placeholder="Busco ajuda com estratégias, agendamentos, criação de conteúdo, etc."

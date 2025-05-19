@@ -31,11 +31,13 @@ const QuestionnaireForm = ({ initialValues, onComplete, onCancel }: Questionnair
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialValues,
+    mode: 'onChange', // Validate on change for better user experience
   });
 
   const handleNext = async () => {
     // Get the field to validate based on current step
     let fieldToValidate: keyof FormValues | null = null;
+    let additionalField: keyof FormValues | null = null;
     
     switch (currentStep) {
       case 1:
@@ -50,7 +52,7 @@ const QuestionnaireForm = ({ initialValues, onComplete, onCancel }: Questionnair
       case 4:
         fieldToValidate = 'trabalhouComAgencia';
         if (form.getValues('trabalhouComAgencia') === true) {
-          await form.trigger('experienciaAnterior');
+          additionalField = 'experienciaAnterior';
         }
         break;
       case 5:
@@ -60,7 +62,28 @@ const QuestionnaireForm = ({ initialValues, onComplete, onCancel }: Questionnair
 
     if (fieldToValidate) {
       const isValid = await form.trigger(fieldToValidate);
-      if (!isValid) return;
+      if (!isValid) {
+        // Show error toast
+        toast({
+          title: "Campo obrigatório",
+          description: "Por favor, preencha todos os campos obrigatórios.",
+          variant: "destructive",
+        });
+        return;
+      }
+    }
+    
+    if (additionalField) {
+      const isValid = await form.trigger(additionalField);
+      if (!isValid) {
+        // Show error toast
+        toast({
+          title: "Campo obrigatório",
+          description: "Por favor, preencha todos os campos obrigatórios.",
+          variant: "destructive",
+        });
+        return;
+      }
     }
 
     if (currentStep < totalSteps) {
@@ -83,6 +106,18 @@ const QuestionnaireForm = ({ initialValues, onComplete, onCancel }: Questionnair
   const handleSubmit = async () => {
     try {
       setIsSubmitting(true);
+      // Validate the entire form before submission
+      const isValid = await form.trigger();
+      if (!isValid) {
+        toast({
+          title: "Formulário incompleto",
+          description: "Por favor, preencha todos os campos obrigatórios.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+      
       const values = form.getValues();
       onComplete(values);
       toast({

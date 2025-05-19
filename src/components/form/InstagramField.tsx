@@ -17,7 +17,10 @@ const InstagramField = ({ form, disabled }: InstagramFieldProps) => {
       name="instagram"
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="text-white">Instagram</FormLabel>
+          <FormLabel className="text-white">
+            Instagram
+            <span className="text-red-500 ml-1">*</span>
+          </FormLabel>
           <FormControl>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">

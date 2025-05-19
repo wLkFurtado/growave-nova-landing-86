@@ -1,10 +1,14 @@
 
 import { FormValues } from '@/validators/contactFormSchema';
+import { saveContact } from './contactsStorage';
 
 // Function to send form data to the webhook with CORS handling
 export const sendFormDataToWebhook = async (formData: FormValues) => {
   try {
     console.log('Sending data to webhook:', formData);
+    
+    // Save the form data locally for the admin panel
+    saveContact(formData);
     
     // Prepare the payload
     const payload = {

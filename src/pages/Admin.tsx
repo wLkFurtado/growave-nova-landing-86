@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { isLoggedIn } from '@/utils/adminAuth';
@@ -10,6 +9,7 @@ import ExportButton from '@/components/admin/ExportButton';
 import { useToast } from '@/hooks/use-toast';
 import { ContactEntry } from '@/utils/contactsStorage';
 import { supabase } from '@/integrations/supabase/client';
+import { Button } from '@/components/ui/button';
 
 const Admin = () => {
   const [contacts, setContacts] = useState<any[]>([]);

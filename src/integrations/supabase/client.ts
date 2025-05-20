@@ -18,3 +18,9 @@ export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABL
     flowType: 'pkce'
   }
 });
+
+// Also export the URL and key for direct access when needed
+export const SUPABASE_CREDENTIALS = {
+  url: SUPABASE_URL,
+  key: SUPABASE_PUBLISHABLE_KEY
+};

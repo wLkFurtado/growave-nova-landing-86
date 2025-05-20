@@ -1,6 +1,7 @@
 
 import { FormValues } from '@/validators/contactFormSchema';
 import { saveContactToSupabase } from '@/services/supabaseService';
+import { generateLeadSummary } from '@/utils/leadSummaryGenerator';
 
 // Function to send form data to the webhook with CORS handling
 export const sendFormDataToWebhook = async (formData: FormValues) => {
@@ -10,6 +11,10 @@ export const sendFormDataToWebhook = async (formData: FormValues) => {
     // Save the form data to Supabase for the admin panel
     const saveResult = await saveContactToSupabase(formData);
     console.log('Supabase save result:', saveResult);
+    
+    // Generate natural language summary
+    const leadSummaryText = generateLeadSummary(formData);
+    console.log('Generated lead summary:', leadSummaryText);
     
     // Prepare the payload
     const payload = {
@@ -29,6 +34,11 @@ export const sendFormDataToWebhook = async (formData: FormValues) => {
       // Metadata
       dataSubmissao: new Date().toISOString(),
       origem: window.location.href,
+      
+      // New JSON formatted summary in the requested structure
+      input: {
+        text: leadSummaryText
+      }
     };
     
     // Using the production webhook URL

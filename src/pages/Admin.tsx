@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { isLoggedIn } from '@/utils/adminAuth';
 import AdminDashboard from '@/components/admin/AdminDashboard';
 import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 const Admin = () => {
   const [authChecked, setAuthChecked] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
+  const { toast } = useToast();
   
   useEffect(() => {
     const checkAuth = async () => {
@@ -21,6 +23,12 @@ const Admin = () => {
         if (!loggedIn) {
           console.log('Admin: Not authenticated, redirecting to login');
           navigate('/admin/login');
+        } else {
+          // Only show welcome toast if authentication succeeded
+          toast({
+            title: 'Autenticado',
+            description: 'Bem-vindo ao painel administrativo.'
+          });
         }
         
         setAuthChecked(true);
@@ -37,11 +45,18 @@ const Admin = () => {
       (event, session) => {
         console.log('Admin: Auth state changed:', event);
         const newAuthState = session !== null;
-        setIsAuthenticated(newAuthState);
         
-        if (!newAuthState) {
-          console.log('Admin: Session lost, redirecting to login');
-          navigate('/admin/login');
+        if (isAuthenticated !== newAuthState) {
+          setIsAuthenticated(newAuthState);
+          
+          if (!newAuthState) {
+            console.log('Admin: Session lost, redirecting to login');
+            toast({
+              title: 'Sessão expirada',
+              description: 'Faça login novamente para continuar.'
+            });
+            navigate('/admin/login');
+          }
         }
       }
     );
@@ -49,7 +64,7 @@ const Admin = () => {
     return () => {
       subscription.unsubscribe();
     };
-  }, [navigate]);
+  }, [navigate, isAuthenticated, toast]);
   
   // Show loading while checking authentication
   if (!authChecked) {

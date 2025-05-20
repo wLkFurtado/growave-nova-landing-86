@@ -10,7 +10,25 @@ export const isLoggedIn = async (): Promise<boolean> => {
       console.error('Session check error:', error);
       return false;
     }
-    return !!data.session;
+    
+    if (!data.session) {
+      console.log('No active session found');
+      return false;
+    }
+    
+    // Verify token validity
+    try {
+      const { data: userData, error: userError } = await supabase.auth.getUser();
+      if (userError || !userData.user) {
+        console.error('User validation error:', userError);
+        return false;
+      }
+      console.log('Valid session confirmed for user:', userData.user.email);
+      return true;
+    } catch (userCheckError) {
+      console.error('User validation exception:', userCheckError);
+      return false;
+    }
   } catch (error) {
     console.error('Session check exception:', error);
     return false;
@@ -31,6 +49,13 @@ export const loginAdmin = async (username: string, password: string): Promise<{s
     if (!data.session) {
       console.error('Login failed: No session returned');
       return { success: false, error: 'Erro de autenticação. Tente novamente.' };
+    }
+    
+    // Verify session was properly established
+    const sessionCheck = await isLoggedIn();
+    if (!sessionCheck) {
+      console.error('Session validation failed after login');
+      return { success: false, error: 'Erro ao estabelecer sessão. Tente novamente.' };
     }
     
     console.log('loginAdmin: Login successful');

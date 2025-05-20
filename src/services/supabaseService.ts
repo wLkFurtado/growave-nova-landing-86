@@ -1,3 +1,4 @@
+
 import { supabase } from "@/integrations/supabase/client";
 import { FormValues } from '@/validators/contactFormSchema';
 import { ContactEntry } from '@/utils/contactsStorage';
@@ -242,6 +243,7 @@ export const migrateContactsToSupabase = async (): Promise<{ success: boolean; c
 export const loginWithEmail = async (email: string, password: string) => {
   console.log('Attempting login with:', email);
   try {
+    // First try to authenticate with fallback handling for NULL fields
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password
@@ -249,11 +251,77 @@ export const loginWithEmail = async (email: string, password: string) => {
     
     if (error) {
       console.error('Login error details:', error);
-    } else {
-      console.log('Login successful, session established:', !!data.session);
+      
+      // Check if error is related to NULL conversion in confirmation_token or email_change
+      if (error.message && (
+        error.message.includes('converting NULL to string') || 
+        error.message.includes('confirmation_token') ||
+        error.message.includes('email_change')
+      )) {
+        console.log('Detected NULL field conversion error, attempting alternative approach');
+        
+        // Try to use a more direct approach with explicit error handling
+        try {
+          // Get session manually with additional options
+          const sessionResponse = await fetch(`${supabase.auth.url}/token?grant_type=password`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': supabase.supabaseKey
+            },
+            body: JSON.stringify({ email, password })
+          });
+          
+          if (sessionResponse.ok) {
+            const sessionData = await sessionResponse.json();
+            console.log('Alternative login successful');
+            
+            // Set session manually
+            const session = {
+              access_token: sessionData.access_token,
+              refresh_token: sessionData.refresh_token,
+              user: sessionData.user
+            };
+            
+            // Refresh auth state
+            await supabase.auth.setSession({
+              access_token: sessionData.access_token,
+              refresh_token: sessionData.refresh_token
+            });
+            
+            return { 
+              data: { session, user: sessionData.user },
+              error: null 
+            };
+          } else {
+            console.error('Alternative login failed:', await sessionResponse.text());
+            return { 
+              data: { session: null, user: null },
+              error: { message: 'Erro de autenticação com o servidor. Tente novamente.' }
+            };
+          }
+        } catch (altError) {
+          console.error('Alternative login exception:', altError);
+          return { 
+            data: { session: null, user: null },
+            error: { message: 'Falha na autenticação. Por favor, tente novamente.' }
+          };
+        }
+      }
+      
+      return { data, error };
     }
     
-    return { data, error };
+    if (!data.session) {
+      console.error('Login failed: No session returned');
+      return { 
+        data, 
+        error: { message: 'Sessão não retornada. Tente novamente.' }
+      };
+    }
+    
+    console.log('Login successful, session established:', !!data.session);
+    return { data, error: null };
   } catch (err) {
     console.error('Exception during login:', err);
     return { 

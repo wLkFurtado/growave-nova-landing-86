@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
@@ -12,6 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 import { loginAdmin } from '@/utils/adminAuth';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 // Login form schema
 const loginSchema = z.object({
@@ -24,6 +25,7 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
+  const [authChecked, setAuthChecked] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
@@ -31,6 +33,25 @@ const LoginForm = () => {
   // Get redirect URL from query params or default to /admin
   const searchParams = new URLSearchParams(location.search);
   const redirectUrl = searchParams.get('redirect') || '/admin';
+  
+  // Check if already logged in
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const { data } = await supabase.auth.getSession();
+        if (data.session) {
+          console.log('User already has active session, redirecting');
+          navigate(redirectUrl);
+        }
+      } catch (error) {
+        console.error('Session check error:', error);
+      } finally {
+        setAuthChecked(true);
+      }
+    };
+    
+    checkSession();
+  }, [navigate, redirectUrl]);
   
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -67,6 +88,14 @@ const LoginForm = () => {
       setIsLoading(false);
     }
   };
+  
+  if (!authChecked) {
+    return (
+      <div className="flex justify-center items-center p-6">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-growave-green"></div>
+      </div>
+    );
+  }
   
   return (
     <div className="w-full max-w-md">

@@ -1,4 +1,4 @@
-import { supabase } from "@/integrations/supabase/client";
+import { supabase, SUPABASE_CREDENTIALS } from "@/integrations/supabase/client";
 import { FormValues } from '@/validators/contactFormSchema';
 import { ContactEntry } from '@/utils/contactsStorage';
 
@@ -242,7 +242,7 @@ export const migrateContactsToSupabase = async (): Promise<{ success: boolean; c
 export const loginWithEmail = async (email: string, password: string) => {
   console.log('Attempting login with:', email);
   try {
-    // First try to authenticate with fallback handling for NULL fields
+    // First try to authenticate with standard method
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password
@@ -259,19 +259,14 @@ export const loginWithEmail = async (email: string, password: string) => {
       )) {
         console.log('Detected NULL field conversion error, attempting alternative approach');
         
-        // Try to use a more direct approach with explicit error handling
+        // Try alternative login approach with fetch API using SUPABASE_CREDENTIALS
         try {
-          // Use a workaround method that doesn't access protected properties
-          // First get the auth settings from environment
-          const supabaseUrl = "https://ohbunxuisbkmnddenxfv.supabase.co";
-          const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oYnVueHVpc2JrbW5kZGVueGZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc2MjI0MDYsImV4cCI6MjA2MzE5ODQwNn0.y17_BqHil9wYmlz6I65Vv8c33eZ0UKsPqnfYk2xmg0Q";
-          
-          // Get session manually with fetch
-          const sessionResponse = await fetch(`${supabaseUrl}/auth/v1/token?grant_type=password`, {
+          // Use SUPABASE_CREDENTIALS for authentication request
+          const sessionResponse = await fetch(`${SUPABASE_CREDENTIALS.url}/auth/v1/token?grant_type=password`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'apikey': supabaseKey
+              'apikey': SUPABASE_CREDENTIALS.key
             },
             body: JSON.stringify({ email, password })
           });
@@ -287,18 +282,29 @@ export const loginWithEmail = async (email: string, password: string) => {
               user: sessionData.user
             };
             
-            // Refresh auth state
+            // Refresh auth state with the new session
             await supabase.auth.setSession({
               access_token: sessionData.access_token,
               refresh_token: sessionData.refresh_token
             });
+            
+            // Validate session was properly set
+            const sessionCheck = await supabase.auth.getSession();
+            if (!sessionCheck.data.session) {
+              console.error('Session validation failed after alternative login');
+              return { 
+                data: { session: null, user: null },
+                error: { message: 'Falha na validação da sessão. Por favor, tente novamente.' }
+              };
+            }
             
             return { 
               data: { session, user: sessionData.user },
               error: null 
             };
           } else {
-            console.error('Alternative login failed:', await sessionResponse.text());
+            const errorText = await sessionResponse.text();
+            console.error('Alternative login failed:', errorText);
             return { 
               data: { session: null, user: null },
               error: { message: 'Erro de autenticação com o servidor. Tente novamente.' }

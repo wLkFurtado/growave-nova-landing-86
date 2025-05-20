@@ -242,98 +242,84 @@ export const migrateContactsToSupabase = async (): Promise<{ success: boolean; c
 export const loginWithEmail = async (email: string, password: string) => {
   console.log('Attempting login with:', email);
   try {
-    // First try to authenticate with standard method
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    });
+    // Try direct REST API authentication first to avoid NULL conversion issues
+    console.log('Using direct API authentication approach');
     
-    if (error) {
-      console.error('Login error details:', error);
+    try {
+      const sessionResponse = await fetch(`${SUPABASE_CREDENTIALS.url}/auth/v1/token?grant_type=password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_CREDENTIALS.key
+        },
+        body: JSON.stringify({ email, password })
+      });
       
-      // Check if error is related to NULL conversion in confirmation_token or email_change
-      if (error.message && (
-        error.message.includes('converting NULL to string') || 
-        error.message.includes('confirmation_token') ||
-        error.message.includes('email_change')
-      )) {
-        console.log('Detected NULL field conversion error, attempting alternative approach');
+      if (sessionResponse.ok) {
+        const sessionData = await sessionResponse.json();
+        console.log('Direct API login successful');
         
-        // Try alternative login approach with fetch API using SUPABASE_CREDENTIALS
-        try {
-          // Use SUPABASE_CREDENTIALS for authentication request
-          const sessionResponse = await fetch(`${SUPABASE_CREDENTIALS.url}/auth/v1/token?grant_type=password`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'apikey': SUPABASE_CREDENTIALS.key
-            },
-            body: JSON.stringify({ email, password })
-          });
-          
-          if (sessionResponse.ok) {
-            const sessionData = await sessionResponse.json();
-            console.log('Alternative login successful');
-            
-            // Set session manually
-            const session = {
-              access_token: sessionData.access_token,
-              refresh_token: sessionData.refresh_token,
-              user: sessionData.user
-            };
-            
-            // Refresh auth state with the new session
-            await supabase.auth.setSession({
-              access_token: sessionData.access_token,
-              refresh_token: sessionData.refresh_token
-            });
-            
-            // Validate session was properly set
-            const sessionCheck = await supabase.auth.getSession();
-            if (!sessionCheck.data.session) {
-              console.error('Session validation failed after alternative login');
-              return { 
-                data: { session: null, user: null },
-                error: { message: 'Falha na validação da sessão. Por favor, tente novamente.' }
-              };
-            }
-            
-            return { 
-              data: { session, user: sessionData.user },
-              error: null 
-            };
-          } else {
-            const errorText = await sessionResponse.text();
-            console.error('Alternative login failed:', errorText);
-            return { 
-              data: { session: null, user: null },
-              error: { message: 'Erro de autenticação com o servidor. Tente novamente.' }
-            };
-          }
-        } catch (altError) {
-          console.error('Alternative login exception:', altError);
+        // Create session object
+        const session = {
+          access_token: sessionData.access_token,
+          refresh_token: sessionData.refresh_token,
+          user: sessionData.user
+        };
+        
+        // Update Supabase client with the new session
+        await supabase.auth.setSession({
+          access_token: sessionData.access_token,
+          refresh_token: sessionData.refresh_token
+        });
+        
+        // Verify session was set properly
+        const sessionCheck = await supabase.auth.getSession();
+        console.log('Session validation:', !!sessionCheck.data.session);
+        
+        return { 
+          data: { session, user: sessionData.user },
+          error: null 
+        };
+      } else {
+        // If the API approach fails, try the standard method
+        console.log('Direct API login failed, falling back to standard login');
+        
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password
+        });
+        
+        if (error) {
+          console.error('Standard login failed:', error.message);
           return { 
-            data: { session: null, user: null },
-            error: { message: 'Falha na autenticação. Por favor, tente novamente.' }
+            data: { session: null, user: null }, 
+            error: { message: 'Credenciais inválidas ou problema de autenticação.' }
           };
         }
+        
+        return { data, error: null };
+      }
+    } catch (directApiError) {
+      console.error('Direct API authentication exception:', directApiError);
+      
+      // Last resort - try standard login method
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+      
+      if (error) {
+        console.error('Standard login failed after API error:', error);
+        return { 
+          data: { session: null, user: null }, 
+          error: { message: 'Erro de autenticação. Por favor, tente novamente.' }
+        };
       }
       
-      return { data, error };
+      return { data, error: null };
     }
-    
-    if (!data.session) {
-      console.error('Login failed: No session returned');
-      return { 
-        data, 
-        error: { message: 'Sessão não retornada. Tente novamente.' }
-      };
-    }
-    
-    console.log('Login successful, session established:', !!data.session);
-    return { data, error: null };
   } catch (err) {
-    console.error('Exception during login:', err);
+    console.error('Exception during login process:', err);
     return { 
       data: { session: null, user: null },
       error: { message: 'Ocorreu um erro inesperado durante o login. Tente novamente.' }

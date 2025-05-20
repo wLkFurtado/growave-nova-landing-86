@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { loginAdmin } from '@/utils/adminAuth';
+import { loginWithEmail } from '@/services/supabaseService';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
@@ -68,19 +68,26 @@ const LoginForm = () => {
     console.log('LoginForm: Attempting login with username:', data.username);
     
     try {
-      const result = await loginAdmin(data.username, data.password);
+      const result = await loginWithEmail(data.username, data.password);
       
-      if (result.success) {
-        console.log('LoginForm: Login successful, redirecting to', redirectUrl);
-        toast({
-          title: 'Login bem-sucedido',
-          description: 'Bem-vindo ao painel administrativo.',
-        });
-        navigate(redirectUrl);
-      } else {
+      if (result.error) {
         console.error('LoginForm: Login failed:', result.error);
-        setAuthError(result.error || 'Credenciais inválidas. Tente novamente.');
+        setAuthError(result.error.message || 'Credenciais inválidas. Tente novamente.');
+        return;
       }
+      
+      if (!result.data.session) {
+        console.error('LoginForm: No session returned');
+        setAuthError('Erro ao estabelecer sessão. Tente novamente.');
+        return;
+      }
+      
+      console.log('LoginForm: Login successful, redirecting to', redirectUrl);
+      toast({
+        title: 'Login bem-sucedido',
+        description: 'Bem-vindo ao painel administrativo.',
+      });
+      navigate(redirectUrl);
     } catch (error) {
       console.error('LoginForm: Error during login:', error);
       setAuthError('Ocorreu um erro ao fazer login. Tente novamente mais tarde.');

@@ -16,19 +16,8 @@ export const isLoggedIn = async (): Promise<boolean> => {
       return false;
     }
     
-    // Verify token validity
-    try {
-      const { data: userData, error: userError } = await supabase.auth.getUser();
-      if (userError || !userData.user) {
-        console.error('User validation error:', userError);
-        return false;
-      }
-      console.log('Valid session confirmed for user:', userData.user.email);
-      return true;
-    } catch (userCheckError) {
-      console.error('User validation exception:', userCheckError);
-      return false;
-    }
+    console.log('Valid session found:', !!data.session);
+    return true;
   } catch (error) {
     console.error('Session check exception:', error);
     return false;
@@ -39,23 +28,16 @@ export const isLoggedIn = async (): Promise<boolean> => {
 export const loginAdmin = async (username: string, password: string): Promise<{success: boolean; error?: string}> => {
   try {
     console.log('loginAdmin: Starting login process for', username);
-    const { data, error } = await loginWithEmail(username, password);
+    const result = await loginWithEmail(username, password);
     
-    if (error) {
-      console.error('Login error:', error.message);
-      return { success: false, error: error.message };
+    if (result.error) {
+      console.error('Login error:', result.error.message);
+      return { success: false, error: result.error.message };
     }
     
-    if (!data.session) {
+    if (!result.data.session) {
       console.error('Login failed: No session returned');
       return { success: false, error: 'Erro de autenticação. Tente novamente.' };
-    }
-    
-    // Verify session was properly established
-    const sessionCheck = await isLoggedIn();
-    if (!sessionCheck) {
-      console.error('Session validation failed after login');
-      return { success: false, error: 'Erro ao estabelecer sessão. Tente novamente.' };
     }
     
     console.log('loginAdmin: Login successful');

@@ -4,13 +4,23 @@ import { loginWithEmail, logoutUser } from "@/services/supabaseService";
 
 // Check if user is logged in
 export const isLoggedIn = async (): Promise<boolean> => {
-  const { data } = await supabase.auth.getSession();
-  return !!data.session;
+  try {
+    const { data, error } = await supabase.auth.getSession();
+    if (error) {
+      console.error('Session check error:', error);
+      return false;
+    }
+    return !!data.session;
+  } catch (error) {
+    console.error('Session check exception:', error);
+    return false;
+  }
 };
 
 // Login function
 export const loginAdmin = async (username: string, password: string): Promise<{success: boolean; error?: string}> => {
   try {
+    console.log('loginAdmin: Starting login process for', username);
     const { data, error } = await loginWithEmail(username, password);
     
     if (error) {
@@ -18,7 +28,13 @@ export const loginAdmin = async (username: string, password: string): Promise<{s
       return { success: false, error: error.message };
     }
     
-    return { success: !!data.session };
+    if (!data.session) {
+      console.error('Login failed: No session returned');
+      return { success: false, error: 'Erro de autenticação. Tente novamente.' };
+    }
+    
+    console.log('loginAdmin: Login successful');
+    return { success: true };
   } catch (error) {
     console.error('Login exception:', error);
     return { success: false, error: 'Ocorreu um erro inesperado. Tente novamente mais tarde.' };

@@ -13,16 +13,19 @@ const Admin = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        console.log('Admin: Checking authentication status...');
         const loggedIn = await isLoggedIn();
+        console.log('Admin: Authentication check result:', loggedIn);
         setIsAuthenticated(loggedIn);
         
         if (!loggedIn) {
+          console.log('Admin: Not authenticated, redirecting to login');
           navigate('/admin/login');
         }
         
         setAuthChecked(true);
       } catch (error) {
-        console.error('Auth check error:', error);
+        console.error('Admin: Auth check error:', error);
         navigate('/admin/login');
       }
     };
@@ -32,10 +35,12 @@ const Admin = () => {
     // Set up auth state change listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
+        console.log('Admin: Auth state changed:', event);
         const newAuthState = session !== null;
         setIsAuthenticated(newAuthState);
         
         if (!newAuthState) {
+          console.log('Admin: Session lost, redirecting to login');
           navigate('/admin/login');
         }
       }

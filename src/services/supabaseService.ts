@@ -241,10 +241,26 @@ export const migrateContactsToSupabase = async (): Promise<{ success: boolean; c
 // Authentication functions
 export const loginWithEmail = async (email: string, password: string) => {
   console.log('Attempting login with:', email);
-  return await supabase.auth.signInWithPassword({
-    email,
-    password
-  });
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    });
+    
+    if (error) {
+      console.error('Login error details:', error);
+    } else {
+      console.log('Login successful, session established:', !!data.session);
+    }
+    
+    return { data, error };
+  } catch (err) {
+    console.error('Exception during login:', err);
+    return { 
+      data: { session: null, user: null },
+      error: { message: 'Ocorreu um erro inesperado durante o login. Tente novamente.' }
+    };
+  }
 };
 
 export const signUpWithEmail = async (email: string, password: string) => {

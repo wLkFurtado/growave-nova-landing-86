@@ -44,20 +44,24 @@ const LoginForm = () => {
     setIsLoading(true);
     setAuthError(null);
     
+    console.log('LoginForm: Attempting login with username:', data.username);
+    
     try {
       const result = await loginAdmin(data.username, data.password);
       
       if (result.success) {
+        console.log('LoginForm: Login successful, redirecting to', redirectUrl);
         toast({
           title: 'Login bem-sucedido',
           description: 'Bem-vindo ao painel administrativo.',
         });
         navigate(redirectUrl);
       } else {
+        console.error('LoginForm: Login failed:', result.error);
         setAuthError(result.error || 'Credenciais inválidas. Tente novamente.');
       }
     } catch (error) {
-      console.error('Erro no login:', error);
+      console.error('LoginForm: Error during login:', error);
       setAuthError('Ocorreu um erro ao fazer login. Tente novamente mais tarde.');
     } finally {
       setIsLoading(false);
@@ -85,7 +89,8 @@ const LoginForm = () => {
                   <Input 
                     placeholder="Digite seu e-mail" 
                     className="bg-white/10 border-white/20 text-white"
-                    type="text"
+                    type="email"
+                    autoComplete="email"
                     {...field} 
                   />
                 </FormControl>
@@ -105,6 +110,7 @@ const LoginForm = () => {
                     type="password"
                     placeholder="Digite sua senha" 
                     className="bg-white/10 border-white/20 text-white"
+                    autoComplete="current-password"
                     {...field} 
                   />
                 </FormControl>

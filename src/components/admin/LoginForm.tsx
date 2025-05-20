@@ -10,10 +10,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { loginAdmin } from '@/utils/adminAuth';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { AlertCircle } from 'lucide-react';
 
 // Login form schema
 const loginSchema = z.object({
-  username: z.string().email({ message: 'E-mail inválido' }).min(1, { message: 'E-mail é obrigatório' }),
+  username: z.string().min(1, { message: 'E-mail é obrigatório' }),
   password: z.string().min(1, { message: 'Senha é obrigatória' }),
 });
 
@@ -21,6 +23,7 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
@@ -39,30 +42,23 @@ const LoginForm = () => {
   
   const onSubmit = async (data: LoginFormValues) => {
     setIsLoading(true);
+    setAuthError(null);
     
     try {
-      const success = await loginAdmin(data.username, data.password);
+      const result = await loginAdmin(data.username, data.password);
       
-      if (success) {
+      if (result.success) {
         toast({
           title: 'Login bem-sucedido',
           description: 'Bem-vindo ao painel administrativo.',
         });
         navigate(redirectUrl);
       } else {
-        toast({
-          title: 'Falha no login',
-          description: 'Credenciais inválidas. Tente novamente.',
-          variant: 'destructive',
-        });
+        setAuthError(result.error || 'Credenciais inválidas. Tente novamente.');
       }
     } catch (error) {
       console.error('Erro no login:', error);
-      toast({
-        title: 'Erro no login',
-        description: 'Ocorreu um erro ao fazer login. Tente novamente mais tarde.',
-        variant: 'destructive',
-      });
+      setAuthError('Ocorreu um erro ao fazer login. Tente novamente mais tarde.');
     } finally {
       setIsLoading(false);
     }
@@ -70,6 +66,13 @@ const LoginForm = () => {
   
   return (
     <div className="w-full max-w-md">
+      {authError && (
+        <Alert variant="destructive" className="mb-4">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription>{authError}</AlertDescription>
+        </Alert>
+      )}
+      
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
@@ -82,7 +85,7 @@ const LoginForm = () => {
                   <Input 
                     placeholder="Digite seu e-mail" 
                     className="bg-white/10 border-white/20 text-white"
-                    type="email"
+                    type="text"
                     {...field} 
                   />
                 </FormControl>
@@ -110,13 +113,21 @@ const LoginForm = () => {
             )}
           />
           
-          <Button 
-            type="submit" 
-            className="w-full bg-growave-green text-black hover:bg-growave-green-light"
-            disabled={isLoading}
-          >
-            {isLoading ? 'Entrando...' : 'Entrar'}
-          </Button>
+          <div className="pt-2">
+            <Button 
+              type="submit" 
+              className="w-full bg-growave-green text-black hover:bg-growave-green-light"
+              disabled={isLoading}
+            >
+              {isLoading ? 'Entrando...' : 'Entrar'}
+            </Button>
+          </div>
+          
+          <div className="text-center text-sm text-gray-400 mt-4">
+            <p>Credenciais de demonstração</p>
+            <p>E-mail: admin@growave.com</p>
+            <p>Senha: adminGrowave123</p>
+          </div>
         </form>
       </Form>
     </div>

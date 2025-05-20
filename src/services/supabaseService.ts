@@ -1,4 +1,3 @@
-
 import { supabase } from "@/integrations/supabase/client";
 import { FormValues } from '@/validators/contactFormSchema';
 import { ContactEntry } from '@/utils/contactsStorage';
@@ -241,6 +240,7 @@ export const migrateContactsToSupabase = async (): Promise<{ success: boolean; c
 
 // Authentication functions
 export const loginWithEmail = async (email: string, password: string) => {
+  console.log('Attempting login with:', email);
   return await supabase.auth.signInWithPassword({
     email,
     password

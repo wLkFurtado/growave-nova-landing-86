@@ -7,7 +7,7 @@ import { FormValues } from '@/validators/contactFormSchema';
 import { ChangeEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '@/components/ui/command';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { countries, getDefaultCountry } from '@/data/countries';
 
 interface PhoneFieldProps {
@@ -63,19 +63,21 @@ const PhoneField = ({ form, disabled }: PhoneFieldProps) => {
               <PopoverContent className="w-full p-0">
                 <Command>
                   <CommandInput placeholder="Procurar país..." />
-                  <CommandEmpty>Nenhum país encontrado.</CommandEmpty>
-                  <CommandGroup className="max-h-64 overflow-auto">
-                    {countries.map((country) => (
-                      <CommandItem
-                        key={country.code}
-                        value={country.code}
-                        onSelect={() => handleCountrySelect(country.code)}
-                      >
-                        <span className="mr-2">{country.flag}</span>
-                        {country.name} (+{country.dial_code})
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
+                  <CommandList>
+                    <CommandEmpty>Nenhum país encontrado.</CommandEmpty>
+                    <CommandGroup className="max-h-64 overflow-auto">
+                      {countries.map((country) => (
+                        <CommandItem
+                          key={country.code}
+                          value={country.code}
+                          onSelect={() => handleCountrySelect(country.code)}
+                        >
+                          <span className="mr-2">{country.flag}</span>
+                          {country.name} (+{country.dial_code})
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                  </CommandList>
                 </Command>
               </PopoverContent>
             </Popover>

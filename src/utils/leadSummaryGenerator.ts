@@ -1,5 +1,6 @@
 
 import { FormValues } from '@/validators/contactFormSchema';
+import { countries } from '@/data/countries';
 
 // Helper function to convert form values to human-readable text
 const getInvestimentoAdsText = (value?: string): string => {
@@ -50,8 +51,12 @@ export const generateLeadSummary = (formData: FormValues): string => {
   // Remove @ from Instagram handle if present
   const instagramHandle = formData.instagram.replace('@', '');
   
+  // Get country dial code
+  const country = countries.find(c => c.code === formData.countryCode) || countries[0];
+  const phoneWithDialCode = `+${country.dial_code} ${formData.phone}`;
+  
   // Build the summary paragraphs
-  const intro = `Lead: ${formData.name}, Instagram @${instagramHandle}, telefone ${formData.phone}.`;
+  const intro = `Lead: ${formData.name}, Instagram @${instagramHandle}, telefone ${phoneWithDialCode}.`;
   
   const businessDetails = `O negócio ${getFaturamentoMensalText(formData.faturamentoMensal)} e ${getEquipeFrontOfficeText(formData.equipeFrontOffice)}.`;
   

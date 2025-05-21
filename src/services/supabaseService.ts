@@ -1,13 +1,25 @@
+
 import { supabase, SUPABASE_CREDENTIALS } from "@/integrations/supabase/client";
 import { FormValues } from '@/validators/contactFormSchema';
 import { ContactEntry } from '@/utils/contactsStorage';
+import { countries } from "@/data/countries";
+
+// Function to format phone number with country code for storage
+const formatPhoneForStorage = (formData: FormValues): string => {
+  const country = countries.find(c => c.code === formData.countryCode) || countries[0];
+  return `${country.dial_code}${formData.phone.replace(/\D/g, '')}`;
+};
 
 // Contacts
 export const saveContactToSupabase = async (formData: FormValues): Promise<{ success: boolean; data?: any; error?: any }> => {
   try {
+    // Format phone with country code
+    const phoneWithCode = formatPhoneForStorage(formData);
+    
     const contactData = {
       name: formData.name,
-      phone: formData.phone,
+      phone: phoneWithCode,
+      country_code: formData.countryCode,
       instagram: formData.instagram,
       investimento_ads: formData.investimentoAds,
       equipe_front_office: formData.equipeFrontOffice,

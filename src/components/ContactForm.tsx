@@ -9,6 +9,7 @@ import { formSchema, FormValues } from '@/validators/contactFormSchema';
 import { fetchInstagramData } from '@/utils/instagramFetch';
 import { sendFormDataToWebhook } from '@/utils/formWebhook';
 import InitialForm from './form/InitialForm';
+import { getDefaultCountry } from '@/data/countries';
 
 interface ContactFormProps {
   onSuccess?: () => void;
@@ -21,10 +22,13 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
   const [showInsights, setShowInsights] = useState(false);
   const { toast } = useToast();
 
+  const defaultCountry = getDefaultCountry();
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
+      countryCode: defaultCountry.code,
       phone: '',
       instagram: '',
       investimentoAds: undefined,

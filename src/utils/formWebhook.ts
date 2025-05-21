@@ -2,6 +2,7 @@
 import { FormValues } from '@/validators/contactFormSchema';
 import { saveContactToSupabase } from '@/services/supabaseService';
 import { generateLeadSummary } from '@/utils/leadSummaryGenerator';
+import { countries } from '@/data/countries';
 
 // Function to send form data to the webhook with CORS handling
 export const sendFormDataToWebhook = async (formData: FormValues) => {
@@ -16,11 +17,18 @@ export const sendFormDataToWebhook = async (formData: FormValues) => {
     const leadSummaryText = generateLeadSummary(formData);
     console.log('Generated lead summary:', leadSummaryText);
     
+    // Get the country dial code
+    const country = countries.find(c => c.code === formData.countryCode) || countries[0];
+    const dialCode = country.dial_code;
+    
+    // Format phone number without any special characters
+    const formattedPhone = `${dialCode}${formData.phone.replace(/\D/g, '')}`;
+    
     // Prepare the payload
     const payload = {
       // Basic data
       name: formData.name,
-      phone: formData.phone,
+      phone: formattedPhone, // Full international number without special characters
       instagram: formData.instagram.replace('@', ''),
       
       // Questionnaire data

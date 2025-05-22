@@ -11,6 +11,19 @@ import { useToast } from '@/hooks/use-toast';
 import { ContactEntry } from '@/utils/contactsStorage';
 import { supabase } from '@/integrations/supabase/client';
 
+// Define type guards for the enum values
+const isValidInvestimentoAds = (value: string): value is ContactEntry['investimentoAds'] => {
+  return ['nao_invisto', 'menos_1000', 'entre_1000_3000', 'entre_3000_5000', 'acima_5000'].includes(value);
+};
+
+const isValidEquipeFrontOffice = (value: string): value is ContactEntry['equipeFrontOffice'] => {
+  return ['secretaria', 'equipe', 'atendo_sozinho', 'procurando'].includes(value);
+};
+
+const isValidFaturamentoMensal = (value: string): value is ContactEntry['faturamentoMensal'] => {
+  return ['ate_10mil', 'entre_10mil_30mil', 'entre_30mil_50mil', 'acima_50mil', 'nao_informar'].includes(value);
+};
+
 const AdminDashboard = () => {
   const [contacts, setContacts] = useState<any[]>([]);
   const [selectedContact, setSelectedContact] = useState<ContactEntry | null>(null);
@@ -88,20 +101,33 @@ const AdminDashboard = () => {
       const result = await getContactByIdFromSupabase(contactId);
       
       if (result.success && result.data) {
-        // Transform the data from Supabase format to the expected ContactEntry format
+        // Validate and transform the enum values from Supabase
+        const investimentoAdsValue = isValidInvestimentoAds(result.data.investimento_ads)
+          ? result.data.investimento_ads
+          : 'nao_invisto'; // Fallback to a default value if invalid
+          
+        const equipeFrontOfficeValue = isValidEquipeFrontOffice(result.data.equipe_front_office)
+          ? result.data.equipe_front_office
+          : 'atendo_sozinho'; // Fallback to a default value if invalid
+          
+        const faturamentoMensalValue = isValidFaturamentoMensal(result.data.faturamento_mensal)
+          ? result.data.faturamento_mensal
+          : 'nao_informar'; // Fallback to a default value if invalid
+        
+        // Transform the data from Supabase format to the expected ContactEntry format with proper type casting
         const contactEntry: ContactEntry = {
           id: result.data.id,
           name: result.data.name,
           phone: result.data.phone,
           instagram: result.data.instagram,
-          investimentoAds: result.data.investimento_ads,
-          equipeFrontOffice: result.data.equipe_front_office,
-          faturamentoMensal: result.data.faturamento_mensal,
+          investimentoAds: investimentoAdsValue,
+          equipeFrontOffice: equipeFrontOfficeValue,
+          faturamentoMensal: faturamentoMensalValue,
           trabalhouComAgencia: result.data.trabalhou_com_agencia,
-          experienciaAnterior: result.data.experiencia_anterior,
+          experienciaAnterior: result.data.experiencia_anterior || '',
           expectativasAgencia: result.data.expectativas_agencia,
           dataSubmissao: result.data.data_submissao,
-          origem: result.data.origem
+          origem: result.data.origem || ''
         };
         
         setSelectedContact(contactEntry);

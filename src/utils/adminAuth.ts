@@ -1,6 +1,6 @@
 
 import { supabase } from "@/integrations/supabase/client";
-import { loginWithEmail, logoutUser } from "@/services/supabaseService";
+import { loginWithEmail, logoutUser } from "@/services/auth/authService";
 
 // Check if user is logged in
 export const isLoggedIn = async (): Promise<boolean> => {

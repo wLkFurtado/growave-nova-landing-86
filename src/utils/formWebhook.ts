@@ -1,6 +1,6 @@
 
 import { FormValues } from '@/validators/contactFormSchema';
-import { saveContactToSupabase } from '@/services/supabaseService';
+import { saveContactToSupabase } from '@/services/contacts/contactService';
 import { generateLeadSummary } from '@/utils/leadSummaryGenerator';
 import { countries } from '@/data/countries';
 

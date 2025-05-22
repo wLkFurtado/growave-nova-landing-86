@@ -7,14 +7,17 @@ import { countries } from "@/data/countries";
 // Function to format phone number with country code for storage
 const formatPhoneForStorage = (formData: FormValues): string => {
   const country = countries.find(c => c.code === formData.countryCode) || countries[0];
-  return `${country.dial_code}${formData.phone.replace(/\D/g, '')}`;
+  return `+${country.dial_code}${formData.phone.replace(/\D/g, '')}`;
 };
 
 // Contacts
 export const saveContactToSupabase = async (formData: FormValues): Promise<{ success: boolean; data?: any; error?: any }> => {
   try {
+    console.log('Saving contact to Supabase with data:', formData);
+    
     // Format phone with country code
     const phoneWithCode = formatPhoneForStorage(formData);
+    console.log('Formatted phone for storage:', phoneWithCode);
     
     const contactData = {
       name: formData.name,
@@ -31,6 +34,8 @@ export const saveContactToSupabase = async (formData: FormValues): Promise<{ suc
       lead_score: calculateLeadScore(formData)
     };
 
+    console.log('Contact data being sent to Supabase:', contactData);
+
     const { data, error } = await supabase
       .from('contacts')
       .insert(contactData)
@@ -42,6 +47,7 @@ export const saveContactToSupabase = async (formData: FormValues): Promise<{ suc
       return { success: false, error };
     }
 
+    console.log('Successfully saved contact to Supabase:', data);
     return { success: true, data };
   } catch (e) {
     console.error('Exception saving contact to Supabase:', e);

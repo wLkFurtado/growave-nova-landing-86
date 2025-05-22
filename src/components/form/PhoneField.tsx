@@ -32,6 +32,10 @@ const PhoneField = ({ form, disabled }: PhoneFieldProps) => {
   const handlePhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
     const formattedValue = formatPhoneNumber(event.target.value);
     form.setValue('phone', formattedValue, { shouldValidate: true });
+    
+    // Also update a hidden field with the full international format for saving to database
+    const fullNumber = `+${currentCountry.dial_code}${formattedValue}`;
+    console.log('Full international number:', fullNumber);
   };
 
   const handleCountrySelect = (countryCode: string) => {

@@ -21,8 +21,9 @@ export const sendFormDataToWebhook = async (formData: FormValues) => {
     const country = countries.find(c => c.code === formData.countryCode) || countries[0];
     const dialCode = country.dial_code;
     
-    // Format phone number without any special characters
+    // Format phone number with country code
     const formattedPhone = `${dialCode}${formData.phone.replace(/\D/g, '')}`;
+    console.log('Formatted phone with country code:', formattedPhone);
     
     // Prepare the payload
     const payload = {

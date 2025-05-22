@@ -43,12 +43,17 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
   const handleSubmitInitialForm = async () => {
     // Validate step 1 fields
     const step1Fields = ['name', 'phone', 'instagram'];
-    const step1Valid = await step1Fields.every(async (field) => {
+    let step1Valid = true;
+    
+    for (const field of step1Fields) {
       const isValid = await form.trigger(field as keyof FormValues);
-      return isValid;
-    });
+      if (!isValid) {
+        step1Valid = false;
+      }
+    }
 
     if (!step1Valid) {
+      console.log('Form validation failed for step 1');
       return;
     }
 

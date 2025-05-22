@@ -7,7 +7,9 @@ import { calculateLeadScore } from "../utils/scoreUtils";
 // Function to format phone number with country code for storage
 export const formatPhoneForStorage = (formData: FormValues): string => {
   const country = countries.find(c => c.code === formData.countryCode) || countries[0];
-  return `+${country.dial_code}${formData.phone.replace(/\D/g, '')}`;
+  const dialCode = country.dial_code;
+  // Ensure the phone number is properly formatted with a + prefix for the country code
+  return `+${dialCode}${formData.phone.replace(/\D/g, '')}`;
 };
 
 // Contacts
@@ -31,7 +33,8 @@ export const saveContactToSupabase = async (formData: FormValues): Promise<{ suc
       experiencia_anterior: formData.experienciaAnterior,
       expectativas_agencia: formData.expectativasAgencia,
       origem: window.location.href,
-      lead_score: calculateLeadScore(formData)
+      lead_score: calculateLeadScore(formData),
+      data_submissao: new Date().toISOString()
     };
 
     console.log('Contact data being sent to Supabase:', contactData);

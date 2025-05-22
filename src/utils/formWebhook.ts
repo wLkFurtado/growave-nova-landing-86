@@ -13,6 +13,11 @@ export const sendFormDataToWebhook = async (formData: FormValues) => {
     const saveResult = await saveContactToSupabase(formData);
     console.log('Supabase save result:', saveResult);
     
+    if (!saveResult.success) {
+      console.error('Failed to save contact to Supabase:', saveResult.error);
+      // Continue with webhook anyway, but log the error
+    }
+    
     // Generate natural language summary
     const leadSummaryText = generateLeadSummary(formData);
     console.log('Generated lead summary:', leadSummaryText);

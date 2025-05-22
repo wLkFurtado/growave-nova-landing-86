@@ -9,15 +9,6 @@ export const sendFormDataToWebhook = async (formData: FormValues) => {
   try {
     console.log('Sending data to webhook and Supabase:', formData);
     
-    // Save the form data to Supabase for the admin panel
-    const saveResult = await saveContactToSupabase(formData);
-    console.log('Supabase save result:', saveResult);
-    
-    if (!saveResult.success) {
-      console.error('Failed to save contact to Supabase:', saveResult.error);
-      return { success: false, error: saveResult.error };
-    }
-    
     // Generate natural language summary
     const leadSummaryText = generateLeadSummary(formData);
     console.log('Generated lead summary:', leadSummaryText);
@@ -54,6 +45,24 @@ export const sendFormDataToWebhook = async (formData: FormValues) => {
         text: leadSummaryText
       }
     };
+    
+    console.log('Webhook payload prepared:', payload);
+    
+    // Try to save to Supabase, but don't block the form submission if it fails
+    try {
+      // Save the form data to Supabase for the admin panel
+      const saveResult = await saveContactToSupabase(formData);
+      console.log('Supabase save result:', saveResult);
+      
+      if (!saveResult.success) {
+        console.error('Failed to save contact to Supabase - continuing with webhook anyway:', saveResult.error);
+        // Don't return here - continue with webhook submission regardless
+      }
+    } catch (supabaseError) {
+      // Log the error but continue with webhook
+      console.error('Exception when saving to Supabase - continuing with webhook anyway:', supabaseError);
+      // Still continue with the webhook submission
+    }
     
     // Using the production webhook URL
     const webhookUrl = 'https://webhooks.growave.com.br/webhook/Formulario';

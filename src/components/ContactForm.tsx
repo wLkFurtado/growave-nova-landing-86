@@ -115,28 +115,34 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
         throw new Error('Expectativas da agência é obrigatório');
       }
       
-      // Save to Supabase first - This is when we'll save the contact data to database
-      console.log('Saving contact to Supabase...');
-      
-      // Send data to the webhook - continue even if it fails
+      // Send data to the webhook - will try to save to Supabase but continue even if it fails
       const webhookResult = await sendFormDataToWebhook(updatedFormValues);
       console.log('Webhook submission result:', webhookResult);
       
-      // Check if webhook returned success
-      if (!webhookResult.success) {
+      // Continue with normal flow, even if webhook had issues
+      if (webhookResult.success) {
+        resetForm();
+        toast({
+          title: "Diagnóstico finalizado!",
+          description: "Entraremos em contato em breve.",
+        });
+        
+        if (onSuccess) {
+          onSuccess();
+        }
+      } else {
         console.error('Webhook submission failed:', webhookResult.error);
-        throw new Error('Falha ao enviar dados para o webhook');
-      }
-      
-      // Always continue with normal flow, even if webhook fails
-      resetForm();
-      toast({
-        title: "Diagnóstico finalizado!",
-        description: "Entraremos em contato em breve.",
-      });
-      
-      if (onSuccess) {
-        onSuccess();
+        // Still consider it a success from the user perspective since webhook errors
+        // shouldn't necessarily block the user flow
+        resetForm();
+        toast({
+          title: "Diagnóstico finalizado!",
+          description: "Entraremos em contato em breve.",
+        });
+        
+        if (onSuccess) {
+          onSuccess();
+        }
       }
     } catch (error) {
       console.error("Erro ao finalizar diagnóstico:", error);

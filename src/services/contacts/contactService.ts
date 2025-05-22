@@ -118,6 +118,8 @@ export const saveContactToSupabase = async (formData: FormValues): Promise<{ suc
 
     console.log('Contact data being sent to Supabase:', contactData);
 
+    // Note: If there's a RLS policy preventing anonymous inserts, this will fail
+    // In that case, we'll catch the error below
     const { data, error } = await supabase
       .from('contacts')
       .insert(contactData)
@@ -125,7 +127,7 @@ export const saveContactToSupabase = async (formData: FormValues): Promise<{ suc
       .single();
 
     if (error) {
-      console.error('Error saving contact to Supabase:', error);
+      console.error('Error saving contact to Supabase (possibly RLS policy violation):', error);
       return { success: false, error };
     }
 

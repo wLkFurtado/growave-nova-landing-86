@@ -9,7 +9,9 @@ export const formatPhoneForStorage = (formData: FormValues): string => {
   const country = countries.find(c => c.code === formData.countryCode) || countries[0];
   const dialCode = country.dial_code;
   // Ensure the phone number is properly formatted with a + prefix for the country code
-  return `+${dialCode}${formData.phone.replace(/\D/g, '')}`;
+  // Remove any non-digit characters from phone
+  const cleanPhone = formData.phone.replace(/\D/g, '');
+  return `${dialCode}${cleanPhone}`;
 };
 
 // Define type for the contacts table based on what we created in the database
@@ -30,10 +32,69 @@ type Contact = {
   data_submissao: string;
 };
 
+// Validate form data against expected enum values
+const validateFormData = (formData: FormValues): boolean => {
+  const validInvestimentoAds = ['nao_invisto', 'menos_1000', 'entre_1000_3000', 'entre_3000_5000', 'acima_5000'];
+  const validEquipeFrontOffice = ['secretaria', 'equipe', 'atendo_sozinho', 'procurando'];
+  const validFaturamentoMensal = ['ate_10mil', 'entre_10mil_30mil', 'entre_30mil_50mil', 'acima_50mil', 'nao_informar'];
+  
+  if (!formData.name || formData.name.length < 2) {
+    console.error('Nome inválido:', formData.name);
+    return false;
+  }
+  
+  if (!formData.phone || !/^\d{9,15}$/.test(formData.phone.replace(/\D/g, ''))) {
+    console.error('Telefone inválido:', formData.phone);
+    return false;
+  }
+  
+  if (!formData.instagram || formData.instagram.length < 1) {
+    console.error('Instagram inválido:', formData.instagram);
+    return false;
+  }
+  
+  if (!formData.investimentoAds || !validInvestimentoAds.includes(formData.investimentoAds)) {
+    console.error('Investimento em Ads inválido:', formData.investimentoAds);
+    return false;
+  }
+  
+  if (!formData.equipeFrontOffice || !validEquipeFrontOffice.includes(formData.equipeFrontOffice)) {
+    console.error('Equipe Front Office inválida:', formData.equipeFrontOffice);
+    return false;
+  }
+  
+  if (!formData.faturamentoMensal || !validFaturamentoMensal.includes(formData.faturamentoMensal)) {
+    console.error('Faturamento Mensal inválido:', formData.faturamentoMensal);
+    return false;
+  }
+  
+  if (formData.trabalhouComAgencia === undefined) {
+    console.error('Trabalhou com Agência não definido:', formData.trabalhouComAgencia);
+    return false;
+  }
+  
+  if (formData.trabalhouComAgencia && (!formData.experienciaAnterior || formData.experienciaAnterior.length === 0)) {
+    console.error('Experiência Anterior obrigatória quando trabalhou com agência:', formData.experienciaAnterior);
+    return false;
+  }
+  
+  if (!formData.expectativasAgencia || formData.expectativasAgencia.length === 0) {
+    console.error('Expectativas Agência inválidas:', formData.expectativasAgencia);
+    return false;
+  }
+  
+  return true;
+};
+
 // Contacts
 export const saveContactToSupabase = async (formData: FormValues): Promise<{ success: boolean; data?: Contact; error?: any }> => {
   try {
     console.log('Saving contact to Supabase with data:', formData);
+    
+    // Validate form data before saving
+    if (!validateFormData(formData)) {
+      return { success: false, error: 'Dados de contato inválidos' };
+    }
     
     // Format phone with country code
     const phoneWithCode = formatPhoneForStorage(formData);
@@ -48,7 +109,7 @@ export const saveContactToSupabase = async (formData: FormValues): Promise<{ suc
       equipe_front_office: formData.equipeFrontOffice,
       faturamento_mensal: formData.faturamentoMensal,
       trabalhou_com_agencia: formData.trabalhouComAgencia,
-      experiencia_anterior: formData.experienciaAnterior,
+      experiencia_anterior: formData.experienciaAnterior || null,
       expectativas_agencia: formData.expectativasAgencia,
       origem: window.location.href,
       lead_score: calculateLeadScore(formData),

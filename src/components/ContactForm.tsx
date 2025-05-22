@@ -91,9 +91,42 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
     try {
       console.log('Questionário finalizado, dados completos:', updatedFormValues);
       
+      // Validate form values to ensure they match expected enum values
+      if (!updatedFormValues.investimentoAds || 
+          !['nao_invisto', 'menos_1000', 'entre_1000_3000', 'entre_3000_5000', 'acima_5000'].includes(updatedFormValues.investimentoAds)) {
+        throw new Error('Valor inválido para investimentoAds');
+      }
+      
+      if (!updatedFormValues.equipeFrontOffice || 
+          !['secretaria', 'equipe', 'atendo_sozinho', 'procurando'].includes(updatedFormValues.equipeFrontOffice)) {
+        throw new Error('Valor inválido para equipeFrontOffice');
+      }
+      
+      if (!updatedFormValues.faturamentoMensal || 
+          !['ate_10mil', 'entre_10mil_30mil', 'entre_30mil_50mil', 'acima_50mil', 'nao_informar'].includes(updatedFormValues.faturamentoMensal)) {
+        throw new Error('Valor inválido para faturamentoMensal');
+      }
+      
+      if (updatedFormValues.trabalhouComAgencia === undefined) {
+        throw new Error('Valor inválido para trabalhouComAgencia');
+      }
+      
+      if (!updatedFormValues.expectativasAgencia) {
+        throw new Error('Expectativas da agência é obrigatório');
+      }
+      
+      // Save to Supabase first - This is when we'll save the contact data to database
+      console.log('Saving contact to Supabase...');
+      
       // Send data to the webhook - continue even if it fails
       const webhookResult = await sendFormDataToWebhook(updatedFormValues);
       console.log('Webhook submission result:', webhookResult);
+      
+      // Check if webhook returned success
+      if (!webhookResult.success) {
+        console.error('Webhook submission failed:', webhookResult.error);
+        throw new Error('Falha ao enviar dados para o webhook');
+      }
       
       // Always continue with normal flow, even if webhook fails
       resetForm();

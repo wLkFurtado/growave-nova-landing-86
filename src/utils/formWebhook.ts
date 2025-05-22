@@ -7,7 +7,7 @@ import { countries } from '@/data/countries';
 // Function to send form data to the webhook with CORS handling
 export const sendFormDataToWebhook = async (formData: FormValues) => {
   try {
-    console.log('Sending data to webhook:', formData);
+    console.log('Sending data to webhook and Supabase:', formData);
     
     // Save the form data to Supabase for the admin panel
     const saveResult = await saveContactToSupabase(formData);
@@ -15,7 +15,7 @@ export const sendFormDataToWebhook = async (formData: FormValues) => {
     
     if (!saveResult.success) {
       console.error('Failed to save contact to Supabase:', saveResult.error);
-      // Continue with webhook anyway, but log the error
+      return { success: false, error: saveResult.error };
     }
     
     // Generate natural language summary
@@ -81,7 +81,7 @@ export const sendFormDataToWebhook = async (formData: FormValues) => {
     });
   } catch (error) {
     console.error('Erro detalhado ao enviar dados para webhook:', error);
-    // Don't throw the error, so the form submission still succeeds
+    // Return the error so we can handle it in the form submission
     return { success: false, error: error };
   }
 };

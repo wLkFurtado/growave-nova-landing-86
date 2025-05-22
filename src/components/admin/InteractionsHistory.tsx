@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { PlusCircle } from 'lucide-react';
-import { getContactInteractions } from '@/services/supabaseService';
+import { getContactInteractions } from '@/services/contacts/interactionService';
 import { Button } from '@/components/ui/button';
 
 interface Interaction {

@@ -27,7 +27,7 @@ import {
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { addContactInteraction } from '@/services/supabaseService';
+import { addContactInteraction } from '@/services/contacts/interactionService';
 import { useToast } from '@/hooks/use-toast';
 
 const interactionFormSchema = z.object({

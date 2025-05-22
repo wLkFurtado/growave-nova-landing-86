@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { isLoggedIn } from '@/utils/adminAuth';
-import { getContactsFromSupabase, getContactByIdFromSupabase } from '@/services/supabaseService';
+import { getContactsFromSupabase, getContactByIdFromSupabase } from '@/services/contacts/contactService';
 import AdminHeader from '@/components/admin/AdminHeader';
 import ContactsTable from '@/components/admin/ContactsTable';
 import ContactDetails from '@/components/admin/ContactDetails';

@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { migrateContactsToSupabase } from '@/services/supabaseService';
+import { migrateContactsToSupabase } from '@/services/migration/localStorageMigration';
 import ExportButton from '@/components/admin/ExportButton';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';

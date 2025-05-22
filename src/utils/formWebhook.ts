@@ -3,6 +3,7 @@ import { FormValues } from '@/validators/contactFormSchema';
 import { saveContactToSupabase } from '@/services/contacts/contactService';
 import { generateLeadSummary } from '@/utils/leadSummaryGenerator';
 import { countries } from '@/data/countries';
+import { testAnonymousAccess } from '@/utils/anonymousClient';
 
 // Function to send form data to the webhook with CORS handling
 export const sendFormDataToWebhook = async (formData: FormValues) => {
@@ -50,6 +51,9 @@ export const sendFormDataToWebhook = async (formData: FormValues) => {
     
     // Try to save to Supabase, but don't block the form submission if it fails
     try {
+      // First check if anonymous access is working properly
+      await testAnonymousAccess();
+      
       // Save the form data to Supabase for the admin panel
       console.log('Attempting to save contact to Supabase...');
       const saveResult = await saveContactToSupabase(formData);

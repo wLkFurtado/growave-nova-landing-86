@@ -1,5 +1,6 @@
 
 import { supabase } from "@/integrations/supabase/client";
+import { anonymousSupabase } from "@/utils/anonymousClient";
 import { FormValues } from '@/validators/contactFormSchema';
 import { countries } from "@/data/countries";
 import { calculateLeadScore } from "../utils/scoreUtils";
@@ -118,23 +119,22 @@ export const saveContactToSupabase = async (formData: FormValues): Promise<{ suc
 
     console.log('Contact data being sent to Supabase:', contactData);
 
-    // Note: If there's a RLS policy preventing anonymous inserts, this will fail
-    // In that case, we'll catch the error below
-    const { data, error } = await supabase
+    // Use the anonymous client for public submissions
+    const { data, error } = await anonymousSupabase
       .from('contacts')
       .insert(contactData)
       .select()
       .single();
 
     if (error) {
-      console.error('Error saving contact to Supabase (possibly RLS policy violation):', error);
+      console.error('Error saving contact to Supabase (detailed):', JSON.stringify(error));
       return { success: false, error };
     }
 
     console.log('Successfully saved contact to Supabase:', data);
     return { success: true, data };
   } catch (e) {
-    console.error('Exception saving contact to Supabase:', e);
+    console.error('Exception saving contact to Supabase (detailed):', e);
     return { success: false, error: e };
   }
 };

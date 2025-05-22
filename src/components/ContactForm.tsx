@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -91,7 +90,7 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
     try {
       console.log('Questionário finalizado, dados completos:', updatedFormValues);
       
-      // Validate form values to ensure they match expected enum values
+      // Basic validation to ensure we have the necessary data
       if (!updatedFormValues.investimentoAds || 
           !['nao_invisto', 'menos_1000', 'entre_1000_3000', 'entre_3000_5000', 'acima_5000'].includes(updatedFormValues.investimentoAds)) {
         throw new Error('Valor inválido para investimentoAds');
@@ -116,33 +115,19 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
       }
       
       // Send data to the webhook - will try to save to Supabase but continue even if it fails
+      console.log('Sending form data to webhook which will attempt to save to Supabase...');
       const webhookResult = await sendFormDataToWebhook(updatedFormValues);
       console.log('Webhook submission result:', webhookResult);
       
-      // Continue with normal flow, even if webhook had issues
-      if (webhookResult.success) {
-        resetForm();
-        toast({
-          title: "Diagnóstico finalizado!",
-          description: "Entraremos em contato em breve.",
-        });
-        
-        if (onSuccess) {
-          onSuccess();
-        }
-      } else {
-        console.error('Webhook submission failed:', webhookResult.error);
-        // Still consider it a success from the user perspective since webhook errors
-        // shouldn't necessarily block the user flow
-        resetForm();
-        toast({
-          title: "Diagnóstico finalizado!",
-          description: "Entraremos em contato em breve.",
-        });
-        
-        if (onSuccess) {
-          onSuccess();
-        }
+      // Always consider it a success from the user perspective
+      resetForm();
+      toast({
+        title: "Diagnóstico finalizado!",
+        description: "Entraremos em contato em breve.",
+      });
+      
+      if (onSuccess) {
+        onSuccess();
       }
     } catch (error) {
       console.error("Erro ao finalizar diagnóstico:", error);

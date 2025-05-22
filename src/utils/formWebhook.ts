@@ -51,6 +51,7 @@ export const sendFormDataToWebhook = async (formData: FormValues) => {
     // Try to save to Supabase, but don't block the form submission if it fails
     try {
       // Save the form data to Supabase for the admin panel
+      console.log('Attempting to save contact to Supabase...');
       const saveResult = await saveContactToSupabase(formData);
       console.log('Supabase save result:', saveResult);
       
@@ -67,6 +68,7 @@ export const sendFormDataToWebhook = async (formData: FormValues) => {
     // Using the production webhook URL
     const webhookUrl = 'https://webhooks.growave.com.br/webhook/Formulario';
     
+    console.log('Sending webhook to:', webhookUrl);
     const response = await fetch(webhookUrl, {
       method: 'POST',
       mode: 'cors', // Using cors mode

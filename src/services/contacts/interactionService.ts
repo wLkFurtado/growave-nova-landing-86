@@ -1,8 +1,18 @@
 
 import { supabase } from "@/integrations/supabase/client";
 
+// Define type for interactions based on the database schema
+type ContactInteraction = {
+  id: string;
+  contact_id: string;
+  interaction_type: string;
+  notes: string;
+  interaction_date: string;
+  created_by?: string | null;
+};
+
 // Contact Interactions
-export const getContactInteractions = async (contactId: string): Promise<{ success: boolean; data?: any[]; error?: any }> => {
+export const getContactInteractions = async (contactId: string): Promise<{ success: boolean; data?: ContactInteraction[]; error?: any }> => {
   try {
     const { data, error } = await supabase
       .from('contact_interactions')
@@ -26,7 +36,7 @@ export const addContactInteraction = async (
   contactId: string, 
   interactionType: string, 
   notes: string
-): Promise<{ success: boolean; data?: any; error?: any }> => {
+): Promise<{ success: boolean; data?: ContactInteraction; error?: any }> => {
   try {
     const { data, error } = await supabase
       .from('contact_interactions')

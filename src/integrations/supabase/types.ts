@@ -9,7 +9,92 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      contact_interactions: {
+        Row: {
+          contact_id: string
+          created_by: string | null
+          id: string
+          interaction_date: string
+          interaction_type: string
+          notes: string
+        }
+        Insert: {
+          contact_id: string
+          created_by?: string | null
+          id?: string
+          interaction_date?: string
+          interaction_type: string
+          notes: string
+        }
+        Update: {
+          contact_id?: string
+          created_by?: string | null
+          id?: string
+          interaction_date?: string
+          interaction_type?: string
+          notes?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contact_interactions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      contacts: {
+        Row: {
+          country_code: string
+          data_submissao: string
+          equipe_front_office: string
+          expectativas_agencia: string
+          experiencia_anterior: string | null
+          faturamento_mensal: string
+          id: string
+          instagram: string
+          investimento_ads: string
+          lead_score: number | null
+          name: string
+          origem: string | null
+          phone: string
+          trabalhou_com_agencia: boolean
+        }
+        Insert: {
+          country_code?: string
+          data_submissao?: string
+          equipe_front_office: string
+          expectativas_agencia: string
+          experiencia_anterior?: string | null
+          faturamento_mensal: string
+          id?: string
+          instagram: string
+          investimento_ads: string
+          lead_score?: number | null
+          name: string
+          origem?: string | null
+          phone: string
+          trabalhou_com_agencia: boolean
+        }
+        Update: {
+          country_code?: string
+          data_submissao?: string
+          equipe_front_office?: string
+          expectativas_agencia?: string
+          experiencia_anterior?: string | null
+          faturamento_mensal?: string
+          id?: string
+          instagram?: string
+          investimento_ads?: string
+          lead_score?: number | null
+          name?: string
+          origem?: string | null
+          phone?: string
+          trabalhou_com_agencia?: boolean
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

@@ -12,8 +12,26 @@ export const formatPhoneForStorage = (formData: FormValues): string => {
   return `+${dialCode}${formData.phone.replace(/\D/g, '')}`;
 };
 
+// Define type for the contacts table based on what we created in the database
+type Contact = {
+  id: string;
+  name: string;
+  phone: string;
+  country_code: string;
+  instagram: string;
+  investimento_ads: string;
+  equipe_front_office: string;
+  faturamento_mensal: string;
+  trabalhou_com_agencia: boolean;
+  experiencia_anterior: string | null;
+  expectativas_agencia: string;
+  origem: string | null;
+  lead_score: number | null;
+  data_submissao: string;
+};
+
 // Contacts
-export const saveContactToSupabase = async (formData: FormValues): Promise<{ success: boolean; data?: any; error?: any }> => {
+export const saveContactToSupabase = async (formData: FormValues): Promise<{ success: boolean; data?: Contact; error?: any }> => {
   try {
     console.log('Saving contact to Supabase with data:', formData);
     
@@ -58,7 +76,7 @@ export const saveContactToSupabase = async (formData: FormValues): Promise<{ suc
   }
 };
 
-export const getContactsFromSupabase = async (): Promise<{ success: boolean; data?: any[]; error?: any }> => {
+export const getContactsFromSupabase = async (): Promise<{ success: boolean; data?: Contact[]; error?: any }> => {
   try {
     const { data, error } = await supabase
       .from('contacts')
@@ -77,7 +95,7 @@ export const getContactsFromSupabase = async (): Promise<{ success: boolean; dat
   }
 };
 
-export const getContactByIdFromSupabase = async (id: string): Promise<{ success: boolean; data?: any; error?: any }> => {
+export const getContactByIdFromSupabase = async (id: string): Promise<{ success: boolean; data?: Contact; error?: any }> => {
   try {
     const { data, error } = await supabase
       .from('contacts')

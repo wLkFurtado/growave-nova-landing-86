@@ -3,6 +3,24 @@ import { supabase } from "@/integrations/supabase/client";
 import { ContactEntry } from '@/utils/contactsStorage';
 import { calculateLeadScore } from '../utils/scoreUtils';
 
+// Define type for the contacts table based on what we created in the database
+type Contact = {
+  id: string;
+  name: string;
+  phone: string;
+  country_code: string;
+  instagram: string;
+  investimento_ads: string;
+  equipe_front_office: string;
+  faturamento_mensal: string;
+  trabalhou_com_agencia: boolean;
+  experiencia_anterior: string | null;
+  expectativas_agencia: string;
+  origem: string | null;
+  lead_score: number | null;
+  data_submissao: string;
+};
+
 // Data migration function
 export const migrateContactsToSupabase = async (): Promise<{ success: boolean; count: number; error?: any }> => {
   // Get contacts from localStorage

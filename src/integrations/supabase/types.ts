@@ -46,6 +46,7 @@ export type Database = {
       }
       contacts: {
         Row: {
+          contact_id: string | null
           country_code: string
           data_submissao: string
           equipe_front_office: string
@@ -62,6 +63,7 @@ export type Database = {
           trabalhou_com_agencia: boolean
         }
         Insert: {
+          contact_id?: string | null
           country_code?: string
           data_submissao?: string
           equipe_front_office: string
@@ -78,6 +80,7 @@ export type Database = {
           trabalhou_com_agencia: boolean
         }
         Update: {
+          contact_id?: string | null
           country_code?: string
           data_submissao?: string
           equipe_front_office?: string

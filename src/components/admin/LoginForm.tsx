@@ -13,6 +13,7 @@ import { loginWithEmail } from '@/services/auth/authService';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { createAdminUser } from '@/utils/createAdminUser';
 
 // Login form schema
 const loginSchema = z.object({
@@ -26,6 +27,7 @@ const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
+  const [creatingAdmin, setCreatingAdmin] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
@@ -93,6 +95,36 @@ const LoginForm = () => {
       setAuthError('Ocorreu um erro ao fazer login. Tente novamente mais tarde.');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleCreateAdminUser = async () => {
+    setCreatingAdmin(true);
+    try {
+      const result = await createAdminUser();
+      if (result.success) {
+        toast({
+          title: 'Usuário admin criado',
+          description: 'Usuário administrativo criado com sucesso. Você pode fazer login agora.',
+        });
+        // Pre-fill the form with the admin email
+        form.setValue('username', 'wallker.furtado@gmail.com');
+      } else {
+        toast({
+          title: 'Erro ao criar usuário',
+          description: result.message || 'Ocorreu um erro ao criar o usuário administrativo.',
+          variant: 'destructive',
+        });
+      }
+    } catch (error) {
+      console.error('Error creating admin:', error);
+      toast({
+        title: 'Erro',
+        description: 'Ocorreu um erro ao criar o usuário administrativo.',
+        variant: 'destructive',
+      });
+    } finally {
+      setCreatingAdmin(false);
     }
   };
   
@@ -165,10 +197,19 @@ const LoginForm = () => {
             </Button>
           </div>
           
-          <div className="text-center text-sm text-gray-400 mt-4">
-            <p>Credenciais de demonstração</p>
-            <p>E-mail: admin@growave.com</p>
-            <p>Senha: adminGrowave123</p>
+          <div className="mt-4">
+            <Button 
+              type="button" 
+              variant="outline"
+              className="w-full border-growave-green text-growave-green hover:bg-growave-green/10"
+              onClick={handleCreateAdminUser}
+              disabled={creatingAdmin}
+            >
+              {creatingAdmin ? 'Criando usuário...' : 'Criar usuário admin (wallker.furtado@gmail.com)'}
+            </Button>
+            <p className="text-center text-xs text-gray-400 mt-2">
+              Este botão é apenas para uso inicial e deve ser removido após a criação do usuário.
+            </p>
           </div>
         </form>
       </Form>

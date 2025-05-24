@@ -7,6 +7,7 @@ import { calculateLeadScore } from '../utils/scoreUtils';
 type Contact = {
   id: string;
   name: string;
+  email: string;
   phone: string;
   country_code: string;
   instagram: string;
@@ -44,6 +45,7 @@ export const migrateContactsToSupabase = async (): Promise<{ success: boolean; c
       return supabase.from('contacts').insert({
         id: contact.id.replace('contact-', ''),
         name: contact.name,
+        email: contact.email || 'email@nao-informado.com', // Provide default email for old contacts
         phone: contact.phone,
         instagram: contact.instagram,
         investimento_ads: contact.investimentoAds,

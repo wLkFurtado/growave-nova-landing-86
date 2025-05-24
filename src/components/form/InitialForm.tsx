@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import FormStepIndicator from './FormStepIndicator';
 import NameField from './NameField';
+import EmailField from './EmailField';
 import PhoneField from './PhoneField';
 import InstagramField from './InstagramField';
 import LoadingIndicator from './LoadingIndicator';
@@ -27,6 +28,7 @@ const InitialForm = ({ form, isSubmitting, isLoading, onSubmit }: InitialFormPro
         </div>
         
         <NameField form={form} disabled={isSubmitting} />
+        <EmailField form={form} disabled={isSubmitting} />
         <PhoneField form={form} disabled={isSubmitting} />
         <InstagramField form={form} disabled={isSubmitting} />
 

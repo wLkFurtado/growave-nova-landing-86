@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,6 +28,7 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
+      email: '',
       countryCode: defaultCountry.code,
       phone: '',
       instagram: '',
@@ -41,7 +43,7 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
 
   const handleSubmitInitialForm = async () => {
     // Validate step 1 fields
-    const step1Fields = ['name', 'phone', 'instagram'];
+    const step1Fields = ['name', 'email', 'phone', 'instagram'];
     let step1Valid = true;
     
     for (const field of step1Fields) {

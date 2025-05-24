@@ -1,40 +1,36 @@
 
-import { Instagram } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { UseFormReturn } from 'react-hook-form';
 import { FormValues } from '@/validators/contactFormSchema';
 
-interface InstagramFieldProps {
+interface EmailFieldProps {
   form: UseFormReturn<FormValues>;
   disabled: boolean;
 }
 
-const InstagramField = ({ form, disabled }: InstagramFieldProps) => {
+const EmailField = ({ form, disabled }: EmailFieldProps) => {
   return (
     <FormField
       control={form.control}
-      name="instagram"
+      name="email"
       render={({ field }) => (
         <FormItem>
           <FormLabel className="text-white">
-            Instagram da clínica/consultório
+            Email
             <span className="text-red-500 ml-1">*</span>
           </FormLabel>
           <FormControl>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                <Instagram className="h-4 w-4" />
+                <Mail className="h-4 w-4" />
               </span>
               <Input 
-                placeholder="@suaclinica" 
+                type="email"
+                placeholder="seu@email.com" 
                 className="pl-10 bg-white/10 border-white/20 text-white" 
                 {...field}
-                value={field.value.startsWith('@') ? field.value : `@${field.value.replace('@', '')}`}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  field.onChange(value.startsWith('@') ? value : `@${value.replace('@', '')}`);
-                }}
                 disabled={disabled}
               />
             </div>
@@ -46,4 +42,4 @@ const InstagramField = ({ form, disabled }: InstagramFieldProps) => {
   );
 };
 
-export default InstagramField;
+export default EmailField;

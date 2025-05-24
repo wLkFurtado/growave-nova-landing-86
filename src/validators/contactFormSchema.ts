@@ -4,6 +4,7 @@ import { z } from 'zod';
 export const formSchema = z.object({
   // First stage fields
   name: z.string().min(2, { message: 'Nome precisa ter pelo menos 2 caracteres' }),
+  email: z.string().email({ message: 'Email inválido' }).min(1, { message: 'Email é obrigatório' }),
   countryCode: z.string().default("BR"), // Default to Brazil
   phone: z.string().regex(/^\d{9,15}$/, { 
     message: 'Telefone inválido. Digite apenas números.' 

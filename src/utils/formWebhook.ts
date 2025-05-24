@@ -26,6 +26,7 @@ export const sendFormDataToWebhook = async (formData: FormValues) => {
     const payload = {
       // Basic data
       name: formData.name,
+      email: formData.email,
       phone: formattedPhone, // Full international number without special characters
       instagram: formData.instagram.replace('@', ''),
       

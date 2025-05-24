@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -19,6 +20,7 @@ import {
 interface ContactEntry {
   id: string;
   name: string;
+  email: string;
   instagram: string;
   phone: string;
   data_submissao: string;
@@ -39,6 +41,7 @@ const ContactsTable = ({ contacts, onViewDetails, isLoading = false }: ContactsT
   // Filter contacts based on search term
   const filteredContacts = contacts.filter(contact => 
     contact.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    contact.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     contact.instagram?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     contact.phone?.includes(searchTerm)
   );
@@ -87,7 +90,7 @@ const ContactsTable = ({ contacts, onViewDetails, isLoading = false }: ContactsT
       <div className="relative">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
         <Input
-          placeholder="Buscar por nome, Instagram ou telefone..."
+          placeholder="Buscar por nome, email, Instagram ou telefone..."
           className="pl-10 bg-white/10 border-white/20 text-white"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -99,6 +102,7 @@ const ContactsTable = ({ contacts, onViewDetails, isLoading = false }: ContactsT
           <TableHeader className="bg-white/10">
             <TableRow>
               <TableHead className="text-white">Nome</TableHead>
+              <TableHead className="text-white">Email</TableHead>
               <TableHead className="text-white">Instagram</TableHead>
               <TableHead className="text-white">Telefone</TableHead>
               <TableHead className="text-white">Classificação</TableHead>
@@ -109,7 +113,7 @@ const ContactsTable = ({ contacts, onViewDetails, isLoading = false }: ContactsT
           <TableBody>
             {isLoading ? (
               <TableRow>
-                <TableCell colSpan={6} className="text-center py-8">
+                <TableCell colSpan={7} className="text-center py-8">
                   <div className="flex justify-center">
                     <div className="animate-spin rounded-full h-6 w-6 border-2 border-growave-green"></div>
                   </div>
@@ -119,6 +123,7 @@ const ContactsTable = ({ contacts, onViewDetails, isLoading = false }: ContactsT
               filteredContacts.map((contact) => (
                 <TableRow key={contact.id} className="border-white/10">
                   <TableCell className="text-white">{contact.name}</TableCell>
+                  <TableCell className="text-white">{contact.email}</TableCell>
                   <TableCell className="text-white">{contact.instagram}</TableCell>
                   <TableCell className="text-white">{contact.phone}</TableCell>
                   <TableCell>
@@ -147,7 +152,7 @@ const ContactsTable = ({ contacts, onViewDetails, isLoading = false }: ContactsT
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={6} className="text-center text-white/60 py-8">
+                <TableCell colSpan={7} className="text-center text-white/60 py-8">
                   {searchTerm ? 'Nenhum contato encontrado' : 'Nenhum contato registrado'}
                 </TableCell>
               </TableRow>

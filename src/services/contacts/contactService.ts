@@ -19,6 +19,7 @@ export const formatPhoneForStorage = (formData: FormValues): string => {
 type Contact = {
   id: string;
   name: string;
+  email: string;
   phone: string;
   country_code: string;
   instagram: string;
@@ -41,6 +42,11 @@ const validateFormData = (formData: FormValues): boolean => {
   
   if (!formData.name || formData.name.length < 2) {
     console.error('Nome inválido:', formData.name);
+    return false;
+  }
+  
+  if (!formData.email || !formData.email.includes('@')) {
+    console.error('Email inválido:', formData.email);
     return false;
   }
   
@@ -103,6 +109,7 @@ export const saveContactToSupabase = async (formData: FormValues): Promise<{ suc
     
     const contactData = {
       name: formData.name,
+      email: formData.email,
       phone: phoneWithCode,
       country_code: formData.countryCode,
       instagram: formData.instagram,

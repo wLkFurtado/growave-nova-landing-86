@@ -49,6 +49,7 @@ export type Database = {
           contact_id: string | null
           country_code: string
           data_submissao: string
+          email: string
           equipe_front_office: string
           expectativas_agencia: string
           experiencia_anterior: string | null
@@ -66,6 +67,7 @@ export type Database = {
           contact_id?: string | null
           country_code?: string
           data_submissao?: string
+          email: string
           equipe_front_office: string
           expectativas_agencia: string
           experiencia_anterior?: string | null
@@ -83,6 +85,7 @@ export type Database = {
           contact_id?: string | null
           country_code?: string
           data_submissao?: string
+          email?: string
           equipe_front_office?: string
           expectativas_agencia?: string
           experiencia_anterior?: string | null

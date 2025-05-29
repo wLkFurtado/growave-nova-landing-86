@@ -73,7 +73,7 @@ const HeroSection = () => {
         <div className="text-center max-w-4xl mx-auto py-[113px] px-[51px]">
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
             <h1 className={`sm:text-4xl font-bold lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-48' : 'mt-0'}`}>
-              Transforme sua Clínica com 
+              Transforme sua Clínica com o método 
               <span className="gradient-text block mt-0 my-[10px] py-0">Clínica com Rumo</span>
             </h1>
           </div>

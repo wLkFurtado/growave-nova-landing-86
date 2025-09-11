@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import ContactForm from './ContactForm';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { BackgroundPaths } from '@/components/ui/background-paths';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -20,29 +21,8 @@ const HeroSection = () => {
   return <div style={{
     height: isMobile ? '100vh' : 'calc(100vh - 80px)'
   }} className="relative flex items-center justify-center overflow-hidden my-[6px] py-0">
-      {/* Circuit board background with animation */}
-      <div className="absolute inset-0 z-0 circuit-pattern">
-        {/* Digital code lines animation overlay */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="code-line h-1 w-20 bg-growave-green absolute top-1/4 left-1/5 animate-pulse-soft"></div>
-          <div className="code-line h-1 w-40 bg-growave-green absolute top-1/3 right-1/4 animate-pulse-soft" style={{
-          animationDelay: '0.5s'
-        }}></div>
-          <div className="code-line h-1 w-32 bg-growave-green absolute bottom-1/3 left-1/3 animate-pulse-soft" style={{
-          animationDelay: '1s'
-        }}></div>
-          <div className="code-line h-1 w-24 bg-growave-green absolute bottom-1/4 right-1/5 animate-pulse-soft" style={{
-          animationDelay: '1.5s'
-        }}></div>
-          
-          <div className="code-square h-8 w-8 border border-growave-green absolute top-1/2 left-1/6 animate-pulse-soft" style={{
-          animationDelay: '0.7s'
-        }}></div>
-          <div className="code-square h-12 w-12 border border-growave-green absolute bottom-1/2 right-1/6 animate-pulse-soft" style={{
-          animationDelay: '1.2s'
-        }}></div>
-        </div>
-      </div>
+      {/* Background Paths Animation */}
+      <BackgroundPaths className="z-0" pathOpacity={0.4} />
       
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/95 pointer-events-none"></div>
       

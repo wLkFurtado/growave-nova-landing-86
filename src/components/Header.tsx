@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Spotlight } from '@/components/ui/spotlight';
 import ContactForm from './ContactForm';
 
 const Header = () => {
@@ -20,9 +19,7 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return <header className="py-1 lg:py-2 relative">
-      {/* Interactive spotlight effect for header */}
-      <Spotlight size={300} className="z-5" />
+  return <header className="py-1 lg:py-2">
       <div className="container mx-auto px-1 sm:px-2 lg:px-4">
         <div className="flex items-center justify-between sm:px-2 lg:px-[30px] py-[15px] px-[36px] mx-[2px] my-">
           <div className="flex items-center">

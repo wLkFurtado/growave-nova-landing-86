@@ -311,7 +311,7 @@ const ShaderHero = () => {
     <section ref={sectionRef} className="relative h-screen w-screen overflow-hidden">
       <ShaderBackground />
 
-      <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-6 px-6 pb-24 pt-36 sm:gap-8 sm:pt-44 md:px-10 lg:px-16">
+      <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-6 px-6 pb-24 pt-24 sm:gap-8 sm:pt-32 md:px-10 lg:px-16">
         <div ref={badgeRef} className="inline-flex items-center gap-2 rounded-full border border-growave-green/20 bg-growave-green/5 px-3 py-1.5 backdrop-blur-sm">
           <span className="text-[10px] font-light uppercase tracking-[0.08em] text-growave-green/70">Novo</span>
           <span className="h-1 w-1 rounded-full bg-growave-green/40" />

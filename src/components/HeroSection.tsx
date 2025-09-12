@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import ContactForm from './ContactForm';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { BackgroundPaths } from '@/components/ui/background-paths';
+import { Spotlight } from '@/components/ui/spotlight';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -23,6 +24,9 @@ const HeroSection = () => {
   }} className="relative flex items-center justify-center overflow-hidden my-[6px] py-0">
       {/* Background Paths Animation */}
       <BackgroundPaths className="z-0" pathOpacity={0.4} />
+      
+      {/* Interactive spotlight effect */}
+      <Spotlight size={400} className="z-5" />
       
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/95 pointer-events-none"></div>
       

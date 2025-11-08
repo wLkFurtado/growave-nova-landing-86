@@ -9,6 +9,7 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 import ClientLogosSection from '@/components/ClientLogosSection';
+import { BlurOverlay } from '@/components/ui/blur-overlay';
 
 const Index = () => {
   useEffect(() => {
@@ -18,6 +19,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-visible my-[21px] py-[25px]">
+      <BlurOverlay position="top" />
+      <BlurOverlay position="bottom" />
       <Header />
       <main className="my-[40px] py-[14px]">
         <HeroSection />

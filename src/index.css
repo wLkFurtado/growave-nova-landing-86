@@ -1,7 +1,10 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
 
 @layer base {
   :root {
@@ -90,9 +93,8 @@
 /* Circuit background pattern with dots */
 .circuit-pattern {
   background-color: #000;
-  background-image: 
-    radial-gradient(#4AFF5A11 1px, transparent 1px),
-    linear-gradient(#4AFF5A08 1px, transparent 1px);
+  background-image: radial-gradient(#4aff5a11 1px, transparent 1px),
+    linear-gradient(#4aff5a08 1px, transparent 1px);
   background-size: 20px 20px;
   background-position: 0 0, 10px 10px;
   position: relative;
@@ -100,19 +102,23 @@
 }
 
 .circuit-pattern::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 50% 50%, rgba(74, 255, 90, 0.08) 0%, transparent 50%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(74, 255, 90, 0.08) 0%,
+    transparent 50%
+  );
   pointer-events: none;
 }
 
 /* Animated gradient background */
 .gradient-bg {
-  background: linear-gradient(90deg, #000 0%, #101D42 50%, #000 100%);
+  background: linear-gradient(90deg, #000 0%, #101d42 50%, #000 100%);
   background-size: 200% 100%;
   animation: gradientMove 8s ease infinite;
 }
@@ -145,4 +151,3 @@
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
-

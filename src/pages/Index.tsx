@@ -19,7 +19,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-visible my-[21px] py-[25px]">
-      <BlurOverlay position="top" />
       <BlurOverlay position="bottom" />
       <Header />
       <main className="my-[40px] py-[14px]">
@@ -28,7 +27,6 @@ const Index = () => {
         <ResultsSection />
         <ServicesSection />
         <ClientLogosSection />
-        <TestimonialsSection />
         <CTASection />
       </main>
       <Footer />

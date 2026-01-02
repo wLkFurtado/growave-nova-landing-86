@@ -40,15 +40,15 @@ const ServiceCard = ({
     };
   }, [delay]);
   
-  return <div ref={ref} className="flex flex-col bg-black/60 backdrop-blur border border-growave-green/10 rounded-lg p-6 transform transition-all duration-500 hover:border-growave-green/30 card-glow" style={{
+  return <div ref={ref} className="flex flex-col bg-black/60 backdrop-blur border border-growave-green/10 rounded-lg p-6 transform transition-all duration-500 hover:border-growave-green/30 hover:scale-[1.02] hover:shadow-lg hover:shadow-growave-green/10 card-glow group" style={{
     opacity: isVisible ? 1 : 0,
     transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
   }}>
-      <div className="bg-growave-green/10 p-4 rounded-lg w-16 h-16 flex items-center justify-center mb-6">
+      <div className="bg-growave-green/10 p-4 rounded-lg w-16 h-16 flex items-center justify-center mb-6 group-hover:bg-growave-green/20 transition-colors duration-300">
         {icon}
       </div>
-      <h3 className="text-xl font-bold mb-4 text-white">{title}</h3>
-      <p className="text-gray-400 mb-6 flex-grow">{description}</p>
+      <h3 className="text-xl font-bold mb-4 text-white group-hover:text-growave-green transition-colors duration-300">{title}</h3>
+      <p className="text-gray-400 mb-6 flex-grow group-hover:text-gray-300 transition-colors duration-300">{description}</p>
     </div>;
 };
 

@@ -1,4 +1,5 @@
 
+import { useState, useEffect, useCallback } from 'react';
 import { Star } from 'lucide-react';
 import { 
   Carousel,
@@ -6,6 +7,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -37,6 +39,40 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Handle carousel index change
+  useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
+
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
+
+  // Autoplay with hover pause
+  useEffect(() => {
+    if (!api || isHovered) return;
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [api, isHovered]);
+
+  // Navigate to specific slide
+  const scrollTo = useCallback((index: number) => {
+    api?.scrollTo(index);
+  }, [api]);
+
   return (
     <section 
       id="testimonials" 
@@ -50,8 +86,12 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
-          <Carousel className="w-full">
+        <div 
+          className="relative max-w-4xl mx-auto"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <Carousel className="w-full" setApi={setApi} opts={{ loop: true }}>
             <CarouselContent>
               {testimonials.map((testimonial) => (
                 <CarouselItem key={testimonial.id}>
@@ -89,16 +129,18 @@ const TestimonialsSection = () => {
             </div>
           </Carousel>
           
-          {/* Dots indicator */}
+          {/* Functional dots indicator */}
           <div className="flex justify-center space-x-2 mt-6">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  index === 0 
+                onClick={() => scrollTo(index)}
+                className={`h-3 rounded-full transition-all duration-300 ${
+                  index === current 
                     ? 'bg-growave-green w-8' 
-                    : 'bg-gray-500 hover:bg-gray-400'
+                    : 'bg-gray-500 hover:bg-gray-400 w-3'
                 }`}
+                aria-label={`Ir para depoimento ${index + 1}`}
               />
             ))}
           </div>
@@ -109,3 +151,4 @@ const TestimonialsSection = () => {
 };
 
 export default TestimonialsSection;
+

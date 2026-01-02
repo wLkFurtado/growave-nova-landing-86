@@ -58,11 +58,10 @@ const AboutSection = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <FeatureCard icon={<HeartPulse className="w-6 h-6 text-growave-green" />} title="Especialistas em Saúde" description="Equipe com conhecimento específico do mercado médico, odontológico e estético." delay={0} />
           <FeatureCard icon={<CheckCircle className="w-6 h-6 text-growave-green" />} title="Conformidade Normativa" description="Estratégias em total conformidade com os códigos éticos de publicidade em saúde." delay={200} />
-          <FeatureCard icon={<Award className="w-6 h-6 text-growave-green" />} title="Experiência Comprovada" description="Mais de 5 anos transformando a presença digital de clínicas e consultórios." delay={400} />
-          <FeatureCard icon={<TrendingUp className="w-6 h-6 text-growave-green" />} title="Resultados Mensuráveis" description="Crescimento consistente no volume de agendamentos e fidelização de pacientes." delay={600} />
+          <FeatureCard icon={<TrendingUp className="w-6 h-6 text-growave-green" />} title="Resultados Mensuráveis" description="Crescimento consistente no volume de agendamentos e fidelização de pacientes." delay={400} />
         </div>
       </div>
     </section>;

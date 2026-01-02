@@ -19,8 +19,9 @@ const HeroSection = () => {
   }, []);
   
   return <div style={{
-    height: isMobile ? '100vh' : 'calc(100vh - 80px)'
-  }} className="relative flex items-center justify-center overflow-hidden my-[6px] py-0">
+    height: isMobile ? 'auto' : 'calc(100vh - 80px)',
+    minHeight: isMobile ? '70vh' : 'auto'
+  }} className="relative flex items-center justify-center overflow-hidden my-0 py-0">
       {/* Background Paths Animation */}
       <BackgroundPaths className="z-0" pathOpacity={0.4} />
       
@@ -49,10 +50,10 @@ const HeroSection = () => {
       
       {/* Removido: Glowing orb effect */}
       
-      <div className="container mx-auto sm:px-2 relative z-10 my-[87px] px-0">
-        <div className="text-center max-w-4xl mx-auto py-[113px] px-[51px]">
+      <div className={`container mx-auto sm:px-2 relative z-10 ${isMobile ? 'my-8' : 'my-[87px]'} px-0`}>
+        <div className={`text-center max-w-4xl mx-auto ${isMobile ? 'py-12 px-6' : 'py-[113px] px-[51px]'}`}>
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <h1 className={`sm:text-4xl font-bold lg:text-6xl md:text-5xl text-3xl ${isMobile ? '-mt-48' : 'mt-0'}`}>
+            <h1 className={`sm:text-4xl font-bold lg:text-6xl md:text-5xl text-3xl mt-0`}>
               Transforme sua Clínica com o método 
               <span className="gradient-text block mt-0 my-[10px] py-0">Clínica com Rumo</span>
             </h1>

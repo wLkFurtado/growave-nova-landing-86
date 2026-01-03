@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import ContactForm from './ContactForm';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { BackgroundPaths } from '@/components/ui/background-paths';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const isMobile = useIsMobile();
   
   useEffect(() => {
@@ -17,6 +14,13 @@ const HeroSection = () => {
     }, 100);
     return () => clearTimeout(timer);
   }, []);
+
+  const scrollToInvestimento = () => {
+    const element = document.getElementById('investimento');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   
   return <div style={{
     height: isMobile ? 'auto' : 'calc(100vh - 80px)',
@@ -67,20 +71,13 @@ const HeroSection = () => {
           
           <div className={`transition-all duration-700 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button className="text-sm py-4 px-5 bg-growave-green text-black hover:bg-growave-green-light animate-pulse-soft">
-                    Diagnóstico Estratégico
-                    <ArrowRight className="ml-1 h-4 w-4" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[600px] bg-transparent border-none shadow-none mx-auto w-[95%] h-[85vh] overflow-hidden p-0">
-                  <DialogHeader className="sr-only">
-                    <DialogTitle>Formulário de Contato</DialogTitle>
-                  </DialogHeader>
-                  <ContactForm onSuccess={() => setIsDialogOpen(false)} />
-                </DialogContent>
-              </Dialog>
+              <Button 
+                onClick={scrollToInvestimento}
+                className="text-sm py-4 px-5 bg-growave-green text-black hover:bg-growave-green-light animate-pulse-soft"
+              >
+                Agendar consultoria gratuita
+                <ArrowRight className="ml-1 h-4 w-4" />
+              </Button>
             </div>
           </div>
           

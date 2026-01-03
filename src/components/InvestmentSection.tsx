@@ -37,6 +37,7 @@ const InvestmentSection = () => {
   return (
     <section 
       ref={sectionRef}
+      id="investimento"
       className="py-24 md:py-32 relative overflow-hidden bg-[#0a0a0a]"
     >
       {/* Animated background particles */}
@@ -205,12 +206,12 @@ const InvestmentSection = () => {
                 }}
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Agende sua consultoria gratuita
+                  Agendar consultoria gratuita
                   <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
                 </span>
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px] bg-transparent border-none shadow-none">
+            <DialogContent className="sm:max-w-[600px] h-auto bg-transparent border-none shadow-none p-0 my-4 [&>button]:top-2 [&>button]:right-2">
               <DialogHeader className="sr-only">
                 <DialogTitle>Formulário de Contato</DialogTitle>
               </DialogHeader>

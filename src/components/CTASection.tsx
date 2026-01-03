@@ -2,8 +2,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import ContactForm from './ContactForm';
 import { Card, CardContent } from '@/components/ui/card';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 
@@ -18,7 +16,13 @@ const benefits = [
 
 const CTASection = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const scrollToInvestimento = () => {
+    const element = document.getElementById('investimento');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section className="py-16 relative overflow-hidden">
@@ -41,7 +45,7 @@ const CTASection = () => {
               </h2>
               
               <p className="text-gray-300 mb-6">
-                Agende um diagnóstico gratuito e descubra como nossas soluções 
+                Agende uma consultoria gratuita e descubra como nossas soluções 
                 podem impulsionar sua clínica ou consultório através de estratégias 
                 personalizadas de marketing digital e automação.
               </p>
@@ -57,24 +61,15 @@ const CTASection = () => {
                 </ul>
               </div>
               
-              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button 
-                    className="text-md py-6 px-8 bg-growave-green text-black hover:bg-growave-green-light animate-pulse-soft"
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                  >
-                    Diagnóstico Estratégico
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[500px] bg-transparent border-none shadow-none">
-                  <DialogHeader className="sr-only">
-                    <DialogTitle>Formulário de Contato</DialogTitle>
-                  </DialogHeader>
-                  <ContactForm onSuccess={() => setIsDialogOpen(false)} />
-                </DialogContent>
-              </Dialog>
+              <Button 
+                onClick={scrollToInvestimento}
+                className="text-md py-6 px-8 bg-growave-green text-black hover:bg-growave-green-light animate-pulse-soft"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                Agendar consultoria gratuita
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
             </div>
             
             {/* Wallker Furtado Specialist Presentation - Professional Photo */}

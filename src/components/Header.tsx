@@ -2,13 +2,10 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import ContactForm from './ContactForm';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +15,14 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToInvestimento = () => {
+    const element = document.getElementById('investimento');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setMobileMenuOpen(false);
+  };
 
   return <header className="py-1 lg:py-2">
       <div className="container mx-auto px-1 sm:px-2 lg:px-4">
@@ -40,19 +45,12 @@ const Header = () => {
             <a href="#testimonials" className="text-white hover:text-growave-green transition-colors">
               Depoimentos
             </a>
-            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-              <DialogTrigger asChild>
-                <Button className="glow-button bg-transparent border border-growave-green text-growave-green hover:border-growave-green">
-                  Diagnóstico Estratégico
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[500px] bg-transparent border-none shadow-none">
-                <DialogHeader className="sr-only">
-                  <DialogTitle>Formulário de Contato</DialogTitle>
-                </DialogHeader>
-                <ContactForm onSuccess={() => setIsDialogOpen(false)} />
-              </DialogContent>
-            </Dialog>
+            <Button 
+              onClick={scrollToInvestimento}
+              className="glow-button bg-transparent border border-growave-green text-growave-green hover:border-growave-green"
+            >
+              Agendar consultoria gratuita
+            </Button>
           </nav>
 
           {/* Mobile Menu Trigger */}
@@ -78,22 +76,12 @@ const Header = () => {
               <a href="#testimonials" className="text-white hover:text-growave-green transition-colors" onClick={() => setMobileMenuOpen(false)}>
                 Depoimentos
               </a>
-              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button 
-                    className="glow-button bg-transparent border border-growave-green text-growave-green w-full hover:border-growave-green" 
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Diagnóstico Estratégico
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[500px] bg-transparent border-none shadow-none">
-                  <DialogHeader className="sr-only">
-                    <DialogTitle>Formulário de Contato</DialogTitle>
-                  </DialogHeader>
-                  <ContactForm onSuccess={() => setIsDialogOpen(false)} />
-                </DialogContent>
-              </Dialog>
+              <Button 
+                onClick={scrollToInvestimento}
+                className="glow-button bg-transparent border border-growave-green text-growave-green w-full hover:border-growave-green"
+              >
+                Agendar consultoria gratuita
+              </Button>
             </nav>
           </div>}
       </div>

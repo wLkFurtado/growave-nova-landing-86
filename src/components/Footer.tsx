@@ -1,5 +1,5 @@
 
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
+import { Facebook, Instagram, Mail, Phone } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -16,14 +16,11 @@ const Footer = () => {
               Transformando clínicas e consultórios através de estratégias digitais especializadas e tecnologia de ponta.
             </p>
             <div className="flex space-x-3">
-              <a href="#" className="text-gray-400 hover:text-growave-green">
+              <a href="https://www.facebook.com/GrowaveAgencia" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-growave-green">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-growave-green">
+              <a href="https://www.instagram.com/growave.agencia/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-growave-green">
                 <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-growave-green">
-                <Linkedin className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -94,12 +91,8 @@ const Footer = () => {
             <h3 className="text-base font-bold mb-4">Contato</h3>
             <ul className="space-y-2">
               <li className="flex items-start">
-                <MapPin className="w-4 h-4 text-growave-green mr-2 mt-0.5" />
-                <span className="text-gray-400 text-sm">São Paulo, SP - Brasil</span>
-              </li>
-              <li className="flex items-start">
                 <Phone className="w-4 h-4 text-growave-green mr-2 mt-0.5" />
-                <span className="text-gray-400 text-sm">(11) 9999-9999</span>
+                <span className="text-gray-400 text-sm">(22) 98161-1733</span>
               </li>
               <li className="flex items-start">
                 <Mail className="w-4 h-4 text-growave-green mr-2 mt-0.5" />

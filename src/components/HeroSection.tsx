@@ -74,13 +74,11 @@ const HeroSection = () => {
                     <ArrowRight className="ml-1 h-4 w-4" />
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[500px] bg-growave-black border-growave-green/20 mx-auto w-[95%] max-h-[90vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle className="text-xl text-white text-center"></DialogTitle>
+                <DialogContent className="sm:max-w-[600px] bg-transparent border-none shadow-none mx-auto w-[95%] h-[85vh] overflow-hidden p-0">
+                  <DialogHeader className="sr-only">
+                    <DialogTitle>Formulário de Contato</DialogTitle>
                   </DialogHeader>
-                  <div className="py-2">
-                    <ContactForm onSuccess={() => setIsDialogOpen(false)} />
-                  </div>
+                  <ContactForm onSuccess={() => setIsDialogOpen(false)} />
                 </DialogContent>
               </Dialog>
             </div>

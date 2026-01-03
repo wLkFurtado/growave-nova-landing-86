@@ -9,6 +9,7 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 import ClientLogosSection from '@/components/ClientLogosSection';
+import InvestmentSection from '@/components/InvestmentSection';
 import { BlurOverlay } from '@/components/ui/blur-overlay';
 
 const Index = () => {
@@ -27,6 +28,7 @@ const Index = () => {
         <ResultsSection />
         <ServicesSection />
         <ClientLogosSection />
+        <InvestmentSection />
         <CTASection />
       </main>
       <Footer />

@@ -68,13 +68,11 @@ const CTASection = () => {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[500px] bg-growave-black border-growave-green/20">
-                  <DialogHeader>
-                    <DialogTitle className="text-xl text-white text-center">Diagnóstico Estratégico</DialogTitle>
+                <DialogContent className="sm:max-w-[500px] bg-transparent border-none shadow-none">
+                  <DialogHeader className="sr-only">
+                    <DialogTitle>Formulário de Contato</DialogTitle>
                   </DialogHeader>
-                  <div className="py-4">
-                    <ContactForm onSuccess={() => setIsDialogOpen(false)} />
-                  </div>
+                  <ContactForm onSuccess={() => setIsDialogOpen(false)} />
                 </DialogContent>
               </Dialog>
             </div>

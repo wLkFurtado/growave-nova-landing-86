@@ -145,7 +145,7 @@ const SuccessesSection = () => {
         </div>
         
         <div ref={ref} className="mt-16">
-          <h3 className="text-2xl font-bold text-center mb-10">Clínicas que Confiam na Growave</h3>
+          <h3 className="text-2xl font-bold text-center mb-10">Clínicas que confiaram na Growave</h3>
           
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 items-center">
             {partnerLogos.map((partner, index) => (

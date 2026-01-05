@@ -60,7 +60,7 @@ const ClientLogosSection = () => {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div ref={ref}>
-          <h3 className="text-2xl font-bold text-center mb-10">Clínicas que Confiam na Growave</h3>
+          <h3 className="text-2xl font-bold text-center mb-10">Clínicas que confiaram na Growave</h3>
           
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 items-center">
             {clientLogos.map((partner, index) => (

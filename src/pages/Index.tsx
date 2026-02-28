@@ -10,6 +10,9 @@ import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 import ClientLogosSection from '@/components/ClientLogosSection';
 import InvestmentSection from '@/components/InvestmentSection';
+import PainVsSolutionSection from '@/components/PainVsSolutionSection';
+import ConversionCycleSection from '@/components/ConversionCycleSection';
+import CRMComparisonSection from '@/components/CRMComparisonSection';
 import { BlurOverlay } from '@/components/ui/blur-overlay';
 
 const Index = () => {
@@ -28,6 +31,9 @@ const Index = () => {
         <ResultsSection />
         <ServicesSection />
         <ClientLogosSection />
+        <PainVsSolutionSection />
+        <ConversionCycleSection />
+        <CRMComparisonSection />
         <InvestmentSection />
         <CTASection />
       </main>
